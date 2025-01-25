@@ -11,7 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
         then: function () {
-            // change lang ang outer prefix if i ilis ang first url name 
+            // change lang ang outer prefix if i ilis ang first url name
             // deri rapud mo pang add og mga middlewares or unsa ba
             Route::prefix('icmms')->group(function () {
                 Route::prefix('dashboard')->group(base_path('routes/dashboard.php'));
