@@ -17,17 +17,17 @@
 
     <nav>
         nav
-        <a href="{{ route('dashboard') }}">1</a>
-        <a href="{{ route('student_list') }}">2</a>
-        <a href="{{ route('payment_management') }}">3</a>
-        <a href="{{ route('collection_categories') }}">4</a>
-        <a href="{{ route('transaction') }}">5</a>
-        <a href="{{ route('reports') }}">6</a>
-        <a href="{{ route('calendar') }}">7</a>
-        <a href="{{ route('feedback') }}">8</a>
-        <a href="{{ route('activity.user') }}">9.1</a>
-        <a href="{{ route('activity.admin') }}">9.2</a>
-        <a href="{{ route('activity.system') }}">9.3</a>
+        <a href="{{ route('dashboard.index') }}">1</a>
+        <a href="{{ route('student_list.index') }}">2</a>
+        <a href="{{ route('payment_management.index') }}">3</a>
+        <a href="{{ route('collection_categories.index') }}">4</a>
+        <a href="{{ route('transaction.index') }}">5</a>
+        <a href="{{ route('reports.index') }}">6</a>
+        <a href="{{ route('calendar.index') }}">7</a>
+        <a href="{{ route('feedback.index') }}">8</a>
+        <a href="{{ route('activity.user.index') }}">9.1</a>
+        <a href="{{ route('activity.admin.index') }}">9.2</a>
+        <a href="{{ route('activity.system.index') }}">9.3</a>
     </nav>
 
     <main>
