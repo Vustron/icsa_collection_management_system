@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+    |--------------------------------------------------------------------------
+    |                          Please Read
+    |--------------------------------------------------------------------------
+    |
+    | check ninyu ang /bootstrap/cache/app.php
+    | naa didtua ang mga routes then follow lang ang mga address 
+    |
+    |
+    */
