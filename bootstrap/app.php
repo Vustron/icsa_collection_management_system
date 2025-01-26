@@ -13,7 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
         then: function () {
             // change lang ang outer prefix if i ilis ang first url name 
             // deri rapud mo pang add og mga middlewares or unsa ba
-            Route::prefix('icmms')->group(function () {
+            Route::prefix('iccms')->group(function () {
                 Route::prefix('dashboard')->group(base_path('routes/dashboard.php'));
                 Route::prefix('student_list')->group(base_path('routes/student_list.php'));
                 Route::prefix('payment_management')->group(base_path('routes/payment_management.php'));
