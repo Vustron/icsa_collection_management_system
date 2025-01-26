@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ICCMS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-   
+    {{-- resources --}}
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 </head>
 
 <body class="bg-white-100 text-gray-900 dark:bg-gray-800 dark:text-white">
@@ -83,10 +84,10 @@
                         />
                       </defs>
                     </svg>
-          
+
                     <!-- Admin Name placeholder sa-->
                     <span class="ml-3 w-full">| Admin</span>
-                   
+
                     <button class="flex items-center text-gray-900 rounded-lg dark:text-white w-full" onclick="toggleDropdown('profileDropdown')">
                         <ul id="profileDropdown"  class="hidden absolute top-full left-0 mt-2 w-48 space-y-1 bg-white rounded-lg shadow-md dark:bg-gray-800">
                             <li class="border-b-2 p-2">
@@ -129,7 +130,7 @@
                                       />
                                     </defs>
                                   </svg>
-                
+
                                   <span class="ml-3">My Account</span>
                                 </a>
                               </li>
@@ -137,7 +138,7 @@
                                 <a
                                   href="#"
                                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-white hover:bg-[#9747FF] dark:hover:bg-[#9747FF] group">
-                
+
                                   <svg
                                     width="26"
                                     height="26"
@@ -171,7 +172,7 @@
                                       />
                                     </defs>
                                   </svg>
-                
+
                                   <span class="ml-3">Admin Manager</span>
                                 </a>
                               </li>
@@ -213,7 +214,7 @@
                                       />
                                     </defs>
                                   </svg>
-                
+
                                   <span class="ml-3">Log out</span>
                                 </a>
                               </li>
@@ -305,7 +306,7 @@
                 />
               </defs>
             </svg>
-    
+
             <span
               id="logoText"
               class="ml-4 text-xl font-semibold dark:text-white top-3"
@@ -349,7 +350,7 @@
                           />
                         </defs>
                       </svg>
-        
+
                       <span class="menu-text ml-3">Dashboard</span>
                     </a>
                   </li>
@@ -387,7 +388,7 @@
                           />
                         </defs>
                       </svg>
-        
+
                       <div class="flex items-center justify-between flex-1 ml-3">
                         <span class="menu-text">Student List</span>
                       </div>
@@ -427,7 +428,7 @@
                           />
                         </defs>
                       </svg>
-        
+
                       <div class="flex items-center justify-between flex-1 ml-3">
                         <span class="menu-text">Payment Management</span>
                       </div>
@@ -467,7 +468,7 @@
                           />
                         </defs>
                       </svg>
-        
+
                       <span class="menu-text ml-3">Collection Categories</span>
                     </a>
                   </li>
@@ -505,7 +506,7 @@
                           />
                         </defs>
                       </svg>
-        
+
                       <span class="menu-text ml-3">Transaction</span>
                     </a>
                   </li>
@@ -543,7 +544,7 @@
                           />
                         </defs>
                       </svg>
-        
+
                       <span class="menu-text ml-3">Reports</span>
                     </a>
                   </li>
@@ -581,7 +582,7 @@
                           />
                         </defs>
                       </svg>
-        
+
                       <span class="menu-text ml-3">Calendar</span>
                     </a>
                   </li>
@@ -619,7 +620,7 @@
                           />
                         </defs>
                       </svg>
-        
+
                       <span class="menu-text ml-3">Feedback</span>
                     </a>
                   </li>
@@ -657,7 +658,7 @@
                           />
                         </defs>
                       </svg>
-        
+
                       <span class="menu-text ml-3">Activity</span>
                       <span class="menu-text left-[6.5rem] relative">
                         <svg
@@ -720,7 +721,7 @@
                               />
                             </defs>
                           </svg>
-        
+
                           <span class="menu-text ml-3">Users</span>
                         </a>
                       </li>
@@ -762,7 +763,7 @@
                               />
                             </defs>
                           </svg>
-        
+
                           <span class="menu-text ml-3">Admins</span>
                         </a>
                       </li>
@@ -804,7 +805,7 @@
                               />
                             </defs>
                           </svg>
-        
+
                           <span class="menu-text ml-3">System</span>
                         </a>
                       </li>
@@ -834,16 +835,16 @@
         const menuBadges = document.querySelectorAll(".menu-badge");
         const mainContent = document.getElementById("main-content");
         let isExpanded = true;
-  
+
         function toggleSidebar() {
           isExpanded = !isExpanded;
-  
+
           sidebar.classList.toggle("w-64");
           sidebar.classList.toggle("w-16");
           toggleButton.classList.toggle("left-1");
           mainContent.classList.toggle("sm:ml-64");
           mainContent.classList.toggle("sm:ml-16");
-  
+
           logoText.style.display = isExpanded ? "block" : "none";
           menuTexts.forEach(
             (text) => (text.style.display = isExpanded ? "block" : "none")
@@ -851,19 +852,19 @@
           menuBadges.forEach(
             (badge) => (badge.style.display = isExpanded ? "block" : "none")
           );
-  
+
           toggleIcon.innerHTML = isExpanded
             ? '<path stroke-linecap="round" stroke-linejoin="round" text-left stroke-width="2" d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/>'
             : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M0 96C0 78.3 14.3 64 32 64h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z" />';
-  
+
           //   toggleDropdownMenu.innerHTML = isExpanded
           //     ? "M19 9l-7-7-7 7"
-          //     : "M19 9l 7-7-7" 
-        
+          //     : "M19 9l 7-7-7"
+
         }
-  
+
         toggleButton.addEventListener("click", toggleSidebar);
-  
+
         function toggleDropdown(dropdownId) {
           const dropdown = document.getElementById(dropdownId);
           dropdown.classList.toggle("hidden");
@@ -871,7 +872,7 @@
           profileDropdown.classList.toggle("hidden");
         }
       </script>
-      
+
     <title>@yield('page_title')</title> {{-- Default naa sa ride side --}}
 
     @yield('raw_css_links')
