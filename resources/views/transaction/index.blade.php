@@ -40,7 +40,7 @@
                                 <button class="close-dialog text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
                             </div>
 
-                            <!-- filter by Category -->
+                            <!-- filter by category -->
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Category</label>
                                 <select id="filterCategory"
@@ -51,7 +51,7 @@
                                 </select>
                             </div>
 
-                            <!-- filter by Program -->
+                            <!-- filter by program -->
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Program</label>
                                 <select id="filterProgram"
