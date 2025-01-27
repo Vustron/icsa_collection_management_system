@@ -10,7 +10,7 @@
 <x-layout>
     <div class="container mx-auto p-4">
         <div class="bg-white shadow rounded-lg p-6">
-            <h1 class="text-2xl font-bold text-purple-700 mb-4">Transactions</h1>
+            <h1 class="text-3xl font-bold text-purple-700 mb-5 mt-1">Transactions</h1>
 
             <div class="flex justify-between items-center mb-4">
                 <div>
@@ -546,6 +546,9 @@
                     student.studentId.toLowerCase().includes(searchTerm) ||
                     student.name.toLowerCase().includes(searchTerm)
                 );
+                filteredStudents.sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                });
                 currentPage = 1;
                 renderTable();
             });

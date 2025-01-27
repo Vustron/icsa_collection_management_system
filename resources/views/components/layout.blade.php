@@ -15,16 +15,16 @@
     <header style="
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 -4px 6px -2px rgba(0, 0, 0, 0.05);">
-        <div id="navbar" class="flex flex-col transition-all duration-300 h-[4rem] top-[-14px] relative">
+        <div id="navbar" class="flex flex-col transition-all duration-300 h-[4.7rem] top-[-15px] w-full fixed bg-white border-b-2">
             <div class="flex items-center justify-between p-5">
-                <span class="text-2xl font-normal mb-4 flex items-center left-[2rem] relative">
+                <span class="font-normal mb-4 flex items-center left-[2rem] relative text-[23px]">
                     <img src="/storage/icons/icsaLogo.png" alt="Icsalogo" style="width: 49px; height: auto;">
                     ICCMS - Institute of Computing Collection Management System
                 </span>
                 <div class="flex items-center space-x-4">
                     <span class="flex items-center space-x-4 top-[-7px] right-[2rem] relative">
                         <!-- Notification Bell -->
-                        <img src="/storage/icons/notif.png" alt="notif" style="width: 25px; height: auto;">
+                        <img src="/storage/icons/notif.png" alt="notif" style="width: 23px; height: auto;">
                         <!-- Admin Name placeholder sa-->
                         <span class="ml-3 w-full">Admin</span>
 
@@ -63,7 +63,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <img src="/storage/icons/profile.png" alt="profile" style="width: 41px; height: auto;">
+                            <img src="/storage/icons/profile.png" alt="profile" style="width: 35px; height: auto;">
 
                         </button>
                     </span>
@@ -74,7 +74,7 @@
 
     <!-- Sidebar -->
     <aside id="sidebar"
-        class="fixed top-[65px] left-0 h-screen bg-white dark:bg-gray-800 transition-all duration-300 border-r border-gray-200 dark:border-gray-700 w-64">
+        class="fixed top-[59px] left-0 h-screen bg-white dark:bg-gray-800 transition-all duration-300 border-r border-gray-200 dark:border-gray-700 w-64">
         <button id="toggleButton" class="absolute -right-[-2px] top-2 bg-white p-1.5 dark:hover:bg-gray-700">
             <img id="toggleIcon" src="/storage/icons/x.png" alt="x"
                 style="width: 35px; height: auto; padding: 0; margin-left: -3px;;">
@@ -201,7 +201,7 @@
     </aside>
 
     <!-- Main Content -->
-    <main id="main-content" class="ml-64 p-6">
+    <main id="main-content" class="ml-64 p-8">
         {{ $slot }}
     </main>
 
