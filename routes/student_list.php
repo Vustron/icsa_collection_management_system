@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentListController;
 
 // Student List Routes
-
 Route::controller(StudentListController::class)->name('student_list.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
