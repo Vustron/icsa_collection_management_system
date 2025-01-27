@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Program extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'name',
+        'status',
+        'delete_flag'
+    ];
+
+    protected $casts = [
+        'id' => 'integer',
+        'delete_flag' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    const CREATED_AT = 'date_created';
+    const UPDATED_AT = 'date_updated';
+}
