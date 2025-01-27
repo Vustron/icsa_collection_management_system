@@ -74,7 +74,7 @@
 
     <!-- Sidebar -->
     <aside id="sidebar"
-        class="fixed top-[65px] left-0 h-screen bg-white dark:bg-gray-800 transition-all duration-300 border-r border-gray-200 dark:border-gray-700 w-64">
+        class="fixed top-[65px] left-0 h-screen bg-white dark:bg-gray-800 transition-all border-r border-gray-200 dark:border-gray-700 w-64">
         <button id="toggleButton" class="absolute -right-[-2px] top-2 bg-white p-1.5 dark:hover:bg-gray-700">
             <img id="toggleIcon" src="/storage/icons/x.png" alt="x"
                 style="width: 35px; height: auto; padding: 0; margin-left: -3px;;">
@@ -107,7 +107,7 @@
                 </li>
                 <li>
                     <a href="{{ route('payment_management.index') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-white hover:bg-[#9747FF] dark:hover:bg-[#9747FF] group">
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-white hover:bg-[#9747FF] dark:hover:bg-[#9747FF] group overflow-hidden">
 
                         <img src="/storage/icons/paymentManagement.png" alt="paymnetmanagement"
                             style="width: 25px; height: auto;">
@@ -119,10 +119,10 @@
                 </li>
                 <li>
                     <a href="{{ route('collection_categories.index') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-white hover:bg-[#9747FF] dark:hover:bg-[#9747FF] group">
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-white hover:bg-[#9747FF] dark:hover:bg-[#9747FF] group overflow-hidden">
                         <img src="/storage/icons/collectionCategories.png" alt="collectioncategories"
                             style="width: 25px; height: auto;">
-                        <span class="menu-text ml-3">Collection Categories</span>
+                        <span class="menu-text ml-3 overflow-hidden">Collection Categories</span>
                     </a>
                 </li>
                 <li>
