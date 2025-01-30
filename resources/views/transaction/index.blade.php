@@ -1,4 +1,5 @@
-@section('page_title', 'ICCMS')
+@section('page_title', 'Transaction')
+@section('page_header_title', 'Transaction')
 
 {{-- e butang here ang mga links na customized specifically for this page aron dele mag conflict sa uban --}}
 @section('raw_css_links')
@@ -654,3 +655,4 @@
     </script>
 
 </x-layout>
+

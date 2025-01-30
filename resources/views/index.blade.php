@@ -29,10 +29,10 @@
                 <div class="w-full max-w-[400px] space-y-8">
                     <x-ui.card.body class="border-purple-100">
                         <x-ui.card.header>
-                            <x-ui.card.title class="text-2xl font-extrabold text-purple-700">
+                            <x-ui.card.title class="text-2xl font-extrabold">
                                 Sign In
                             </x-ui.card.title>
-                            <x-ui.card.description class="text-purple-600">
+                            <x-ui.card.description>
                                 Welcome back! Please sign-in to continue
                             </x-ui.card.description>
                         </x-ui.card.header>
@@ -43,7 +43,7 @@
                                 <div class="space-y-4">
                                     {{-- Email Input --}}
                                     <div class="space-y-2">
-                                        <x-ui.form.label for="email" class="text-purple-700">
+                                        <x-ui.form.label for="email">
                                             Email
                                         </x-ui.form.label>
                                         <x-ui.form.input type="email" name="email" id="email"
@@ -56,7 +56,7 @@
 
                                     {{-- Password Input --}}
                                     <div class="space-y-2">
-                                        <x-ui.form.label for="password" class="text-purple-700">
+                                        <x-ui.form.label for="password">
                                             Password
                                         </x-ui.form.label>
                                         <x-ui.form.input placeholder="Your password" type="password" name="password"
@@ -67,8 +67,7 @@
 
                                     {{-- Forgot Password --}}
                                     <div class="flex items-center justify-between">
-                                        <a href="#"
-                                            class="text-xs text-purple-600 hover:text-purple-700 hover:underline">
+                                        <a href="#" class="text-xs hover:text-purple-700 hover:underline">
                                             Forgot password?
                                         </a>
                                     </div>

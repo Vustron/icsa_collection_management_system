@@ -1,4 +1,5 @@
-@section('page_title', 'ICCMS')
+@section('page_title', 'Dashboard')
+@section('page_header_title', 'Dashboard')
 
 {{-- e butang here ang mga links na customized specifically for this page aron dele mag conflict sa uban --}}
 @section('raw_css_links')
