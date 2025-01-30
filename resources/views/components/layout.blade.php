@@ -6,10 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="icon" type="image/png" href="{{ asset('images/icsa_logo.png') }}">
-        <title>ICSA CMS</title>
+        <title>@yield('page_title') | ICSA CMS</title>
 
-        {{-- Resources --}}
+        {{-- CSS --}}
+        @yield('raw_css_links')
         @vite('resources/css/app.css')
+
+        {{-- Scripts --}}
         @vite('resources/js/app.js')
     </head>
 
@@ -25,7 +28,7 @@
                         </button>
                         <!-- Page Title -->
                         <h1 class="ml-64 text-lg font-medium text-gray-900 transition-all duration-300">
-                            {{ $header ?? 'Dashboard' }}
+                            <span class="ml-[10px]">@yield('page_header_title')</span>
                         </h1>
                     </div>
 
@@ -102,7 +105,7 @@
                     <!-- Dashboard -->
                     <li>
                         <a href="{{ route('dashboard.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            class="{{ request()->routeIs('dashboard.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
                             <x-bx-grid-alt class="ml-1 size-5 flex-shrink-0" />
                             <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Dashboard</span>
                         </a>
@@ -111,19 +114,18 @@
                     <!-- Student List -->
                     <li>
                         <a href="{{ route('student_list.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            class="{{ request()->routeIs('student_list.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
                             <x-bx-group class="ml-1 size-5 flex-shrink-0" />
-                            <span class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Student
-                                List</span>
+                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Student List</span>
                         </a>
                     </li>
 
                     <!-- Payment Management -->
                     <li>
                         <a href="{{ route('payment_management.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            class="{{ request()->routeIs('payment_management.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
                             <x-bx-credit-card class="ml-1 size-5 flex-shrink-0" />
-                            <span class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Payment
+                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Payment
                                 Management</span>
                         </a>
                     </li>
@@ -131,9 +133,9 @@
                     <!-- Collection Categories -->
                     <li>
                         <a href="{{ route('collection_categories.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            class="{{ request()->routeIs('collection_categories.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
                             <x-bx-category class="ml-1 size-5 flex-shrink-0" />
-                            <span class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Collection
+                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Collection
                                 Categories</span>
                         </a>
                     </li>
@@ -141,51 +143,46 @@
                     <!-- Transaction -->
                     <li>
                         <a href="{{ route('transaction.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            class="{{ request()->routeIs('transaction.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
                             <x-bx-transfer class="ml-1 size-5 flex-shrink-0" />
-                            <span
-                                class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Transaction</span>
+                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Transaction</span>
                         </a>
                     </li>
 
                     <!-- Reports -->
                     <li>
                         <a href="{{ route('reports.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            class="{{ request()->routeIs('reports.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
                             <x-bx-file class="ml-1 size-5 flex-shrink-0" />
-                            <span
-                                class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Reports</span>
+                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Reports</span>
                         </a>
                     </li>
 
                     <!-- Calendar -->
                     <li>
                         <a href="{{ route('calendar.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            class="{{ request()->routeIs('calendar.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
                             <x-bx-calendar class="ml-1 size-5 flex-shrink-0" />
-                            <span
-                                class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Calendar</span>
+                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Calendar</span>
                         </a>
                     </li>
 
                     <!-- Feedback -->
                     <li>
                         <a href="{{ route('feedback.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            class="{{ request()->routeIs('feedback.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
                             <x-bx-message-square-detail class="ml-1 size-5 flex-shrink-0" />
-                            <span
-                                class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Feedback</span>
+                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Feedback</span>
                         </a>
                     </li>
 
-                    <!-- Activity Dropdown -->
+                    <!-- Activity -->
                     <li>
                         <a
-                            class="flex w-full items-center justify-between rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            class="{{ request()->routeIs('activity.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} flex w-full items-center justify-between rounded-lg p-2 transition-colors">
                             <div class="flex items-center">
                                 <x-bx-history class="ml-1 size-5 flex-shrink-0" />
-                                <span
-                                    class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Activity</span>
+                                <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Activity</span>
                             </div>
                         </a>
                     </li>
@@ -204,6 +201,7 @@
         <footer class="mt-10 p-4 text-center">
             <span class="text-sm text-gray-500">© 2024 ICCMS. All rights reserved.</span>
         </footer>
-    </body>
 
+        @yield('js_links')
+    </body>
 </html>

@@ -15,7 +15,8 @@ class Layout extends Component
     public function __construct(
         $page_title = null,
         $raw_css_link = null,
-        $js_link = null
+        $js_link = null,
+        $page_header_title = null
     ) {
         // utot di mo work
         // $this->page_title = $page_title ?? "ICCMS";

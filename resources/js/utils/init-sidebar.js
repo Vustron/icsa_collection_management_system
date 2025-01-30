@@ -18,7 +18,12 @@ export function initializeSidebar() {
         // Width transitions
         elements.sidebar.classList.toggle("w-64", isOpen);
         elements.sidebar.classList.toggle("w-16", !isOpen);
+
+        elements.main.classList.toggle("lg:ml-64", isOpen);
+        elements.main.classList.toggle("lg:ml-16", !isOpen);
+
         const headerTitle = document.querySelector("header h1");
+
         if (headerTitle) {
             headerTitle.style.marginLeft = isOpen ? "280px" : "80px";
         }
