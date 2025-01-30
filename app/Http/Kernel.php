@@ -6,25 +6,15 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
-    protected $middleware = [
-      \App\Http\Middleware\LogHttpRequests::class,
-    ];
+    protected $middleware = [\App\Http\Middleware\LogHttpRequests::class];
 
     protected $middlewareGroups = [
-        'web' => [
+        "web" => [],
 
-        ],
-
-        'api' => [
-
-        ],
+        "api" => [],
     ];
 
-    protected $middlewareAliases = [
+    protected $middlewareAliases = [];
 
-    ];
-
-    protected $middlewarePriority = [
-
-    ];
+    protected $middlewarePriority = [];
 }

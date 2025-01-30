@@ -1,5 +1,6 @@
 # Run bun fix
 npm run format
+php artisan blade:lint
 
 # Get the current version from package.json
 current_version=$(node -p "require('./package.json').version")

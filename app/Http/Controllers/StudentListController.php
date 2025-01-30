@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class StudentListController extends Controller
 {
-    public function index() {
-        return view('student_list.index');
+    public function index()
+    {
+        return view("student_list.index");
     }
 
     public function create() {}

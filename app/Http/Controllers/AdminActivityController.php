@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class AdminActivityController extends Controller
 {
-    public function index() {
-        return view('activity.admin.index');
+    public function index()
+    {
+        return view("activity.admin.index");
     }
 
     public function create() {}

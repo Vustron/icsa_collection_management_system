@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class PaymentManagementController extends Controller
 {
-    public function index() {
-        return view('payment_management.index');
+    public function index()
+    {
+        return view("payment_management.index");
     }
 
     public function create() {}

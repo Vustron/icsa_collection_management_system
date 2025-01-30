@@ -12,43 +12,56 @@ class SignUpController extends Controller
 {
     public function index()
     {
-       return view('auth.index');
+        return view("auth.index");
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_name' => ['required', 'string', 'max:255', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed'],
+            "user_name" => ["required", "string", "max:255", "unique:users"],
+            "email" => [
+                "required",
+                "string",
+                "email",
+                "max:255",
+                "unique:users",
+            ],
+            "password" => ["required", "confirmed"],
         ]);
 
         try {
             $salt = Str::random(16);
-            $pepper = 'supersecretpepper';
-            $saltedPepperPassword = $validated['password'] . $salt . $pepper;
+            $pepper = "supersecretpepper";
+            $saltedPepperPassword = $validated["password"] . $salt . $pepper;
 
             $user = User::create([
-                'user_name' => $validated['user_name'],
-                'email' => $validated['email'],
-                'password' => Hash::make($validated['password'] . $salt . $pepper),
-                'salt' => $salt,
-                'role' => 'user',
-                'provider' => 'emailPassword',
+                "user_name" => $validated["user_name"],
+                "email" => $validated["email"],
+                "password" => Hash::make(
+                    $validated["password"] . $salt . $pepper
+                ),
+                "salt" => $salt,
+                "role" => "user",
+                "provider" => "emailPassword",
             ]);
 
-           if (!$user) {
-                throw new \Exception('Failed to create user');
+            if (!$user) {
+                throw new \Exception("Failed to create user");
             }
 
-           return redirect()
-                ->route('signup')
-                ->with('success', 'Account created successfully. Please sign in.');
+            return redirect()
+                ->route("signup")
+                ->with(
+                    "success",
+                    "Account created successfully. Please sign in."
+                );
         } catch (\Exception $e) {
-           return redirect()
+            return redirect()
                 ->back()
                 ->withInput()
-                ->withErrors(['error' => 'Failed to create account. Please try again.']);
+                ->withErrors([
+                    "error" => "Failed to create account. Please try again.",
+                ]);
         }
     }
 }

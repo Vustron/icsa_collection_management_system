@@ -9,7 +9,7 @@ class CollectionCategoryController extends Controller
 {
     public function index()
     {
-        return view('collection_categories.index');
+        return view("collection_categories.index");
     }
 
     public function create() {}

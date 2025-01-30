@@ -1,6 +1,6 @@
 @props([
     'for' => '',
-    'disabled' => false,
+    'disabled' => false
 ])
 
 <label for="{{ $for }}"

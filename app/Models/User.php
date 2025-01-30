@@ -12,25 +12,22 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'user_name',
-        'email',
-        'password',
-        'salt',
-        'role',
-        'provider'
+        "user_name",
+        "email",
+        "password",
+        "salt",
+        "role",
+        "provider",
     ];
 
-    protected $hidden = [
-        'password',
-        'salt',
-    ];
+    protected $hidden = ["password", "salt"];
 
     protected $casts = [
-        'id' => 'integer',
-        'session_id' => 'integer',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'gcash_number' => 'integer',
+        "id" => "integer",
+        "session_id" => "integer",
+        "created_at" => "datetime",
+        "updated_at" => "datetime",
+        "gcash_number" => "integer",
     ];
 
     public function sessions()

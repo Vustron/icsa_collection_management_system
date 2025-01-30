@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class SystemActivityController extends Controller
 {
-    public function index() {
-        return view('activity.system.index');
+    public function index()
+    {
+        return view("activity.system.index");
     }
 
     public function create() {}

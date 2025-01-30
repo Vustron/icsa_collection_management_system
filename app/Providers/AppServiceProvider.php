@@ -14,6 +14,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        View::share('errors', \Illuminate\Support\Facades\Session::get('errors') ?: new \Illuminate\Support\ViewErrorBag);
+        View::share(
+            "errors",
+            \Illuminate\Support\Facades\Session::get("errors") ?:
+            new \Illuminate\Support\ViewErrorBag()
+        );
     }
 }

@@ -5,305 +5,205 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>ICCMS</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="icon" type="image/png" href="{{ asset('images/icsa_logo.png') }}">
+        <title>ICSA CMS</title>
 
+        {{-- Resources --}}
+        @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
     </head>
 
-    <body class="bg-white-100 text-gray-900 dark:bg-gray-800 dark:text-white">
-        <!-- Navbar -->
-        <header style="
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 -4px 6px -2px rgba(0, 0, 0, 0.05);">
-            <div id="navbar"
-                class="fixed top-[-15px] flex h-[4.7rem] w-full flex-col border-b-2 bg-white transition-all duration-300">
-                <div class="flex items-center justify-between p-5">
-                    <span class="relative left-[2rem] mb-4 flex items-center text-[23px] font-normal">
-                        <img src="/storage/icons/icsaLogo.png" alt="Icsalogo" style="width: 49px; height: auto;">
-                        ICCMS - Institute of Computing Collection Management System
-                    </span>
+    <body class="min-h-screen bg-gray-50">
+
+        <header class="fixed top-0 z-50 w-full bg-white shadow-sm">
+            <div class="flex h-16 items-center px-4">
+                <!-- Left: Mobile Menu & Title -->
+                <div class="flex w-full items-center justify-between">
                     <div class="flex items-center space-x-4">
-                        <span class="relative right-[2rem] top-[-7px] flex items-center space-x-4">
-                            <!-- Notification Bell -->
-                            <img src="/storage/icons/notif.png" alt="notif" style="width: 23px; height: auto;">
-                            <!-- Admin Name placeholder sa-->
-                            <span class="ml-3 w-full">Admin</span>
+                        <button id="mobileMenuButton" class="rounded-md p-2 hover:bg-gray-100 lg:hidden">
+                            <x-bx-menu class="h-6 w-6 text-gray-600" />
+                        </button>
+                        <!-- Page Title -->
+                        <h1 class="ml-64 text-lg font-medium text-gray-900 transition-all duration-300">
+                            {{ $header ?? 'Dashboard' }}
+                        </h1>
+                    </div>
 
-                            <button class="flex w-full items-center rounded-lg text-gray-900 dark:text-white"
-                                onclick="toggleDropdown('profileDropdown')">
-                                <ul id="profileDropdown"
-                                    class="absolute left-0 top-full mt-2 hidden w-48 space-y-1 rounded-lg bg-white shadow-md dark:bg-gray-800">
-                                    <li class="border-b-2 p-2">
-                                        <span class="ml-3">Manage Account</span>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-
-                                            <img src="/storage/icons/myAccount.png" alt="myaccount"
-                                                style="width: 26px; height: auto;">
-                                            <span class="ml-3">My Account</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-
-                                            <img src="/storage/icons/admnManager.png" alt="adminmanager"
-                                                style="width: 26px; height: auto;">
-                                            <span class="ml-3">Admin Manager</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-                                            <img src="/storage/icons/logOut.png" alt="logout"
-                                                style="width: 26px; height: auto;">
-                                            <span class="ml-3">Log out</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <img src="/storage/icons/profile.png" alt="profile" style="width: 35px; height: auto;">
-
+                    <!-- Right: Notifications & Profile -->
+                    <div class="flex items-center space-x-6">
+                        <!-- Notifications -->
+                        <div class="relative">
+                            <button class="relative rounded-full p-1 hover:bg-gray-100 focus:outline-none">
+                                <x-bx-bell class="h-6 w-6 text-gray-600" />
+                                <span
+                                    class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                                    3
+                                </span>
                             </button>
-                        </span>
+                        </div>
+
+                        <!-- Profile Dropdown -->
+                        <div class="relative">
+                            <button id="profileDropdownButton"
+                                class="flex items-center space-x-3 rounded-full p-1 hover:bg-gray-100 focus:outline-none">
+                                <span class="hidden text-sm font-medium text-gray-900 lg:block">Admin</span>
+                                <x-bx-user-circle class="h-8 w-8 text-gray-600" />
+                            </button>
+                            <!-- Dropdown Menu -->
+                            <div id="profileDropdown"
+                                class="absolute right-0 mt-2 hidden w-48 rounded-lg border bg-white py-1 shadow-lg">
+                                <div class="border-b px-4 py-2 text-sm font-medium text-gray-900">
+                                    Manage Account
+                                </div>
+                                <a href="#"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                                    <x-bx-user class="mr-3 h-5 w-5 text-purple-600" />
+                                    My Account
+                                </a>
+                                <a href="#"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                                    <x-bx-shield class="mr-3 h-5 w-5 text-purple-600" />
+                                    Admin Manager
+                                </a>
+                                <div class="border-t">
+                                    <button type="submit"
+                                        class="flex w-full items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                        <x-bx-log-out class="mr-3 h-5 w-5" />
+                                        Log out
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
         </header>
 
-        <!-- Sidebar -->
+        <div id="mobileMenuOverlay" class="fixed inset-0 z-40 hidden bg-black bg-opacity-50 lg:hidden"></div>
+
+        {{-- Sidebar --}}
         <aside id="sidebar"
-            class="fixed left-0 top-[59px] h-screen w-64 border-r border-gray-200 bg-white transition-all duration-300 dark:border-gray-700 dark:bg-gray-800">
-            <button id="toggleButton" class="absolute -right-[-2px] top-2 bg-white p-1.5 dark:hover:bg-gray-700">
-                <img id="toggleIcon" src="/storage/icons/x.png" alt="x"
-                    style="width: 35px; height: auto; padding: 0; margin-left: -3px;;">
+            class="fixed left-0 z-50 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white shadow-lg transition-transform duration-300 lg:translate-x-0">
+            <button id="sidebarToggle"
+                class="absolute -right-5 top-2 hidden rounded-full bg-white p-1 shadow-lg hover:bg-gray-100 lg:block">
+                <x-bx-chevron-left id="chevronIcon" class="h-6 w-6 text-gray-600 transition-transform duration-300" />
             </button>
 
             <!-- Logo -->
-            <div class="mb-1 flex items-center p-4 shadow-lg">
-
-                <img id="toggleIcon" src="/storage/icons/codex.png" alt="codex" style="width: 25px; height: 26px;">
-                <span id="logoText" class="top-3 ml-4 text-xl font-semibold dark:text-white">
-                    CODEX</span>
+            <div class="mb-1 flex items-center p-4 shadow-sm">
+                <img src="{{ asset('images/icsa_logo.png') }}" alt="ICSA Logo" class="h-8 w-8 flex-shrink-0">
+                <span class="menu-text ml-3 transform text-xl font-semibold lg:transition-all lg:duration-300">
+                    ICSA CMS
+                </span>
             </div>
-            <nav class="px-2">
-                <ul class="space-y-2">
+
+            <!-- Navigation -->
+            <nav class="h-[calc(100vh-6rem)] overflow-y-auto px-2">
+                <ul class="mb-4 space-y-1">
+                    <!-- Dashboard -->
                     <li>
                         <a href="{{ route('dashboard.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-                            <img src="/storage/icons/dashboard.png" alt="dashboard" style="width: 25px; height: auto;">
-                            <span class="menu-text ml-3">Dashboard</span>
+                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            <x-bx-grid-alt class="ml-1 size-5 flex-shrink-0" />
+                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Dashboard</span>
                         </a>
                     </li>
+
+                    <!-- Student List -->
                     <li>
                         <a href="{{ route('student_list.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-                            <img src="/storage/icons/studentList.png" alt="studentlist"
-                                style="width: 25px; height: auto;">
-                            <div class="ml-3 flex flex-1 items-center justify-between">
-                                <span class="menu-text">Student List</span>
-                            </div>
+                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            <x-bx-group class="ml-1 size-5 flex-shrink-0" />
+                            <span class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Student
+                                List</span>
                         </a>
                     </li>
+
+                    <!-- Payment Management -->
                     <li>
                         <a href="{{ route('payment_management.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
+                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            <x-bx-credit-card class="ml-1 size-5 flex-shrink-0" />
+                            <span class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Payment
+                                Management</span>
+                        </a>
+                    </li>
 
-                            <img src="/storage/icons/paymentManagement.png" alt="paymnetmanagement"
-                                style="width: 25px; height: auto;">
+                    <!-- Collection Categories -->
+                    <li>
+                        <a href="{{ route('collection_categories.index') }}"
+                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            <x-bx-category class="ml-1 size-5 flex-shrink-0" />
+                            <span class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Collection
+                                Categories</span>
+                        </a>
+                    </li>
 
-                            <div class="ml-3 flex flex-1 items-center justify-between">
-                                <span class="menu-text">Payment Management</span>
+                    <!-- Transaction -->
+                    <li>
+                        <a href="{{ route('transaction.index') }}"
+                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            <x-bx-transfer class="ml-1 size-5 flex-shrink-0" />
+                            <span
+                                class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Transaction</span>
+                        </a>
+                    </li>
+
+                    <!-- Reports -->
+                    <li>
+                        <a href="{{ route('reports.index') }}"
+                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            <x-bx-file class="ml-1 size-5 flex-shrink-0" />
+                            <span
+                                class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Reports</span>
+                        </a>
+                    </li>
+
+                    <!-- Calendar -->
+                    <li>
+                        <a href="{{ route('calendar.index') }}"
+                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            <x-bx-calendar class="ml-1 size-5 flex-shrink-0" />
+                            <span
+                                class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Calendar</span>
+                        </a>
+                    </li>
+
+                    <!-- Feedback -->
+                    <li>
+                        <a href="{{ route('feedback.index') }}"
+                            class="group flex items-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            <x-bx-message-square-detail class="ml-1 size-5 flex-shrink-0" />
+                            <span
+                                class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Feedback</span>
+                        </a>
+                    </li>
+
+                    <!-- Activity Dropdown -->
+                    <li>
+                        <a
+                            class="flex w-full items-center justify-between rounded-lg p-2 text-gray-700 transition-colors hover:bg-purple-600 hover:text-white">
+                            <div class="flex items-center">
+                                <x-bx-history class="ml-1 size-5 flex-shrink-0" />
+                                <span
+                                    class="menu-text ml-3 transform text-sm lg:transition-all lg:duration-100">Activity</span>
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('collection_categories.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-                            <img src="/storage/icons/collectionCategories.png" alt="collectioncategories"
-                                style="width: 25px; height: auto;">
-                            <span class="menu-text ml-3">Collection Categories</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('transaction.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-
-                            <img src="/storage/icons/transaction.png" alt="transaction"
-                                style="width: 25px; height: auto;">
-                            <span class="menu-text ml-3">Transaction</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('reports.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-                            <img src="/storage/icons/reports.png" alt="reports" style="width: 25px; height: auto;">
-                            <span class="menu-text ml-3">Reports</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('calendar.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-
-                            <img src="/storage/icons/calendar.png" alt="calendar" style="width: 25px; height: auto;">
-                            <span class="menu-text ml-3">Calendar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('feedback.index') }}"
-                            class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-                            <img src="/storage/icons/feedback.png" alt="feedback" style="width: 25px; height: auto;">
-                            <span class="menu-text ml-3">Feedback</span>
-                        </a>
-                    </li>
-                    <li>
-                        <button
-                            class="flex w-full items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]"
-                            onclick="toggleDropdown('activityDropdown')">
-                            <img src="/storage/icons/activity.png" alt="activity" style="width: 25px; height: auto;">
-                            <span class="menu-text ml-3">Activity</span>
-                            <span class="menu-text relative left-[6.5rem]">
-
-                                <img id="toggleDropdownMenu" src="/storage/icons/dropdown2.png" alt="dropdown2"
-                                    style="width: 25px; height: auto;">
-                            </span>
-                        </button>
-                        <ul id="activityDropdown" ;
-                            class="mt-2 hidden w-full space-y-1 rounded-lg bg-white dark:bg-gray-800">
-                            <li>
-                                <a href="{{ route('activity.user.index') }}"
-                                    class="group ml-10 flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-                                    <img src="/storage/icons/users.png" alt="users"
-                                        style="width: 20px; height: auto;">
-                                    <span class="menu-text ml-3">Users</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('activity.admin.index') }}"
-                                    class="group ml-10 flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-                                    <img src="/storage/icons/admins.png" alt="admins"
-                                        style="width: 20px; height: auto;">
-                                    <span class="menu-text ml-3">Admins</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('activity.system.index') }}"
-                                    class="group ml-10 flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
-                                    <img src="/storage/icons/system.png" alt="system"
-                                        style="width: 25px; height: auto;">
-                                    <span class="menu-text ml-3">System</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
                 </ul>
             </nav>
         </aside>
 
         <!-- Main Content -->
-        <main id="main-content" class="ml-64 p-8">
-            {{ $slot }}
+        <main id="mainContent" class="transition-all duration-100 lg:ml-64">
+            <div class="p-8">
+                {{ $slot }}
+            </div>
         </main>
 
         <!-- Footer -->
         <footer class="mt-10 p-4 text-center">
-            puter
+            <span class="text-sm text-gray-500">© 2024 ICCMS. All rights reserved.</span>
         </footer>
-
-        <script>
-            const sidebar = document.getElementById("sidebar");
-            const toggleButton = document.getElementById("toggleButton");
-            const toggleIcon = document.getElementById("toggleIcon");
-            const toggleDropdownMenu = document.getElementById("toggleDropdownMenu");
-            const logoText = document.getElementById("logoText");
-            const menuTexts = document.querySelectorAll(".menu-text");
-            const menuBadges = document.querySelectorAll(".menu-badge");
-            const mainContent = document.getElementById("main-content");
-            let isExpanded = true;
-
-            function toggleSidebar() {
-                isExpanded = !isExpanded;
-
-                sidebar.classList.toggle("w-64");
-                sidebar.classList.toggle("w-16");
-                toggleButton.classList.toggle("left-1");
-                mainContent.classList.toggle("sm:ml-64");
-                mainContent.classList.toggle("sm:ml-16");
-
-                logoText.style.display = isExpanded ? "block" : "none";
-                menuTexts.forEach(
-                    (text) => (text.style.display = isExpanded ? "block" : "none")
-                );
-                menuBadges.forEach(
-                    (badge) => (badge.style.display = isExpanded ? "block" : "none")
-                );
-
-                const toggleIcon = document.getElementById("toggleIcon");
-                if (isExpanded) {
-                    toggleIcon.src = "/storage/icons/x.png";
-                    toggleIcon.style.width = "35px";
-                    toggleIcon.style.height = "auto";
-                    toggleIcon.style.top = "2px";
-                    toggleIcon.style.marginLeft = "-3px";
-                    toggleIcon.style.paddingRight = "0";
-                } else {
-                    toggleIcon.src = "/storage/icons/bar.png";
-                    toggleIcon.style.width = "49px";
-                    toggleIcon.style.height = "40px";
-                    toggleIcon.style.paddingRight = "5px";
-                    toggleIcon.style.marginLeft = "-2px";
-                }
-
-
-            }
-
-            toggleButton.addEventListener("click", toggleSidebar);
-
-            function toggleDropdown(dropdownId) {
-                const dropdown = document.getElementById(dropdownId);
-                dropdown.classList.toggle("hidden");
-
-                const toggleDropdownMenu = document.getElementById("toggleDropdownMenu");
-                if (toggleDropdownMenu.src.includes("dropdown.png")) {
-                    toggleDropdownMenu.src = "/storage/icons/dropdown2.png";
-                    toggleDropdownMenu.style.width = "25px";
-                    toggleDropdownMenu.style.height = "auto";
-                } else {
-                    toggleDropdownMenu.src = "/storage/icons/dropdown.png";
-                    toggleDropdownMenu.style.width = "25px";
-                    toggleDropdownMenu.style.height = "auto";
-                }
-
-                const profileDropdown = document.getElementById(profileDropdown);
-                profileDropdown.classList.toggle("hidden");
-            }
-        </script>
-
-        <title>@yield('page_title')</title> {{-- Default naa sa ride side --}}
-
-        @yield('raw_css_links')
-        </head>
-
-        <body>
-            <header>
-                {{-- heder --}}
-            </header>
-
-            <nav>
-                {{-- nav --}}
-            </nav>
-
-            <main id="main-content" class="shadow-top-lg items-start transition-all duration-300 sm:ml-64">
-
-            </main>
-
-            <footer>
-                puter
-            </footer>
-
-            @yield('js_links')
-        </body>
+    </body>
 
 </html>
