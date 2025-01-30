@@ -602,4 +602,3 @@
         });
     </script>
 </x-layout>
-

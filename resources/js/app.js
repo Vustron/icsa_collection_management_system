@@ -4,8 +4,8 @@ import { cn } from "./utils/cn";
 import "./bootstrap";
 
 document.addEventListener("DOMContentLoaded", () => {
-	initializeSidebar();
-	initializeDropdowns();
+    initializeSidebar();
+    initializeDropdowns();
 });
 
 export { cn };
