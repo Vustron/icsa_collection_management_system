@@ -8,4 +8,3 @@
     @disabled($disabled)>
     {{ $slot }}
 </label>
-

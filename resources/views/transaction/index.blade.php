@@ -9,14 +9,14 @@
 
 <x-layout>
     <div class="container mx-auto p-4">
-        <div class="bg-white shadow rounded-lg p-6">
-            <h1 class="text-3xl font-bold text-purple-700 mb-5 mt-1">Transactions</h1>
+        <div class="rounded-lg bg-white p-6 shadow">
+            <h1 class="mb-5 mt-1 text-3xl font-bold text-purple-700">Transactions</h1>
 
-            <div class="flex justify-between items-center mb-4">
+            <div class="mb-4 flex items-center justify-between">
                 <div>
                     <label for="show-entries" class="text-sm font-medium text-gray-700">Show</label>
                     <select id="show-entries"
-                        class="border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500 text-sm border-2">
+                        class="rounded-md border-2 border-gray-300 text-sm focus:border-purple-500 focus:ring-purple-500">
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
@@ -27,24 +27,24 @@
                 <div class="flex items-center space-x-4">
                     <!-- filter -->
                     <button onclick="showDialog('filterDialog')"
-                        class="flex bg-gray-200 text-black px-3 py-2 rounded-md text-sm hover:bg-gray-300">
-                        <img src="/storage/icons/filter.png" alt="filter" class="w-5 h-5">
+                        class="flex rounded-md bg-gray-200 px-3 py-2 text-sm text-black hover:bg-gray-300">
+                        <img src="/storage/icons/filter.png" alt="filter" class="h-5 w-5">
                         <span class="px-2">Filter</span>
                     </button>
                     <div id="filterDialog"
-                        class="hidden fixed inset-0 bg-black bg-opacity-50 items-center justify-center">
-                        <div class="bg-white p-6 rounded-lg w-96">
+                        class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50">
+                        <div class="w-96 rounded-lg bg-white p-6">
 
-                            <div class="flex justify-between items-center mb-4">
+                            <div class="mb-4 flex items-center justify-between">
                                 <h3 class="text-xl font-semibold">Filter Transaction</h3>
-                                <button class="close-dialog text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                                <button class="close-dialog text-2xl text-gray-500 hover:text-gray-700">&times;</button>
                             </div>
 
                             <!-- filter by category -->
                             <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Category</label>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Filter by Category</label>
                                 <select id="filterCategory"
-                                    class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                    class="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                                     <option value="">Select Category</option>
                                     <option value="Fines">Fines</option>
                                     <option value="Locker">Locker</option>
@@ -53,9 +53,9 @@
 
                             <!-- filter by program -->
                             <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Program</label>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Filter by Program</label>
                                 <select id="filterProgram"
-                                    class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                    class="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                                     <option value="">Select Program</option>
                                     <option value="BSIT">BSIT</option>
                                     <option value="BSIS">BSIS</option>
@@ -63,20 +63,20 @@
                             </div>
 
                             <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Date</label>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Filter by Date</label>
                                 <input id="filterDate" type="date"
-                                    class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    class="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
                                     pattern="\d{2}/\d{2}/\d{2}">
                             </div>
 
                             <!-- actions -->
                             <div class="flex justify-end space-x-2">
                                 <button id="resetFilters"
-                                    class="bg-gray-200 text-black px-4 py-2 rounded-md text-sm hover:bg-gray-300">
+                                    class="rounded-md bg-gray-200 px-4 py-2 text-sm text-black hover:bg-gray-300">
                                     Reset Filters
                                 </button>
                                 <button id="applyFilters"
-                                    class="bg-purple-500 text-white px-4 py-2 rounded-md text-sm hover:bg-purple-600">
+                                    class="rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
                                     Apply Filters
                                 </button>
                             </div>
@@ -84,19 +84,19 @@
                     </div>
                     <div>
                         <input type="text" id="search"
-                            class="border-2 border-gray-300 rounded-md text-sm px-4 py-2" placeholder="Search...">
+                            class="rounded-md border-2 border-gray-300 px-4 py-2 text-sm" placeholder="Search...">
                     </div>
                     <button onclick="showDialog('addCollectionDialog')"
-                        class="bg-purple-500 text-white px-4 py-2 rounded-md text-sm hover:bg-purple-600">
+                        class="rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
                         + Add Collection
                     </button>
 
                     <div id="addCollectionDialog"
-                        class="hidden fixed inset-0 bg-black bg-opacity-50 items-center justify-center">
-                        <div class="bg-white p-6 rounded-lg w-96">
-                            <div class="flex justify-between items-center mb-4">
+                        class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50">
+                        <div class="w-96 rounded-lg bg-white p-6">
+                            <div class="mb-4 flex items-center justify-between">
                                 <h3 class="text-xl font-semibold">Add New Collection</h3>
-                                <button class="close-dialog text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                                <button class="close-dialog text-2xl text-gray-500 hover:text-gray-700">&times;</button>
                             </div>
 
                             <form id="addCollectionForm">
@@ -105,10 +105,10 @@
                                         ID</label>
                                     <span class="flex">
                                         <input type="text" id="dialogstudentId"
-                                            class="mt-1 block w-full border-2 border-gray-300 rounded-md text-sm px-4 py-2"
+                                            class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
                                             placeholder="Student ID">
                                         <button type="button" id="dialogsearchStudent"
-                                            class="bg-gray-200 text-black px-3 py-2 rounded-md text-sm hover:bg-gray-300">
+                                            class="rounded-md bg-gray-200 px-3 py-2 text-sm text-black hover:bg-gray-300">
                                             Search
                                         </button>
                                     </span>
@@ -118,7 +118,7 @@
                                     <label for="name" class="block text-sm font-medium text-gray-700">Full
                                         Name</label>
                                     <input type="text" id="dialogname"
-                                        class="mt-1 block w-full border-2 border-gray-300 rounded-md text-sm px-4 py-2"
+                                        class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
                                         placeholder="Full Name">
                                 </div>
 
@@ -126,11 +126,9 @@
                                     <label for="program"
                                         class="block text-sm font-medium text-gray-700">Program</label>
 
-
                                     <input type="text" id="dialogprogram"
-                                        class="mt-1 block w-full border-2 border-gray-300 rounded-md text-sm px-4 py-2"
+                                        class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
                                         placeholder="Program">
-
 
                                     {{-- i dont know if default value naba yung program --}}
 
@@ -140,13 +138,12 @@
                                         <option value="Locker">BSIS</option>
                                     </select> --}}
 
-
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="dialogcategory"
                                         class="block text-sm font-medium text-gray-700">Category</label>
-                                    <select id="dialogcategory" class="w-full px-3 py-2 border-2 rounded-md text-sm">
+                                    <select id="dialogcategory" class="w-full rounded-md border-2 px-3 py-2 text-sm">
                                         {{-- unod ani ma change based sa category table sa DB, this serves as sample for now --}}
                                         <option value="">Select Category</option>
                                         <option value="Fines">Fines</option>
@@ -157,20 +154,19 @@
                                 <div class="mb-4">
                                     <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
                                     <input type="date" id="dialogdate"
-                                        class="mt-1 block w-full border-2 border-gray-300 rounded-md text-sm px-4 py-2">
+                                        class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm">
                                 </div>
-
 
                                 <div class="mb-4">
                                     <label for="amount"
                                         class="block text-sm font-medium text-gray-700">Amount</label>
                                     <input type="number" id="dialogamount"
-                                        class="mt-1 block w-full border-2 border-gray-300 rounded-md text-sm px-4 py-2"
+                                        class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
                                         placeholder="0.00">
                                 </div>
 
                                 <button type="submit"
-                                    class="bg-purple-500 text-white px-4 py-2 rounded-md text-sm hover:bg-purple-600 w-full">
+                                    class="w-full rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
                                     + Confirm Add Collection
                                 </button>
                             </form>
@@ -181,7 +177,7 @@
 
             <!-- table -->
             <div class="overflow-x-auto">
-                <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                <table class="min-w-full rounded-lg border border-gray-200 bg-white">
                     <thead class="bg-purple-200">
                         <tr>
                             <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">#</th>
@@ -198,7 +194,7 @@
                 </table>
             </div>
 
-            <div class="flex justify-between items-center mt-4">
+            <div class="mt-4 flex items-center justify-between">
                 <div>
                     <p id="showing-info" class="text-sm text-gray-700">Showing 1 to 10 of 0 entries</p>
                 </div>
