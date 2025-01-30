@@ -3,9 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign-in | ICSA CMS</title>
+        <title>Sign-up | ICSA CMS</title>
         <link rel="icon" type="image/png" href="{{ asset('images/icsa_logo.png') }}">
-        {{-- resources --}}
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
     </head>
@@ -17,60 +16,69 @@
                 class="relative hidden min-h-[300px] flex-col items-center justify-center bg-[url('/public/images/bg.png')] bg-cover bg-center p-4 before:absolute before:inset-0 before:bg-black/50 before:content-[''] lg:flex lg:min-h-screen">
                 <img src="{{ asset('images/icsa_logo.png') }}" alt="ICSA Logo" class="z-10 mb-4 size-32">
                 <h2 class="z-10 text-center text-xl font-bold text-white lg:text-2xl xl:text-3xl">
-                    ICSACMS: Institute of Computing Student Association Collection Management System
+                    ICSA CMS: Institute of Computing Student Association Collection Management System
                 </h2>
             </div>
 
-            {{-- Right Column - Sign-in Form --}}
+            {{-- Right Column - Sign-up Form --}}
             <div class="flex flex-col items-center justify-center p-4">
                 <div class="w-full max-w-[400px] space-y-8">
                     <x-ui.card.body>
                         <x-ui.card.header>
                             <x-ui.card.title>
-                                Sign In
+                                Sign Up
                             </x-ui.card.title>
                             <x-ui.card.description>
-                                Welcome back! Please sign-in to continue
+                                Create your account to get started
                             </x-ui.card.description>
                         </x-ui.card.header>
 
                         <x-ui.card.content>
-                            <form action="#" method="POST">
+                            <form action="{{ route('signup.store') }}" method="POST">
                                 @csrf
                                 <div class="space-y-4">
+                                    {{-- Username Input --}}
+                                    <div class="space-y-2">
+                                        <x-ui.form.label for="user_name">Username</x-ui.form.label>
+                                        <x-ui.form.input type="text" name="user_name" id="user_name"
+                                            placeholder="Choose a username" required maxlength="255"
+                                            value="{{ old('user_name') }}" />
+                                        @error('user_name')
+                                            <x-ui.toast.error message="{{ $message }}" />
+                                        @enderror
+                                    </div>
+
                                     {{-- Email Input --}}
                                     <div class="space-y-2">
-                                        <x-ui.form.label for="email">
-                                            Email
-                                        </x-ui.form.label>
+                                        <x-ui.form.label for="email">Email</x-ui.form.label>
                                         <x-ui.form.input type="email" name="email" id="email"
-                                            placeholder="Your email address" required min="1" maxlength="255"
+                                            placeholder="Your email address" required maxlength="255"
                                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                            title="Please enter a valid email address" aria-label="Email address"
-                                            autocomplete="email" />
+                                            value="{{ old('email') }}" />
+                                        @error('email')
+                                            <x-ui.toast.error message="{{ $message }}" />
+                                        @enderror
                                     </div>
 
                                     {{-- Password Input --}}
                                     <div class="space-y-2">
-                                        <x-ui.form.label for="password">
-                                            Password
-                                        </x-ui.form.label>
-                                        <x-ui.form.input placeholder="Your password" type="password" name="password"
-                                            id="password" required minlength="1" maxlength="64" aria-label="Password"
-                                            autocomplete="current-password" />
+                                        <x-ui.form.label for="password">Password</x-ui.form.label>
+                                        <x-ui.form.input type="password" name="password" id="password"
+                                            placeholder="Create a password" required minlength="8" maxlength="64" />
                                     </div>
 
-                                    {{-- Forgot Password --}}
-                                    <div class="flex items-center justify-between">
-                                        <a href="#" class="text-xs text-primary hover:underline">
-                                            Forgot password?
-                                        </a>
+                                    {{-- Confirm Password Input --}}
+                                    <div class="space-y-2">
+                                        <x-ui.form.label for="password_confirmation">Confirm Password</x-ui.form.label>
+                                        <x-ui.form.input type="password" name="password_confirmation"
+                                            id="password_confirmation" placeholder="Confirm your password" required
+                                            minlength="8" maxlength="64" />
                                     </div>
 
                                     {{-- Submit Button --}}
                                     <x-ui.button.dynamic-button type="submit" variant="default" size="default"
                                         id="submitBtn" class="w-full">
-                                        Sign in
+                                        Create Account
                                     </x-ui.button.dynamic-button>
                                 </div>
                             </form>
@@ -93,7 +101,7 @@
 
                 button.disabled = true;
                 loader.classList.remove('hidden');
-                text.textContent = 'Signing in...';
+                text.textContent = 'Creating Account...';
             });
         </script>
     </body>
