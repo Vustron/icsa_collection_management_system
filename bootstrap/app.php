@@ -23,7 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 Route::prefix('calendar')->group(base_path('routes/calendar.php'));
                 Route::prefix('feedback')->group(base_path('routes/feedback.php'));
                 Route::group([], function () {
-                    require base_path('routes/sign_in.php');
+                    require base_path('routes/auth.php');
                     require base_path('routes/activity.php');
                 });
             });
