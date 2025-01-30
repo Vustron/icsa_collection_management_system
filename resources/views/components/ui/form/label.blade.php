@@ -1,6 +1,6 @@
 @props([
     'for' => '',
-    'disabled' => false,
+    'disabled' => false
 ])
 
 <label for="{{ $for }}"
@@ -8,4 +8,3 @@
     @disabled($disabled)>
     {{ $slot }}
 </label>
-

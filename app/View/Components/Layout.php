@@ -12,17 +12,19 @@ class Layout extends Component
     // public $raw_css_link;
     // public $js_link;
 
-    public function __construct($page_title = null, $raw_css_link = null, $js_link = null)
-    {
+    public function __construct(
+        $page_title = null,
+        $raw_css_link = null,
+        $js_link = null
+    ) {
         // utot di mo work
         // $this->page_title = $page_title ?? "ICCMS";
         // $this->raw_css_link = $raw_css_link;
         // $this->js_link = $js_link;
     }
 
-
     public function render(): View|Closure|string
     {
-        return view('components.layout');
+        return view("components.layout");
     }
 }

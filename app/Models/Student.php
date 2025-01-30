@@ -10,30 +10,30 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'user_id'
-        'school_id',
-        'program_id',
-        'rfid',
-        'first_name',
-        'middle_name',
-        'last_name',
-        'email',
-        'set',
-        'year',
-        'status',
-        'delete_flag'
+        "id",
+        "user_id",
+        "school_id",
+        "program_id",
+        "rfid",
+        "first_name",
+        "middle_name",
+        "last_name",
+        "email",
+        "set",
+        "year",
+        "status",
+        "delete_flag",
     ];
 
     protected $casts = [
-        'id' => 'integer',
-        'user_id' => 'integer',
-        'school_id' => 'integer',
-        'program_id' => 'integer',
-        'year' => 'integer',
-        'delete_flag' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
+        "id" => "integer",
+        "user_id" => "integer",
+        "school_id" => "integer",
+        "program_id" => "integer",
+        "year" => "integer",
+        "delete_flag" => "boolean",
+        "created_at" => "datetime",
+        "updated_at" => "datetime",
     ];
 
     public function program()

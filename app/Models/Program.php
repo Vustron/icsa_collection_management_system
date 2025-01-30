@@ -9,18 +9,13 @@ class Program extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'name',
-        'status',
-        'delete_flag'
-    ];
+    protected $fillable = ["id", "name", "status", "delete_flag"];
 
     protected $casts = [
-        'id' => 'integer',
-        'delete_flag' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime'
+        "id" => "integer",
+        "delete_flag" => "boolean",
+        "created_at" => "datetime",
+        "updated_at" => "datetime",
     ];
 
     public function students()
@@ -28,6 +23,6 @@ class Program extends Model
         return $this->hasMany(Student::class);
     }
 
-    const CREATED_AT = 'date_created';
-    const UPDATED_AT = 'date_updated';
+    const CREATED_AT = "date_created";
+    const UPDATED_AT = "date_updated";
 }

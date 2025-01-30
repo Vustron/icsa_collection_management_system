@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class UserActivityController extends Controller
 {
-    public function index() {
-        return view('activity.user.index');
+    public function index()
+    {
+        return view("activity.user.index");
     }
 
     public function create() {}

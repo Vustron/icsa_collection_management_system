@@ -10,17 +10,17 @@ class Session extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'user_id',
-        'token',
-        'ip_address',
-        'expires_at'
+        "id",
+        "user_id",
+        "token",
+        "ip_address",
+        "expires_at",
     ];
 
     protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'expires_at' => 'datetime'
+        "created_at" => "datetime",
+        "updated_at" => "datetime",
+        "expires_at" => "datetime",
     ];
 
     public function user()

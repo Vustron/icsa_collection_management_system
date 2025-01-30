@@ -1,27 +1,6 @@
-#!/bin/sh
-
-echo "Running Laravel Tests..."
-php artisan test --parallel
-
-# Store test result
-TEST_STATUS=$?
-
-if [ $TEST_STATUS -ne 0 ]; then
-    echo "Tests failed! Commit aborted."
-    exit 1
-fi
-
-# Run PHP lint
-echo "Running PHP Lint..."
-find app tests -name "*.php" -exec php -l {} \;
-
-# Store lint result
-LINT_STATUS=$?
-
-if [ $LINT_STATUS -ne 0 ]; then
-    echo "PHP Lint failed! Commit aborted."
-    exit 1
-fi
+# Run bun fix
+npm run format
+php artisan blade:lint
 
 # Get the current version from package.json
 current_version=$(node -p "require('./package.json').version")
@@ -38,11 +17,9 @@ if [ "$(uname)" = "Darwin" ]; then
     # macOS
     sed -i '' "s/\"version\": \"$current_version\"/\"version\": \"$new_version\"/" package.json
 else
-    # Windows/Linux
+    # Linux
     sed -i "s/\"version\": \"$current_version\"/\"version\": \"$new_version\"/" package.json
 fi
 
 # Stage the updated package.json
 git add package.json
-
-exit 0

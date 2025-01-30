@@ -21,3 +21,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+local.db
+local.db-shm
+local.db-wal
