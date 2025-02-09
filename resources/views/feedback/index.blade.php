@@ -9,5 +9,7 @@
 @endsection
 
 <x-layout>
-    Feedback
+    <div class="flex h-full w-full items-center justify-center">
+        a
+    </div>
 </x-layout>

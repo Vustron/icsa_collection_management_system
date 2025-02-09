@@ -27,8 +27,8 @@
                             <x-bx-menu class="h-6 w-6 text-gray-600" />
                         </button>
                         <!-- Page Title -->
-                        <h1 class="ml-64 text-lg font-medium text-gray-900 transition-all duration-300">
-                            <span class="ml-[10px]">@yield('page_header_title')</span>
+                        <h1 class="ml-64 text-lg font-medium text-violet-700 transition-all duration-300">
+                            <span>@yield('page_header_title')</span>
                         </h1>
                     </div>
 
@@ -47,11 +47,13 @@
 
                         <!-- Profile Dropdown -->
                         <div class="relative">
-                            <button id="profileDropdownButton"
-                                class="flex items-center space-x-3 rounded-full p-1 hover:bg-gray-100 focus:outline-none">
+                            <div class="flex items-center space-x-3">
                                 <span class="hidden text-sm font-medium text-gray-900 lg:block">Admin</span>
-                                <x-bx-user-circle class="h-8 w-8 text-gray-600" />
-                            </button>
+                                <button id="profileDropdownButton"
+                                    class="rounded-full p-1 hover:bg-gray-100 focus:outline-none">
+                                    <x-bx-user-circle class="h-8 w-8 text-gray-600" />
+                                </button>
+                            </div>
                             <!-- Dropdown Menu -->
                             <div id="profileDropdown"
                                 class="absolute right-0 mt-2 hidden w-48 rounded-lg border bg-white py-1 shadow-lg">
@@ -68,13 +70,14 @@
                                     <x-bx-shield class="mr-3 h-5 w-5 text-purple-600" />
                                     Admin Manager
                                 </a>
-                                <div class="border-t">
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
                                     <button type="submit"
-                                        class="flex w-full items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                        class="flex w-full items-center border-t px-4 py-2 text-sm text-red-600 hover:bg-red-50">
                                         <x-bx-log-out class="mr-3 h-5 w-5" />
                                         Log out
                                     </button>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -87,7 +90,7 @@
         <aside id="sidebar"
             class="fixed left-0 z-50 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white shadow-lg transition-transform duration-300 lg:translate-x-0">
             <button id="sidebarToggle"
-                class="absolute -right-5 top-2 hidden rounded-full bg-white p-1 shadow-lg hover:bg-gray-100 lg:block">
+                class="absolute -right-5 top-4 hidden rounded-full border border-gray-200 bg-white p-1 shadow-lg hover:bg-gray-100 lg:block">
                 <x-bx-chevron-left id="chevronIcon" class="h-6 w-6 text-gray-600 transition-transform duration-300" />
             </button>
 
@@ -106,7 +109,11 @@
                     <li>
                         <a href="{{ route('dashboard.index') }}"
                             class="{{ request()->routeIs('dashboard.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
-                            <x-bx-grid-alt class="ml-1 size-5 flex-shrink-0" />
+                            {{-- <x-bx-grid-alt class="ml-1 size-5 flex-shrink-0" /> --}}
+                            <svg fill="currentColor" class="ml-1 size-5 flex-shrink-0">
+                                <path
+                                    d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z" />
+                            </svg>
                             <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Dashboard</span>
                         </a>
                     </li>
@@ -178,13 +185,13 @@
 
                     <!-- Activity -->
                     <li>
-                        <a
+                        <div
                             class="{{ request()->routeIs('activity.*') ? 'bg-purple-600 text-white' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} flex w-full items-center justify-between rounded-lg p-2 transition-colors">
                             <div class="flex items-center">
                                 <x-bx-history class="ml-1 size-5 flex-shrink-0" />
                                 <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Activity</span>
                             </div>
-                        </a>
+                        </div>
                     </li>
                 </ul>
             </nav>
@@ -204,4 +211,5 @@
 
         @yield('js_links')
     </body>
+
 </html>

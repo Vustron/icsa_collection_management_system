@@ -13,8 +13,13 @@ class SignInController extends Controller
     }
 
     // e delete rani ha if mag work namo sa authentication or verification
-    function verify()
+    function verify(Request $request)
     {
         return redirect(route("dashboard.index"));
+    }
+
+    function logout()
+    {
+        return redirect(route("signin"));
     }
 }

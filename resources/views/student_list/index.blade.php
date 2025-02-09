@@ -9,7 +9,6 @@
 
 <x-layout>
     <div class="flex flex-col items-center justify-center">
-
         <div class="container mx-auto mt-10 p-4">
             <div class="rounded-lg bg-white p-6 shadow">
                 <h1 class="mb-5 mt-1 text-3xl font-bold text-purple-700">Student List</h1>
