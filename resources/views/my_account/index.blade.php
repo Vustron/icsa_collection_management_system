@@ -1,5 +1,5 @@
-@section('page_title', 'Feedback')
-@section('page_header_title', 'Feedback')
+@section('page_title', 'My Account')
+@section('page_header_title', 'My Account')
 
 {{-- e butang here ang mga links na customized specifically for this page aron dele mag conflict sa uban --}}
 @section('raw_css_links')
@@ -9,7 +9,5 @@
 @endsection
 
 <x-layout>
-    <div class="flex h-full w-full items-center justify-center">
-        a
-    </div>
+    my Accoutnt
 </x-layout>

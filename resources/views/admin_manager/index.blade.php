@@ -1,5 +1,5 @@
-@section('page_title', 'Feedback')
-@section('page_header_title', 'Feedback')
+@section('page_title', 'Admin Manager')
+@section('page_header_title', 'Admin Manager')
 
 {{-- e butang here ang mga links na customized specifically for this page aron dele mag conflict sa uban --}}
 @section('raw_css_links')
@@ -9,7 +9,5 @@
 @endsection
 
 <x-layout>
-    <div class="flex h-full w-full items-center justify-center">
-        a
-    </div>
+    Admin AManger
 </x-layout>

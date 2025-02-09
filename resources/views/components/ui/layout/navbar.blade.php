@@ -42,7 +42,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#"
+                                <a href="{{ route('logout') }}"
                                     class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-[#9747FF] hover:text-white dark:text-white dark:hover:bg-[#9747FF]">
                                     <img src="/storage/icons/logOut.png" alt="logout"
                                         style="width: 26px; height: auto;">
