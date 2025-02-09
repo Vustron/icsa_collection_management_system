@@ -25,7 +25,7 @@ export function initializeSidebar() {
         const headerTitle = document.querySelector("header h1");
 
         if (headerTitle) {
-            headerTitle.style.marginLeft = isOpen ? "280px" : "80px";
+            headerTitle.style.marginLeft = isOpen ? "270px" : "80px";
         }
 
         // Chevron animation
