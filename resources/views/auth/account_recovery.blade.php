@@ -51,7 +51,7 @@
             </x-ui.card.title>
             <hr>
             <x-ui.card.description
-                class=" text-[15px] {{ isset($password_matched) ? ($password_matched ? 'hidden' : '') : '' }}">
+                class="{{ isset($password_matched) ? ($password_matched ? 'hidden' : '') : '' }} text-[15px]">
                 We've sent a verification code to your Gmail. Please enter it here to verify. CODE: 123456
             </x-ui.card.description>
         </x-ui.card.header>
@@ -63,12 +63,12 @@
                     <div class="space-y-2">
                         {{-- Email Input --}}
                         <div class="space-y-2">
-                            <div class="flex justify-between items-center">
+                            <div class="flex items-center justify-between">
                                 <x-ui.form.label for="code">
                                     Verification Code
                                 </x-ui.form.label>
                                 <x-ui.form.label for="code"
-                                    class=" text-red-500 {{ isset($verified) ? ($verified ? 'hidden' : '') : 'hidden' }}">
+                                    class="{{ isset($verified) ? ($verified ? 'hidden' : '') : 'hidden' }} text-red-500">
                                     Incorrect Code
                                 </x-ui.form.label>
                             </div>
@@ -78,14 +78,13 @@
                                 class="border-grey-200 focus:border-none focus:border-purple-400 focus:ring-purple-400"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')" :disabled="isset($verified) && $verified" />
                         </div>
-                        <div class="flex
-                            justify-end items-center space-x-2">
+                        <div class="flex items-center justify-end space-x-2">
                             <a href="{{ route('forgot_password') }}"
-                                class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 text-sm rounded">
+                                class="h-10 rounded border border-input bg-background px-4 py-2 text-sm hover:bg-accent hover:text-accent-foreground">
                                 Back
                             </a>
                             <x-ui.button.dynamic-button type="submit" variant="default" size="default"
-                                class=" bg-purple-600 hover:bg-purple-700 submitBtn" :disabled="isset($verified) && $verified"
+                                class="submitBtn bg-purple-600 hover:bg-purple-700" :disabled="isset($verified) && $verified"
                                 data-submit-text="Verifying...">
                                 Verify
                             </x-ui.button.dynamic-button>
@@ -94,9 +93,9 @@
                 </form>
 
                 <div class="{{ isset($verified) ? ($verified ? '' : 'hidden') : 'hidden' }} space-y-2">
-                    <hr class=" mt-2">
+                    <hr class="mt-2">
                     <div
-                        class="border border-red-400 w-full text-red-600 text-sm py-2  text-center {{ isset($password_matched) ? ($password_matched ? 'hidden' : '') : 'hidden' }}">
+                        class="{{ isset($password_matched) ? ($password_matched ? 'hidden' : '') : 'hidden' }} w-full border border-red-400 py-2 text-center text-sm text-red-600">
                         <span>
                             Password Doesnt Match
                         </span>
@@ -109,23 +108,23 @@
                             </x-ui.form.label>
                             <x-ui.form.input type="password" name="new_password" id="new_password"
                                 placeholder="Enter New Password" required title="Please enter the correct Code"
-                                class="border-grey-200 focus:border-none focus:border-purple-400 focus:ring-purple-400 password" />
+                                class="border-grey-200 password focus:border-none focus:border-purple-400 focus:ring-purple-400" />
                         </div>
                         <div class="space-y-2">
-                            <div class="flex justify-between items-center pt-2">
+                            <div class="flex items-center justify-between pt-2">
                                 <x-ui.form.label for="">
                                     Confirm New Password
                                 </x-ui.form.label>
-                                <x-ui.form.label for="" class=" text-red-500 hidden" id="pdm">
+                                <x-ui.form.label for="" class="hidden text-red-500" id="pdm">
                                     Password doesnt match
                                 </x-ui.form.label>
                             </div>
                             <x-ui.form.input type="password" name="confirm_new_password" id="confirm_new_password"
                                 placeholder="Enter New Password" required title="Please enter the correct Code"
-                                class="border-grey-200 focus:border-none focus:border-purple-400 focus:ring-purple-400 password" />
+                                class="border-grey-200 password focus:border-none focus:border-purple-400 focus:ring-purple-400" />
                         </div>
                         <x-ui.button.dynamic-button type="submit" variant="default" size="default"
-                            id="btn_update_password" class=" bg-purple-600 hover:bg-purple-700 w-full mt-2 submitBtn"
+                            id="btn_update_password" class="submitBtn mt-2 w-full bg-purple-600 hover:bg-purple-700"
                             data-submit-text="Updating Password..." :disabled="isset($password_matched) && $password_matched">
                             Update Password
                         </x-ui.button.dynamic-button>
@@ -134,14 +133,14 @@
                 </div>
             </div>
             <div class="{{ isset($password_matched) ? (!$password_matched ? 'hidden' : '') : 'hidden' }}">
-                <div class="border border-green-400 w-full text-green-600 text-sm py-2 mt-2 text-center">
+                <div class="mt-2 w-full border border-green-400 py-2 text-center text-sm text-green-600">
                     <span>
                         Password have been changed successfully
                     </span>
                 </div>
                 <a href="{{ route('signin') }}">
                     <x-ui.button.dynamic-button type="button" variant="default" size="default" id="btn_update_password"
-                        class=" bg-purple-600 hover:bg-purple-700  w-full mt-2 submitBtn"
+                        class="submitBtn mt-2 w-full bg-purple-600 hover:bg-purple-700"
                         data-submit-text="Updating Password...">
                         Sign-in
                     </x-ui.button.dynamic-button>

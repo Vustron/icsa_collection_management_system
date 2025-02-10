@@ -26,7 +26,6 @@
     </script>
 @endsection
 
-
 <x-login_layout>
     <x-ui.card.body class="border-purple-100">
         <x-ui.card.header>
@@ -35,7 +34,7 @@
                 Administrator
             </x-ui.card.title>
             <hr>
-            <x-ui.card.description class=" text-[15px]">
+            <x-ui.card.description class="text-[15px]">
                 To recover the super admin account, enter the registered email to receive a recovery code.
             </x-ui.card.description>
         </x-ui.card.header>
@@ -54,13 +53,13 @@
                             title="Please enter a valid email address" aria-label="Email address" autocomplete="email"
                             class="border-grey-200 focus:border-none focus:border-purple-400 focus:ring-purple-400" />
                     </div>
-                    <div class="flex justify-end items-center space-x-2">
+                    <div class="flex items-center justify-end space-x-2">
                         <a href="{{ route('signin') }}"
-                            class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 text-sm rounded">
+                            class="h-10 rounded border border-input bg-background px-4 py-2 text-sm hover:bg-accent hover:text-accent-foreground">
                             Cancel
                         </a>
                         <x-ui.button.dynamic-button type="submit" variant="default" size="default"
-                            class=" bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 submitBtn">
+                            class="submitBtn bg-purple-600 hover:bg-purple-700 focus:ring-purple-500">
                             Confirm
                         </x-ui.button.dynamic-button>
                     </div>

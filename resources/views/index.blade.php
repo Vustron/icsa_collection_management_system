@@ -26,7 +26,6 @@
     </script>
 @endsection
 
-
 <x-login_layout>
     <x-ui.card.body class="border-purple-100">
         <x-ui.card.header>
@@ -82,13 +81,13 @@
                     </div>
                     {{-- Submit Button --}}
                     <x-ui.button.dynamic-button type="submit" variant="default" size="default"
-                        class="w-full bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 submitBtn">
+                        class="submitBtn w-full bg-purple-600 hover:bg-purple-700 focus:ring-purple-500">
                         Sign in
                     </x-ui.button.dynamic-button>
 
                     <hr>
                     <div
-                        class="text-violet-700 font-[600] border-grey-100 flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded border hover:border-violet-200 hover:bg-gray-100 hover:text-violet-900">
+                        class="border-grey-100 flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded border font-[600] text-violet-700 hover:border-violet-200 hover:bg-gray-100 hover:text-violet-900">
                         <x-bi-google /> <span class="text-sm">or Sign in with Google</span>
                     </div>
                 </div>
