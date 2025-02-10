@@ -32,6 +32,8 @@ Route::prefix("iccms")->group(function () {
         require base_path("routes/auth.php");
         require base_path("routes/activity.php");
     });
-    Route::prefix('my_account')->group(base_path("routes/my_account.php"));
-    Route::prefix('admin_manager')->group(base_path("routes/admin_manager.php"));
+    Route::prefix("my_account")->group(base_path("routes/my_account.php"));
+    Route::prefix("admin_manager")->group(
+        base_path("routes/admin_manager.php")
+    );
 });
