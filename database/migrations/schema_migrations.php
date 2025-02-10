@@ -150,7 +150,10 @@ return new class extends Migration {
         // Tracks actual payments made to an institution
         Schema::create("payments", function (Blueprint $table) {
             $table->id();
-            $table->foreignId("fine_id")->constrained('fines')->onDelete("cascade");
+            $table
+                ->foreignId("fine_id")
+                ->constrained("fines")
+                ->onDelete("cascade");
             $table
                 ->foreignId("institute_id")
                 ->constrained()
@@ -171,7 +174,10 @@ return new class extends Migration {
 
         Schema::create("collection_management", function (Blueprint $table) {
             $table->id();
-            $table->foreignId("fine_id")->constrained('fines')->onDelete("cascade");
+            $table
+                ->foreignId("fine_id")
+                ->constrained("fines")
+                ->onDelete("cascade");
             $table
                 ->enum("collection_status", [
                     "pending",

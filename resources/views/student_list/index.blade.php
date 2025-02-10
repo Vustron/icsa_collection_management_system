@@ -8,7 +8,7 @@
 @endsection
 
 <x-layout>
-    <div class="rounded-lg bg-white p-6 shadow w-full">
+    <div class="w-full rounded-lg bg-white p-6 shadow">
         <div class="mb-4 flex items-center justify-between">
             <div>
                 <label for="show-entries" class="text-sm font-medium text-gray-700">Show</label>
@@ -168,7 +168,7 @@
         </div>
 
         <!-- table -->
-        <table class="w-full rounded-lg  border-gray-200 bg-white  overflow-x-auto">
+        <table class="w-full overflow-x-auto rounded-lg border-gray-200 bg-white">
             <thead class="bg-purple-200">
                 <tr>
                     <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">#</th>
