@@ -16,10 +16,10 @@
         @vite('resources/js/app.js')
     </head>
 
-    <body class="min-h-screen bg-gray-50">
+    <body class="bg-[rgb(234, 235, 239)] min-h-screen">
 
-        <header class="fixed top-0 z-50 w-full bg-white shadow-sm">
-            <div class="flex h-16 items-center px-4">
+        <header class="fixed top-0 z-50 w-full bg-white shadow-md">
+            <div class="flex h-14 items-center px-4">
                 <!-- Left: Mobile Menu & Title -->
                 <div class="flex w-full items-center justify-between">
                     <div class="flex items-center space-x-4">
@@ -56,7 +56,7 @@
                             </div>
                             <!-- Dropdown Menu -->
                             <div id="profileDropdown"
-                                class="absolute right-0 mt-2 hidden w-48 rounded-lg border bg-white py-1 shadow-lg">
+                                class="absolute right-0 mt-1 hidden w-48 rounded-lg border bg-white py-1 shadow-lg">
                                 <div class="border-b px-4 py-2 text-sm font-medium text-gray-900">
                                     Manage Account
                                 </div>
@@ -92,12 +92,12 @@
         <aside id="sidebar"
             class="fixed left-0 top-0 z-50 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white shadow-lg transition-transform duration-300 lg:translate-x-0">
             <button id="sidebarToggle"
-                class="absolute -right-5 top-4 hidden rounded-full border border-gray-200 bg-white p-1 shadow-lg hover:bg-gray-100 lg:block">
+                class="absolute -right-5 top-3 hidden rounded-full border border-gray-200 bg-white p-1 shadow-lg hover:bg-gray-100 lg:block">
                 <x-bx-chevron-left id="chevronIcon" class="h-6 w-6 text-gray-600 transition-transform duration-300" />
             </button>
 
             <!-- Logo -->
-            <div class="mb-1 flex items-center p-4 shadow-sm">
+            <div class="mb-1 flex items-center px-4 py-3 shadow-sm">
                 <img src="{{ asset('images/icsa_logo.png') }}" alt="ICSA Logo" class="h-8 w-8 flex-shrink-0">
                 <span class="menu-text ml-3 transform text-xl font-semibold lg:transition-all lg:duration-300">
                     ICSA CMS
@@ -200,7 +200,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main id="mainContent" class="main mt-[64px] p-2 transition-all duration-100 lg:ml-64">
+        <main id="mainContent" class="main mt-[56px] p-2 transition-all duration-100 lg:ml-64">
             {{ $slot }}
             <!-- Footer -->
             {{-- <footer class="p-4 text-center">

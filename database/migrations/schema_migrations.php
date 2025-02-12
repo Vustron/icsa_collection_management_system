@@ -27,36 +27,77 @@ return new class extends Migration {
             $table->timestamp("date_updated")->nullable();
         });
 
+        Schema::create("systems", function (Blueprint $table) {
+            $table->id();
+            $table->string("name")->unique();
+            $table->timestamps();
+        });
+
+
+        Schema::create("roles", function (Blueprint $table) {
+            $table->id();
+            $table
+                ->enum("role", [
+                    "super_admin",
+                    "institute_super_admin",
+                    "institute_officer_admin",
+                ])
+                ->default("institute_officer_admin");
+            $table->text("description")->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+
         // Users Table
         Schema::create("users", function (Blueprint $table) {
             $table->id();
             $table->integer("session_id")->nullable();
-            $table->string("user_name")->unique();
             $table->string("email")->unique();
+            $table->string("user_name")->unique();
             $table->string("password");
             $table->string("salt");
-            $table->string("gcash_number")->nullable();
             $table->string("avatar")->nullable();
             $table->string("provider")->default("emailPassword");
-            $table
-                ->enum("role", [
-                    "super_admin",
-                    "collection_officer",
-                    "institute_admin",
-                    "user",
-                ])
-                ->default("user"); // user jud ba default? i thought mga admin staff lang man here? gi apil ang institute for future purposes
             $table->timestamps();
+        });
+
+
+        Schema::create("admin_roles", function (Blueprint $table) {
+            $table->id();
+            $table
+                ->foreignId("user_id")
+                ->constrained("users")
+                ->onDelete("cascade");
+            $table
+                ->foreignId("role_id")
+                ->constrained("roles")
+                ->onDelete("cascade");
+            $table
+                ->foreignId("system_id")
+                ->nullable()
+                ->constrained("systems")
+                ->onDelete("cascade");
+            $table
+                ->foreignId("institute_id")
+                ->nullable()
+                ->constrained("institutes")
+                ->onDelete("cascade"); // NULL if super-admin
+            $table->softDeletes();
+            $table->timestamps();
+
+            $table->unique(
+                ["institute_id", "role_id"],
+                "unique_institute_super_admin"
+            ); // Only 1 institute_super_admin per institute
+            $table
+                ->unique(["role_id"], "unique_super_admin")
+                ->whereNull("institute_id"); // Only 1 Super Admin
         });
 
         // Students Table
         Schema::create("students", function (Blueprint $table) {
             $table->id();
-            // $table
-            //     ->foreignId("user_id")
-            //     ->constrained("users")
-            //     ->onDelete("cascade");
-            // ayu, need jud ning foreign_key sa user id?
             $table->string("school_id")->unique();
             $table->foreignId("program_id")->constrained("programs");
             $table->string("rfid")->nullable()->unique();
@@ -74,27 +115,35 @@ return new class extends Migration {
         });
 
         // Sessions Table
+        // Schema::create("sessions", function (Blueprint $table) {
+        //     $table->id();
+        //     $table
+        //         ->foreignId("user_id")
+        //         ->constrained("users")
+        //         ->onDelete("cascade");
+        //     $table->string("token")->unique();
+        //     $table->string("ip_address");
+        //     $table->timestamp("expires_at");
+        //     $table->timestamps();
+        // });
+
         Schema::create("sessions", function (Blueprint $table) {
-            $table->id();
-            $table
-                ->foreignId("user_id")
-                ->constrained("users")
-                ->onDelete("cascade");
-            $table->string("token")->unique();
-            $table->string("ip_address");
-            $table->timestamp("expires_at");
-            $table->timestamps();
+            $table->string("id")->primary();
+            $table->foreignId("user_id")->nullable()->index();
+            $table->string("ip_address", 45)->nullable();
+            $table->text("user_agent")->nullable();
+            $table->longText("payload");
+            $table->integer("last_activity")->index();
         });
 
         Schema::create("collection_categories", function (Blueprint $table) {
             $table->id();
             $table->string("category_name", 50);
-            $table->decimal("fee", 4, 2);
             $table->text("description")->nullable();
             $table->timestamps();
         });
 
-        Schema::create("fines", function (Blueprint $table) {
+        Schema::create("fees", function (Blueprint $table) {
             $table->id();
             $table
                 ->foreignId("student_id")
@@ -109,7 +158,7 @@ return new class extends Migration {
                 ->foreignId("institute_id")
                 ->constrained("institutes")
                 ->onDelete("cascade");
-            $table->decimal("amount", 5, 2);
+            $table->decimal("total_amount", 5, 2);
             $table
                 ->enum("status", ["pending", "paid", "waived"])
                 ->default("pending");
@@ -118,7 +167,6 @@ return new class extends Migration {
             $table->timestamp("due_date")->nullable();
             $table->timestamp("payment_date")->nullable();
             $table->text("remarks")->nullable();
-            $table->timestamps();
         });
 
         // This table track submissions for payments made by students to cover fines
@@ -129,8 +177,8 @@ return new class extends Migration {
                 ->constrained("students")
                 ->onDelete("cascade");
             $table
-                ->foreignId("fine_id")
-                ->constrained("fines")
+                ->foreignId("fees_id")
+                ->constrained("fees")
                 ->onDelete("cascade");
             $table->string("screenshot_path", 255);
             $table->timestamp("submitted_at")->useCurrent();
@@ -151,8 +199,8 @@ return new class extends Migration {
         Schema::create("payments", function (Blueprint $table) {
             $table->id();
             $table
-                ->foreignId("fine_id")
-                ->constrained("fines")
+                ->foreignId("fees_id")
+                ->constrained("fees")
                 ->onDelete("cascade");
             $table
                 ->foreignId("institute_id")
@@ -175,8 +223,8 @@ return new class extends Migration {
         Schema::create("collection_management", function (Blueprint $table) {
             $table->id();
             $table
-                ->foreignId("fine_id")
-                ->constrained("fines")
+                ->foreignId("fees_id")
+                ->constrained("fees")
                 ->onDelete("cascade");
             $table
                 ->enum("collection_status", [
@@ -192,14 +240,55 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        // Schema::create('notifications', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        //     $table->text('message');
-        //     $table->enum('status', ['unread', 'read'])->default('unread');
-        //     $table->timestamp('created_at')->useCurrent();
-        //     $table->timestamps();
-        // });
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->text('message');
+            $table->enum('status', ['unread', 'read'])->default('unread');
+            $table->timestamps();
+        });
+
+        Schema::create("attendance_events", function (Blueprint $table) {
+            $table->id();
+            $table->string("event_name");
+            $table->date("start_date");
+            $table->date("end_date");
+            $table->timestamps();
+        });
+
+        Schema::create("attendance_records", function (Blueprint $table) {
+            $table->id();
+            $table
+                ->foreignId("student_id")
+                ->constrained("students")
+                ->onDelete("cascade");
+            $table
+                ->foreignId("attendance_event_id")
+                ->constrained()
+                ->onDelete("cascade");
+            $table->date("date");
+            $table->timestamp("morning_check_in")->nullable();
+            $table->timestamp("morning_check_out")->nullable();
+            $table->timestamp("afternoon_check_in")->nullable();
+            $table->timestamp("afternoon_check_out")->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create("attendance_fees", function (Blueprint $table) {
+            $table->id();
+            // para tanang fines ma isa ra og kuha if need (for detailed view)
+            $table
+                ->foreignId("fee_id")
+                ->constrained("fees")
+                ->onDelete("cascade");
+            // need ni para ma kuha natu ang event name (for groupings each event) tas makita natu if naa silay absent that day
+            $table
+                ->foreignId("attendance_record_id")
+                ->constrained("attendance_records")
+                ->onDelete("cascade");
+            $table->decimal("amount", 5, 2);
+            $table->timestamps();
+        });
     }
 
     public function down(): void
@@ -215,5 +304,8 @@ return new class extends Migration {
         Schema::dropIfExists("payments");
         Schema::dropIfExists("collection_management");
         // Schema::dropIfExists("notifications");
+        Schema::dropIfExists("attendance_events");
+        Schema::dropIfExists("attendance_records");
+        Schema::dropIfExists("attendance_fees");
     }
 };
