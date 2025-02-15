@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create("institutes", function (Blueprint $table) {
             $table->id();
-            $table->string("institute_name", 100);
+            $table->string("institute_name", 100)->unique();
             $table->timestamps();
         });
 
@@ -20,7 +20,7 @@ return new class extends Migration {
                 ->foreignId("institute_id")
                 ->constrained("institutes")
                 ->onDelete("cascade");
-            $table->string("name");
+            $table->string("name")->unique();
             $table->enum("status", ["active", "inactive"])->default("active");
             $table->boolean("delete_flag")->default(false);
             $table->timestamp("date_created")->nullable();
@@ -33,35 +33,40 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-
         Schema::create("roles", function (Blueprint $table) {
             $table->id();
             $table
                 ->enum("role", [
                     "super_admin",
                     "institute_super_admin",
-                    "institute_officer_admin",
+                    "institute_officer_admin"
                 ])
-                ->default("institute_officer_admin");
+                ->default("institute_officer_admin")->unique();
             $table->text("description")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
 
-
         // Users Table
         Schema::create("users", function (Blueprint $table) {
             $table->id();
             $table->integer("session_id")->nullable();
-            $table->string("email")->unique();
             $table->string("user_name")->unique();
+            $table->string("email")->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string("password");
             $table->string("salt");
             $table->string("avatar")->nullable();
-            $table->string("provider")->default("emailPassword");
+            $table->string("provider")->default("email");
+            $table
+                ->foreignId("institute_id")
+                ->nullable()
+                ->constrained("institutes")
+                ->onDelete("cascade"); // NULL if super-admin
+            $table->enum('status', ['active', 'deactivated'])->default("active");
+            $table->rememberToken();
             $table->timestamps();
         });
-
 
         Schema::create("admin_roles", function (Blueprint $table) {
             $table->id();
@@ -78,21 +83,24 @@ return new class extends Migration {
                 ->nullable()
                 ->constrained("systems")
                 ->onDelete("cascade");
-            $table
-                ->foreignId("institute_id")
-                ->nullable()
-                ->constrained("institutes")
-                ->onDelete("cascade"); // NULL if super-admin
             $table->softDeletes();
             $table->timestamps();
 
-            $table->unique(
-                ["institute_id", "role_id"],
-                "unique_institute_super_admin"
-            ); // Only 1 institute_super_admin per institute
-            $table
-                ->unique(["role_id"], "unique_super_admin")
-                ->whereNull("institute_id"); // Only 1 Super Admin
+            // $table->unique(
+            //     ["institute_id", "role_id"],
+            //     "unique_institute_super_admin"
+            // ); // Only 1 institute_super_admin per institute
+
+
+            // ambot ani oi di naku ma unique ang role_id = 1 AHAHAHHAH bahala naning dnsc suoer admin oi cheeeee
+
+            // $table->unique(['role_id'], 'unique_super_admin'); // Only 1 Super Admin
+
+            // $table->unique(['role_id'], 'unique_super_admin')->where('role_id', 1); //// Only 1 Super Admin
+
+            // $table
+            //     ->unique(["role_id"], "unique_super_admin")
+            //     ->whereNull(["institute_id"])->whereNull('system_id'); // Only 1 Super Admin
         });
 
         // Students Table
@@ -108,7 +116,7 @@ return new class extends Migration {
             $table->string("set");
             $table->integer("year");
             $table
-                ->enum("status", ["active", "inactive", "graduated"])
+                ->enum("status", ['active', 'inactive', 'graduated', 'leave'])
                 ->default("active");
             $table->boolean("delete_flag")->default(false);
             $table->timestamps();
@@ -138,7 +146,7 @@ return new class extends Migration {
 
         Schema::create("collection_categories", function (Blueprint $table) {
             $table->id();
-            $table->string("category_name", 50);
+            $table->string("category_name", 50)->unique();
             $table->text("description")->nullable();
             $table->timestamps();
         });
@@ -167,6 +175,7 @@ return new class extends Migration {
             $table->timestamp("due_date")->nullable();
             $table->timestamp("payment_date")->nullable();
             $table->text("remarks")->nullable();
+            $table->timestamps();
         });
 
         // This table track submissions for payments made by students to cover fines
@@ -278,7 +287,7 @@ return new class extends Migration {
             $table->id();
             // para tanang fines ma isa ra og kuha if need (for detailed view)
             $table
-                ->foreignId("fee_id")
+                ->foreignId("fee_id")->nullable()
                 ->constrained("fees")
                 ->onDelete("cascade");
             // need ni para ma kuha natu ang event name (for groupings each event) tas makita natu if naa silay absent that day
@@ -293,19 +302,22 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists("institutes");
-        Schema::dropIfExists("programs");
-        Schema::dropIfExists("users");
-        Schema::dropIfExists("students");
-        Schema::dropIfExists("sessions");
-        Schema::dropIfExists("collection_categories");
-        Schema::dropIfExists("fines");
-        Schema::dropIfExists("payment_submissions");
-        Schema::dropIfExists("payments");
-        Schema::dropIfExists("collection_management");
-        // Schema::dropIfExists("notifications");
+        Schema::dropIfExists("admin_roles");
         Schema::dropIfExists("attendance_events");
-        Schema::dropIfExists("attendance_records");
         Schema::dropIfExists("attendance_fees");
+        Schema::dropIfExists("attendance_records");
+        Schema::dropIfExists("collection_categories");
+        Schema::dropIfExists("collection_management");
+        Schema::dropIfExists("fees");
+        Schema::dropIfExists("institutes");
+        Schema::dropIfExists("notifications");
+        Schema::dropIfExists("payments");
+        Schema::dropIfExists("payment_submissions");
+        Schema::dropIfExists("programs");
+        Schema::dropIfExists("roles");
+        Schema::dropIfExists("sessions");
+        Schema::dropIfExists("students");
+        Schema::dropIfExists("systems");
+        Schema::dropIfExists("users");
     }
 };

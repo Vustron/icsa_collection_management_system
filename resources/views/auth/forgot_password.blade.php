@@ -35,7 +35,7 @@
             </x-ui.card.title>
             <hr>
             <x-ui.card.description class="text-[15px]">
-                To recover the super admin account, enter the registered email to receive a recovery code.
+                To recover your admin account, enter the registered email to receive a recovery code.
             </x-ui.card.description>
         </x-ui.card.header>
 
@@ -69,4 +69,3 @@
     </x-ui.card.body>
 
 </x-login_layout>
-\

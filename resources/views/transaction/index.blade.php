@@ -9,199 +9,189 @@
 @endsection
 
 <x-layout>
-    <div class="container mx-auto p-4">
-        <div class="rounded-lg bg-white p-6 shadow">
-            <h1 class="mb-5 mt-1 text-3xl font-bold text-purple-700">Transactions</h1>
+    <div class="mb-4 flex items-center justify-between">
+        <div>
+            <label for="show-entries" class="text-sm font-medium text-gray-700">Show</label>
+            <select id="show-entries"
+                class="rounded-md border-2 border-gray-300 text-sm focus:border-purple-500 focus:ring-purple-500">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+            <span class="text-sm font-medium text-gray-700">entries</span>
+        </div>
 
-            <div class="mb-4 flex items-center justify-between">
-                <div>
-                    <label for="show-entries" class="text-sm font-medium text-gray-700">Show</label>
-                    <select id="show-entries"
-                        class="rounded-md border-2 border-gray-300 text-sm focus:border-purple-500 focus:ring-purple-500">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                    </select>
-                    <span class="text-sm font-medium text-gray-700">entries</span>
+        <div class="flex items-center space-x-4">
+            <!-- filter -->
+            <button onclick="showDialog('filterDialog')"
+                class="flex rounded-md bg-gray-200 px-3 py-2 text-sm text-black hover:bg-gray-300">
+                <img src="/storage/icons/filter.png" alt="filter" class="h-5 w-5">
+                <span class="px-2">Filter</span>
+            </button>
+            <div id="filterDialog" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50">
+                <div class="w-96 rounded-lg bg-white p-6">
+
+                    <div class="mb-4 flex items-center justify-between">
+                        <h3 class="text-xl font-semibold">Filter Transaction</h3>
+                        <button class="close-dialog text-2xl text-gray-500 hover:text-gray-700">&times;</button>
+                    </div>
+
+                    <!-- filter by category -->
+                    <div class="mb-4">
+                        <label class="mb-1 block text-sm font-medium text-gray-700">Filter by Category</label>
+                        <select id="filterCategory"
+                            class="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select Category</option>
+                            <option value="Fines">Fines</option>
+                            <option value="Locker">Locker</option>
+                        </select>
+                    </div>
+
+                    <!-- filter by program -->
+                    <div class="mb-4">
+                        <label class="mb-1 block text-sm font-medium text-gray-700">Filter by Program</label>
+                        <select id="filterProgram"
+                            class="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select Program</option>
+                            <option value="BSIT">BSIT</option>
+                            <option value="BSIS">BSIS</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="mb-1 block text-sm font-medium text-gray-700">Filter by Date</label>
+                        <input id="filterDate" type="date"
+                            class="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            pattern="\d{2}/\d{2}/\d{2}">
+                    </div>
+
+                    <!-- actions -->
+                    <div class="flex justify-end space-x-2">
+                        <button id="resetFilters"
+                            class="rounded-md bg-gray-200 px-4 py-2 text-sm text-black hover:bg-gray-300">
+                            Reset Filters
+                        </button>
+                        <button id="applyFilters"
+                            class="rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
+                            Apply Filters
+                        </button>
+                    </div>
                 </div>
+            </div>
+            <div>
+                <input type="text" id="search" class="rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
+                    placeholder="Search...">
+            </div>
+            <button onclick="showDialog('addCollectionDialog')"
+                class="rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
+                + Add Collection
+            </button>
 
-                <div class="flex items-center space-x-4">
-                    <!-- filter -->
-                    <button onclick="showDialog('filterDialog')"
-                        class="flex rounded-md bg-gray-200 px-3 py-2 text-sm text-black hover:bg-gray-300">
-                        <img src="/storage/icons/filter.png" alt="filter" class="h-5 w-5">
-                        <span class="px-2">Filter</span>
-                    </button>
-                    <div id="filterDialog"
-                        class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50">
-                        <div class="w-96 rounded-lg bg-white p-6">
+            <div id="addCollectionDialog"
+                class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50">
+                <div class="w-96 rounded-lg bg-white p-6">
+                    <div class="mb-4 flex items-center justify-between">
+                        <h3 class="text-xl font-semibold">Add New Collection</h3>
+                        <button class="close-dialog text-2xl text-gray-500 hover:text-gray-700">&times;</button>
+                    </div>
 
-                            <div class="mb-4 flex items-center justify-between">
-                                <h3 class="text-xl font-semibold">Filter Transaction</h3>
-                                <button class="close-dialog text-2xl text-gray-500 hover:text-gray-700">&times;</button>
-                            </div>
-
-                            <!-- filter by category -->
-                            <div class="mb-4">
-                                <label class="mb-1 block text-sm font-medium text-gray-700">Filter by Category</label>
-                                <select id="filterCategory"
-                                    class="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
-                                    <option value="">Select Category</option>
-                                    <option value="Fines">Fines</option>
-                                    <option value="Locker">Locker</option>
-                                </select>
-                            </div>
-
-                            <!-- filter by program -->
-                            <div class="mb-4">
-                                <label class="mb-1 block text-sm font-medium text-gray-700">Filter by Program</label>
-                                <select id="filterProgram"
-                                    class="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
-                                    <option value="">Select Program</option>
-                                    <option value="BSIT">BSIT</option>
-                                    <option value="BSIS">BSIS</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="mb-1 block text-sm font-medium text-gray-700">Filter by Date</label>
-                                <input id="filterDate" type="date"
-                                    class="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                    pattern="\d{2}/\d{2}/\d{2}">
-                            </div>
-
-                            <!-- actions -->
-                            <div class="flex justify-end space-x-2">
-                                <button id="resetFilters"
-                                    class="rounded-md bg-gray-200 px-4 py-2 text-sm text-black hover:bg-gray-300">
-                                    Reset Filters
+                    <form id="addCollectionForm">
+                        <div class="mb-4">
+                            <label for="studentId" class="block text-sm font-medium text-gray-700">Student
+                                ID</label>
+                            <span class="flex">
+                                <input type="text" id="dialogstudentId"
+                                    class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
+                                    placeholder="Student ID">
+                                <button type="button" id="dialogsearchStudent"
+                                    class="rounded-md bg-gray-200 px-3 py-2 text-sm text-black hover:bg-gray-300">
+                                    Search
                                 </button>
-                                <button id="applyFilters"
-                                    class="rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
-                                    Apply Filters
-                                </button>
-                            </div>
+                            </span>
                         </div>
-                    </div>
-                    <div>
-                        <input type="text" id="search"
-                            class="rounded-md border-2 border-gray-300 px-4 py-2 text-sm" placeholder="Search...">
-                    </div>
-                    <button onclick="showDialog('addCollectionDialog')"
-                        class="rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
-                        + Add Collection
-                    </button>
 
-                    <div id="addCollectionDialog"
-                        class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50">
-                        <div class="w-96 rounded-lg bg-white p-6">
-                            <div class="mb-4 flex items-center justify-between">
-                                <h3 class="text-xl font-semibold">Add New Collection</h3>
-                                <button class="close-dialog text-2xl text-gray-500 hover:text-gray-700">&times;</button>
-                            </div>
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full
+                                Name</label>
+                            <input type="text" id="dialogname"
+                                class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
+                                placeholder="Full Name">
+                        </div>
 
-                            <form id="addCollectionForm">
-                                <div class="mb-4">
-                                    <label for="studentId" class="block text-sm font-medium text-gray-700">Student
-                                        ID</label>
-                                    <span class="flex">
-                                        <input type="text" id="dialogstudentId"
-                                            class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
-                                            placeholder="Student ID">
-                                        <button type="button" id="dialogsearchStudent"
-                                            class="rounded-md bg-gray-200 px-3 py-2 text-sm text-black hover:bg-gray-300">
-                                            Search
-                                        </button>
-                                    </span>
-                                </div>
+                        <div class="mb-4">
+                            <label for="program" class="block text-sm font-medium text-gray-700">Program</label>
 
-                                <div class="mb-4">
-                                    <label for="name" class="block text-sm font-medium text-gray-700">Full
-                                        Name</label>
-                                    <input type="text" id="dialogname"
-                                        class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
-                                        placeholder="Full Name">
-                                </div>
+                            <input type="text" id="dialogprogram"
+                                class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
+                                placeholder="Program">
 
-                                <div class="mb-4">
-                                    <label for="program"
-                                        class="block text-sm font-medium text-gray-700">Program</label>
+                            {{-- i dont know if default value naba yung program --}}
 
-                                    <input type="text" id="dialogprogram"
-                                        class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
-                                        placeholder="Program">
-
-                                    {{-- i dont know if default value naba yung program --}}
-
-                                    {{-- <select id="dialogprogram" class="w-full px-3 py-2 border-2 rounded-md text-sm">
+                            {{-- <select id="dialogprogram" class="w-full px-3 py-2 border-2 rounded-md text-sm">
                                         <option value="">Select Program</option>
                                         <option value="Fines">BSIT</option>
                                         <option value="Locker">BSIS</option>
                                     </select> --}}
 
-                                </div>
-
-                                <div class="mb-4">
-                                    <label for="dialogcategory"
-                                        class="block text-sm font-medium text-gray-700">Category</label>
-                                    <select id="dialogcategory" class="w-full rounded-md border-2 px-3 py-2 text-sm">
-                                        {{-- unod ani ma change based sa category table sa DB, this serves as sample for now --}}
-                                        <option value="">Select Category</option>
-                                        <option value="Fines">Fines</option>
-                                        <option value="Locker">Locker</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-                                    <input type="date" id="dialogdate"
-                                        class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm">
-                                </div>
-
-                                <div class="mb-4">
-                                    <label for="amount"
-                                        class="block text-sm font-medium text-gray-700">Amount</label>
-                                    <input type="number" id="dialogamount"
-                                        class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
-                                        placeholder="0.00">
-                                </div>
-
-                                <button type="submit"
-                                    class="w-full rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
-                                    + Confirm Add Collection
-                                </button>
-                            </form>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- table -->
-            <div class="overflow-x-auto">
-                <table class="min-w-full rounded-lg border border-gray-200 bg-white">
-                    <thead class="bg-purple-200">
-                        <tr>
-                            <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">#</th>
-                            <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Student ID</th>
-                            <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Full Name</th>
-                            <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Program</th>
-                            <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Category</th>
-                            <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Date</th>
-                            <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody id="student-table">
-                    </tbody>
-                </table>
-            </div>
+                        <div class="mb-4">
+                            <label for="dialogcategory" class="block text-sm font-medium text-gray-700">Category</label>
+                            <select id="dialogcategory" class="w-full rounded-md border-2 px-3 py-2 text-sm">
+                                {{-- unod ani ma change based sa category table sa DB, this serves as sample for now --}}
+                                <option value="">Select Category</option>
+                                <option value="Fines">Fines</option>
+                                <option value="Locker">Locker</option>
+                            </select>
+                        </div>
 
-            <div class="mt-4 flex items-center justify-between">
-                <div>
-                    <p id="showing-info" class="text-sm text-gray-700">Showing 1 to 10 of 0 entries</p>
-                </div>
-                <div class="flex space-x-2" id="pagination">
+                        <div class="mb-4">
+                            <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+                            <input type="date" id="dialogdate"
+                                class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
+                            <input type="number" id="dialogamount"
+                                class="mt-1 block w-full rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
+                                placeholder="0.00">
+                        </div>
+
+                        <button type="submit"
+                            class="w-full rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
+                            + Confirm Add Collection
+                        </button>
+                    </form>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- table -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full rounded-lg border border-gray-200 bg-white">
+            <thead class="bg-purple-200">
+                <tr>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">#</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Student ID</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Full Name</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Program</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Category</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Date</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-purple-700">Amount</th>
+                </tr>
+            </thead>
+            <tbody id="student-table">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 flex items-center justify-between">
+        <div>
+            <p id="showing-info" class="text-sm text-gray-700">Showing 1 to 10 of 0 entries</p>
+        </div>
+        <div class="flex space-x-2" id="pagination">
         </div>
     </div>
 

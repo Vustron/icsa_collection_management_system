@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyAccountController;
+use App\Http\Controllers\SignInController;
 
 Route::controller(MyAccountController::class)
     ->name("my_account.")
@@ -14,3 +15,5 @@ Route::controller(MyAccountController::class)
         Route::put("/{id}", "update")->name("update");
         Route::delete("/{id}", "destroy")->name("destroy");
     });
+
+Route::post("/logout", [SignInController::class, "logout"])->name("logout");

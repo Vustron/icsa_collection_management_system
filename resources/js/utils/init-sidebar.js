@@ -4,6 +4,7 @@ export function initializeSidebar() {
     const elements = {
         sidebar: document.getElementById("sidebar"),
         toggle: document.getElementById("sidebarToggle"),
+        category_name: document.querySelectorAll(".category-name"),
         texts: document.querySelectorAll(".menu-text"),
         chevron: document.getElementById("chevronIcon"),
         main: document.getElementById("mainContent"),
@@ -43,6 +44,17 @@ export function initializeSidebar() {
                 text.classList.remove("hidden");
                 requestAnimationFrame(() => {
                     text.classList.remove("opacity-0");
+                });
+            }
+        }
+
+        for (const name of elements.category_name) {
+            if (!isOpen) {
+                name.classList.add("hidden", "opacity-0");
+            } else {
+                name.classList.remove("hidden");
+                requestAnimationFrame(() => {
+                    name.classList.remove("opacity-0");
                 });
             }
         }

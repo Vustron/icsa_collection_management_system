@@ -9,5 +9,5 @@
 @endsection
 
 <x-layout>
-    Dashboard
+
 </x-layout>

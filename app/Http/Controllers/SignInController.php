@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+
 class SignInController extends Controller
 {
     function index()
@@ -15,7 +19,50 @@ class SignInController extends Controller
     // e delete rani ha if mag work namo sa authentication or verification
     function verify(Request $request)
     {
-        return redirect(route("dashboard.index"));
+        // dd($request);
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        $user = User::with(['institute', 'roles.roleName'])->where('email', $validated['email'])->first();
+
+        if ($user) {
+
+            $saltedPepperPassword = $validated['password'] . $user->salt . 'supersecretpepper';
+
+            if (Hash::check($saltedPepperPassword, $user->password)) {
+                $remember = $request->has('remember') ? true : false;
+
+                // if (! $user->roles->map(function ($role) {
+                //     return $role['system_id'] != 3;
+                // })) {
+                //     return back()->withErrors(['not_authorized' => 'Sorry Not Authorized'])->withInput();
+                // }
+
+                if ($user->roles->every(fn($role) => $role['system_id'] != null)) {
+                    if ($user->roles->every(fn($role) => $role['system_id'] != 3)) {
+                        return back()->withErrors(['not_authorized' => 'Sorry not Authorized'])->withInput();
+                    }
+                }
+
+                Auth::login($user, $remember);
+                $request->session()->regenerate();
+
+                // Auth::user()->roles->map(function ($role) {
+                //     return [
+                //         'roleName' => $role->roleName,
+                //         'role' => $role->role,
+                //     ];
+                // });
+
+                return redirect()->route('dashboard.index');
+            } else {
+                return back()->withErrors(['password' => 'Incorrect password.'])->withInput();
+            }
+        }
+
+        return back()->withErrors(['email' => 'No account found with that email address.'])->withInput();
     }
 
     function forgot_password()
@@ -49,8 +96,11 @@ class SignInController extends Controller
             "password_matched" => false,
         ]);
     }
-    function logout()
+    function logout(Request $request)
     {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect(route("signin"));
     }
 }
