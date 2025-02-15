@@ -10,7 +10,8 @@
 @section('raw_js_scripts')
     <script>
         document.querySelector('form').addEventListener('submit', function(e) {
-            const formInputs = this.querySelectorAll('input:not([name="_token"])');
+            const formInputs = this.querySelectorAll(
+                'input:not([name="_token"]):not([name="email"]):not([name="password"]):not([name="remember"])');
             const button = this.querySelector('.submitBtn');
             const loader = this.querySelector('.buttonLoader');
             const text = this.querySelector('.buttonText');
@@ -21,12 +22,19 @@
 
             button.disabled = true;
             loader.classList.remove('hidden');
-            text.textContent = 'Searching...';
+            text.textContent = 'Signing In...';
         });
     </script>
 @endsection
 
 <x-login_layout>
+
+    @if ($errors->has('not_authorized'))
+        <div class="border border-red-600 text-red-600 py-2 rounded-md font-medium flex justify-center items-center">
+            {{ $errors->first('not_authorized') }}
+        </div>
+    @endif
+
     <x-ui.card.body class="border-purple-100">
         <x-ui.card.header>
             <x-ui.card.title class="text-center text-2xl font-extrabold">
@@ -43,21 +51,42 @@
                 <div class="space-y-2">
                     {{-- Email Input --}}
                     <div class="space-y-2">
-                        <x-ui.form.label for="email">
-                            Email
+                        <x-ui.form.label for="email" class="flex justify-between items-center">
+                            <span>Email</span>
+                            @if ($errors->has('email'))
+                                <span class="text-red-500 text-xs"id="password-error">
+                                    {{ $errors->first('email') }}
+                                </span>
+                                <script>
+                                    setTimeout(() => {
+                                        document.getElementById('password-error').style.display = 'none';
+                                    }, 5000);
+                                </script>
+                            @endif
                         </x-ui.form.label>
-                        <x-ui.form.input type="email" name="email" id="email" placeholder="Email or Username"
-                            required min="1" maxlength="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                            title="Please enter a valid email address" aria-label="Email address" autocomplete="email"
+                        <x-ui.form.input type="email" name="email" id="email" placeholder="Email" required
+                            min="1" maxlength="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                            value="{{ old('email') }}" title="Please enter a valid email address"
+                            aria-label="Email address" autocomplete="email" value="{{ old('email') }}"
                             class="border-grey-200 focus:border-none focus:border-purple-400 focus:ring-purple-400" />
                     </div>
 
                     {{-- Password Input --}}
                     <div class="space-y-2">
-                        <x-ui.form.label for="password">
-                            Password
+                        <x-ui.form.label for="password" class="flex justify-between item">
+                            <span> Password</span>
+                            @if ($errors->has('password'))
+                                <span class="text-red-500 text-xs"id="password-error">
+                                    {{ $errors->first('password') }}
+                                </span>
+                                <script>
+                                    setTimeout(() => {
+                                        document.getElementById('password-error').style.display = 'none';
+                                    }, 5000);
+                                </script>
+                            @endif
                         </x-ui.form.label>
-                        <x-ui.form.input placeholder="Your password" type="password" name="password" id="password"
+                        <x-ui.form.input placeholder="Password" type="password" name="password" id="password"
                             rbiequired minlength="1" maxlength="64" aria-label="Password"
                             autocomplete="current-password"
                             class="border-grey-300 focus:border-none focus:border-purple-800 focus:ring-purple-400" />
@@ -65,7 +94,7 @@
 
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <input id="remember-me" type="checkbox"
+                            <input id="remember-me" type="checkbox" name="remember"
                                 class="border:1px solid h-3.5 w-3.5 rounded-full accent-violet-500">
                             <label for="remember-me" class="ml-2 text-[14px] font-medium text-gray-900">
                                 Remember me

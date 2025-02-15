@@ -9,7 +9,9 @@ class Program extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["id", "name", "status", "delete_flag"];
+    protected $table = 'programs';
+
+    protected $fillable = ["institute_id ", "name", "status", "delete_flag"];
 
     protected $casts = [
         "id" => "integer",

@@ -8,6 +8,45 @@ body,
     height: 100%;
 }
 
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1.8px);
+}
+
+dialog {
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;
+    max-height: 90vh;
+}
+
+/* ::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(147, 52, 234);
+    border-radius: 6px;
+    border: 2px solid #f1f1f1;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #6e0eb2;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    
+}
+
+::-webkit-scrollbar-track-piece {
+    background: #fbfbfb;
+    
+} */
+
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -98,6 +137,7 @@ body,
     * {
         @apply border-border;
     }
+
     body {
         @apply bg-background text-foreground;
         font-feature-settings:

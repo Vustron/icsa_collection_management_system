@@ -80,7 +80,7 @@ Prerequisites:
 4. Run migrations and seed the database:
 
 ```bash
-  php artisan migrate --seed
+  php artisan migrate:fresh --seed
 ```
 
 5. run the application:

@@ -9,5 +9,10 @@
 @endsection
 
 <x-layout>
-    Collection Categories
+    <div>
+        <div> Collection Categories</div>
+        <div>
+            body
+        </div>
+    </div>
 </x-layout>
