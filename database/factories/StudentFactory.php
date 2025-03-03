@@ -21,16 +21,21 @@ class StudentFactory extends Factory
         return [
             "school_id" => fake()->unique()->numberBetween(1, 500),
             // 'program_id' => Program::inRandomOrder()->first()->id,
-            'program_id' => $this->faker->randomElement([1, 2]),
-            'rfid' => $this->faker->optional()->uuid, // Nullable RFID
-            'first_name' => $this->faker->firstName,
-            'middle_name' => $this->faker->optional()->lastName,
-            'last_name' => $this->faker->lastName,
-            'email' => $this->faker->unique()->safeEmail,
-            'set' => $this->faker->randomElement(['A', 'B', 'C', 'D']),
-            'year' => $this->faker->numberBetween(1, 4),
-            'status' => $this->faker->randomElement(['active', 'inactive', 'graduated', 'leave']),
-            'delete_flag' => false,
+            "program_id" => $this->faker->randomElement([1, 2]),
+            "rfid" => $this->faker->optional()->uuid, // Nullable RFID
+            "first_name" => $this->faker->firstName,
+            "middle_name" => $this->faker->optional()->lastName,
+            "last_name" => $this->faker->lastName,
+            "email" => $this->faker->unique()->safeEmail,
+            "set" => $this->faker->randomElement(["A", "B", "C", "D"]),
+            "year" => $this->faker->numberBetween(1, 4),
+            "status" => $this->faker->randomElement([
+                "active",
+                "inactive",
+                "graduated",
+                "leave",
+            ]),
+            "delete_flag" => false,
             "created_at" => now(),
             "updated_at" => now(),
         ];

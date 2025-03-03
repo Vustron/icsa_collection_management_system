@@ -9,6 +9,6 @@ class System extends Model
 {
     use HasFactory;
 
-    protected $table = 'systems';
-    protected $fillable = ['name'];
+    protected $table = "systems";
+    protected $fillable = ["name"];
 }

@@ -1,6 +1,6 @@
 <x-ui.modal.dialog id="admin_manager_add_admin" title="New Admin" createLink="{{ route('admin_manager.store') }}"
     button_name="Create new Admin" type="create">
-    <div class="p-2 text-center text-lg font-semibold ">
+    <div class="p-2 text-center text-lg font-semibold">
         {{ auth()->user()->institute->institute_name ?? 'Super Admin' }}
     </div>
     <div class="space-y-2">

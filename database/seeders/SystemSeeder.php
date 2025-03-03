@@ -15,39 +15,39 @@ class SystemSeeder extends Seeder
     {
         $systems = [
             [
-                'name' => 'Attendance and Fines Management System',
-                'created_at' => now(),
-                'updated_at' => null
+                "name" => "Attendance and Fines Management System",
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'name' => 'Locker Rental Management System',
-                'created_at' => now(),
-                'updated_at' => null
+                "name" => "Locker Rental Management System",
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'name' => 'Collection Management System',
-                'created_at' => now(),
-                'updated_at' => null
+                "name" => "Collection Management System",
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'name' => 'Mobile Portal System',
-                'created_at' => now(),
-                'updated_at' => null
+                "name" => "Mobile Portal System",
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'name' => 'Election Management System',
-                'created_at' => now(),
-                'updated_at' => null
+                "name" => "Election Management System",
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'name' => 'Document Monitoring System',
-                'created_at' => now(),
-                'updated_at' => null
+                "name" => "Document Monitoring System",
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'name' => 'Clearance Management System',
-                'created_at' => now(),
-                'updated_at' => null
+                "name" => "Clearance Management System",
+                "created_at" => now(),
+                "updated_at" => null,
             ],
         ];
 

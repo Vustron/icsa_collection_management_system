@@ -9,7 +9,7 @@ class Program extends Model
 {
     use HasFactory;
 
-    protected $table = 'programs';
+    protected $table = "programs";
 
     protected $fillable = ["institute_id ", "name", "status", "delete_flag"];
 

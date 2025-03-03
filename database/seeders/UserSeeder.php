@@ -22,44 +22,54 @@ class UserSeeder extends Seeder
         $salt = Str::random(16);
         $initial_admins = [
             [
-                'user_name' => 'DNSC Super Admin',
-                'email' => 'dnsc.super.admin@dnsc.edu.ph',
-                'password' => Hash::make("dnscsuperadmin" . (string) $salt  . 'supersecretpepper'),
-                'salt' => $salt,
-                'provider' => 'email',
-                'institute_id' => null,
+                "user_name" => "DNSC Super Admin",
+                "email" => "dnsc.super.admin@dnsc.edu.ph",
+                "password" => Hash::make(
+                    "dnscsuperadmin" . (string) $salt . "supersecretpepper"
+                ),
+                "salt" => $salt,
+                "provider" => "email",
+                "institute_id" => null,
             ],
             [
-                'user_name' => 'IC Super Admin',
-                'email' => 'ic.super.admin@dnsc.edu.ph',
-                'password' => Hash::make("icsuperadmin" . (string) $salt . 'supersecretpepper'),
+                "user_name" => "IC Super Admin",
+                "email" => "ic.super.admin@dnsc.edu.ph",
+                "password" => Hash::make(
+                    "icsuperadmin" . (string) $salt . "supersecretpepper"
+                ),
                 "salt" => $salt,
-                'provider' => 'email',
-                'institute_id' => 1,
+                "provider" => "email",
+                "institute_id" => 1,
             ],
             [
-                'user_name' => 'IAAS Super Admin',
-                'email' => 'iaas.super.admin@dnsc.edu.ph',
-                'password' => Hash::make("iaassuperadmin" . (string) $salt . 'supersecretpepper'),
+                "user_name" => "IAAS Super Admin",
+                "email" => "iaas.super.admin@dnsc.edu.ph",
+                "password" => Hash::make(
+                    "iaassuperadmin" . (string) $salt . "supersecretpepper"
+                ),
                 "salt" => $salt,
-                'provider' => 'email',
-                'institute_id' => 2,
+                "provider" => "email",
+                "institute_id" => 2,
             ],
             [
-                'user_name' => 'ILEGG Super Admin',
-                'email' => 'ilegg.super.admin@dnsc.edu.ph',
-                'password' => Hash::make("ileggsuperadmin" . (string) $salt . 'supersecretpepper'),
+                "user_name" => "ILEGG Super Admin",
+                "email" => "ilegg.super.admin@dnsc.edu.ph",
+                "password" => Hash::make(
+                    "ileggsuperadmin" . (string) $salt . "supersecretpepper"
+                ),
                 "salt" => $salt,
-                'provider' => 'email',
-                'institute_id' => 3,
+                "provider" => "email",
+                "institute_id" => 3,
             ],
             [
-                'user_name' => 'ITED Super Admin',
-                'email' => 'ited.super.admin@dnsc.edu.ph',
-                'password' => bcrypt("itedsuperadmin" . (string) $salt . 'supersecretpepper'),
+                "user_name" => "ITED Super Admin",
+                "email" => "ited.super.admin@dnsc.edu.ph",
+                "password" => bcrypt(
+                    "itedsuperadmin" . (string) $salt . "supersecretpepper"
+                ),
                 "salt" => $salt,
-                'provider' => 'email',
-                'institute_id' => 4,
+                "provider" => "email",
+                "institute_id" => 4,
             ],
         ];
 

@@ -18,19 +18,19 @@ class AdminManagerController extends Controller
     {
         // $users = User::with('roles')->where(['institute_id' => Auth::user()['institute_id']])->get();
 
-
-
-        if (Auth::user()->roles->every(fn($role) => $role['role_id'] == 1)) {
+        if (Auth::user()->roles->every(fn($role) => $role["role_id"] == 1)) {
             $users = User::all();
         } else {
-            $users = User::with('roles', 'institute')->where('institute_id', Auth::user()->institute_id)
-                ->whereHas('roles', function ($query) {
-                    $query->where('role_id', 3);
-                })->get();
+            $users = User::with("roles", "institute")
+                ->where("institute_id", Auth::user()->institute_id)
+                ->whereHas("roles", function ($query) {
+                    $query->where("role_id", 3);
+                })
+                ->get();
         }
 
         // dd($users);
-        return view("admin_manager.index", compact('users'));
+        return view("admin_manager.index", compact("users"));
     }
 
     // public function sign_up(){
@@ -43,7 +43,12 @@ class AdminManagerController extends Controller
     {
         // DD($request);
         $validated = $request->validate([
-            "user_name" => ["required", "string", "max:255", "unique:users,user_name"],
+            "user_name" => [
+                "required",
+                "string",
+                "max:255",
+                "unique:users,user_name",
+            ],
             "email" => [
                 "required",
                 "string",
@@ -69,12 +74,10 @@ class AdminManagerController extends Controller
         $user = User::create([
             "user_name" => $validated["user_name"],
             "email" => $validated["email"],
-            "password" => Hash::make(
-                $saltedPepperPassword
-            ),
+            "password" => Hash::make($saltedPepperPassword),
             "salt" => $salt,
             "provider" => "email",
-            'institute_id' => Auth::user()['institute_id'],
+            "institute_id" => Auth::user()["institute_id"],
         ]);
 
         if (!$user) {
@@ -82,17 +85,15 @@ class AdminManagerController extends Controller
         }
 
         AdminRole::create([
-            'user_id' => $user->id,
-            'role_id' => is_null(Auth::user()['institute_id']) ? 1 : 3,
-            'system_id' => 3,
+            "user_id" => $user->id,
+            "role_id" => is_null(Auth::user()["institute_id"]) ? 1 : 3,
+            "system_id" => 3,
         ]);
 
-        return redirect(route('admin_manager.index'))->with(
-            [
-                "success",
-                "Account created successfully."
-            ]
-        );
+        return redirect(route("admin_manager.index"))->with([
+            "success",
+            "Account created successfully.",
+        ]);
     }
 
     public function show($id) {}
@@ -104,6 +105,8 @@ class AdminManagerController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect()->back()->with('deleted', 'Account Deleted Successsfully');
+        return redirect()
+            ->back()
+            ->with("deleted", "Account Deleted Successsfully");
     }
 }

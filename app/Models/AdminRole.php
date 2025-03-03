@@ -9,15 +9,21 @@ class AdminRole extends Model
 {
     use HasFactory;
 
-    protected $table = 'admin_roles';
-    protected $fillable = ['user_id', 'role_id', 'system_id', 'institute_id', 'deleted_at'];
+    protected $table = "admin_roles";
+    protected $fillable = [
+        "user_id",
+        "role_id",
+        "system_id",
+        "institute_id",
+        "deleted_at",
+    ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, "user_id");
     }
     public function roleName()
     {
-        return $this->belongsTo(Role::class, 'role_id');
+        return $this->belongsTo(Role::class, "role_id");
     }
 }

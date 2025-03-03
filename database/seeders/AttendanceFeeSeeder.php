@@ -15,18 +15,20 @@ class AttendanceFeeSeeder extends Seeder
     public function run(): void
     {
         AttendanceRecord::all()->each(function ($record) {
-
-            $day_fee = collect([
-                $record->morning_check_in,
-                $record->morning_check_out,
-                $record->afternoon_check_in,
-                $record->afternoon_check_out,
-            ])->filter(fn($value) => is_null($value))->count() * 25;
+            $day_fee =
+                collect([
+                    $record->morning_check_in,
+                    $record->morning_check_out,
+                    $record->afternoon_check_in,
+                    $record->afternoon_check_out,
+                ])
+                    ->filter(fn($value) => is_null($value))
+                    ->count() * 25;
 
             if ($day_fee > 0) {
                 AttendanceFee::create([
-                    'attendance_record_id' => $record->id,
-                    'amount' => $day_fee,
+                    "attendance_record_id" => $record->id,
+                    "amount" => $day_fee,
                 ]);
             }
         });

@@ -25,13 +25,21 @@ class AttendanceRecordSeeder extends Seeder
             for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
                 foreach ($students as $student) {
                     AttendanceRecord::create([
-                        'student_id' => $student->id,
-                        'attendance_event_id' => $event->id,
-                        'date' => $date->format('Y-m-d'),
-                        'morning_check_in' => rand(0, 1) ? $date->copy()->setTime(rand(7, 9), rand(0, 59)) : null,
-                        'morning_check_out' => rand(0, 1) ? $date->copy()->setTime(rand(11, 12), rand(0, 59)) : null,
-                        'afternoon_check_in' => rand(0, 1) ? $date->copy()->setTime(rand(13, 15), rand(0, 59)) : null,
-                        'afternoon_check_out' => rand(0, 1) ? $date->copy()->setTime(rand(16, 18), rand(0, 59)) : null,
+                        "student_id" => $student->id,
+                        "attendance_event_id" => $event->id,
+                        "date" => $date->format("Y-m-d"),
+                        "morning_check_in" => rand(0, 1)
+                            ? $date->copy()->setTime(rand(7, 9), rand(0, 59))
+                            : null,
+                        "morning_check_out" => rand(0, 1)
+                            ? $date->copy()->setTime(rand(11, 12), rand(0, 59))
+                            : null,
+                        "afternoon_check_in" => rand(0, 1)
+                            ? $date->copy()->setTime(rand(13, 15), rand(0, 59))
+                            : null,
+                        "afternoon_check_out" => rand(0, 1)
+                            ? $date->copy()->setTime(rand(16, 18), rand(0, 59))
+                            : null,
                     ]);
                 }
             }

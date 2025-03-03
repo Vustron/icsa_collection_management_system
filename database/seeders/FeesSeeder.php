@@ -18,26 +18,30 @@ class FeesSeeder extends Seeder
         $students = Student::all();
 
         foreach ($students as $student) {
-            $totalFine = AttendanceFee::whereHas('attendanceRecord', function ($query) use ($student) {
-                $query->where('student_id', $student->id);
-            })->sum('amount');
+            $totalFine = AttendanceFee::whereHas("attendanceRecord", function (
+                $query
+            ) use ($student) {
+                $query->where("student_id", $student->id);
+            })->sum("amount");
 
             if ($totalFine > 0) {
                 $fee = Fees::create([
-                    'student_id' => $student->id,
-                    'category_id' => 4,
-                    'institute_id' => 1, //ilisan rani kay for now IC lang sa
-                    'total_amount' => $totalFine,
-                    'status' => 'pending',
-                    'issued_by' => null, // Could be an admin ID
-                    'issued_date' => now(),
-                    'due_date' => now()->addDays(30),
-                    'remarks' => 'Accumulated attendance fines',
+                    "student_id" => $student->id,
+                    "category_id" => 4,
+                    "institute_id" => 1, //ilisan rani kay for now IC lang sa
+                    "total_amount" => $totalFine,
+                    "status" => "pending",
+                    "issued_by" => null, // Could be an admin ID
+                    "issued_date" => now(),
+                    "due_date" => now()->addDays(30),
+                    "remarks" => "Accumulated attendance fines",
                 ]);
 
-                AttendanceFee::whereHas('attendanceRecord', function ($query) use ($student) {
-                    $query->where('student_id', $student->id);
-                })->update(['fee_id' => $fee->id]);
+                AttendanceFee::whereHas("attendanceRecord", function (
+                    $query
+                ) use ($student) {
+                    $query->where("student_id", $student->id);
+                })->update(["fee_id" => $fee->id]);
             }
         }
     }

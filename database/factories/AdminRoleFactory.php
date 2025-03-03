@@ -20,10 +20,10 @@ class AdminRoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->first()?->id,
-            'role_id' => Role::inRandomOrder()->first()?->id,
-            'system_id' => System::inRandomOrder()->first()?->id,
-            'deleted_at' => $this->faker->optional()->dateTime(),
+            "user_id" => User::inRandomOrder()->first()?->id,
+            "role_id" => Role::inRandomOrder()->first()?->id,
+            "system_id" => System::inRandomOrder()->first()?->id,
+            "deleted_at" => $this->faker->optional()->dateTime(),
         ];
     }
 }
