@@ -106,11 +106,25 @@
             <x-bx-chevron-left id="chevronIcon" class="h-6 w-6 text-gray-600 transition-transform duration-300" />
         </button>
 
+        <?php
+        $institutes = [
+            1 => ['acroname' => 'IC', 'logo' => 'icsa_logo.png'],
+            2 => ['acroname' => 'IAAS', 'logo' => 'iaas_logo.png'],
+            3 => ['acroname' => 'ILEGG', 'logo' => 'ilegg_logo.png'],
+            4 => ['acroname' => 'ITED', 'logo' => 'ited_logo.png'],
+        ];
+        
+        $institute_id = Auth::user()['institute_id'];
+        
+        $institute_acroname = $institutes[$institute_id]['acroname'] ?? 'DNSC';
+        $institute_logo = $institutes[$institute_id]['logo'] ?? 'ic_logo.png';
+        ?>
+
         <!-- Logo -->
         <div class="mb-1 flex items-center px-4 py-3 shadow-sm">
-            <img src="{{ asset('images/icsa_logo.png') }}" alt="ICSA Logo" class="h-8 w-8 flex-shrink-0">
+            <img src="{{ asset('images/' . $institute_logo) }}" alt="ICSA Logo" class="h-8 w-8 flex-shrink-0">
             <span class="menu-text ml-3 transform text-xl font-semibold lg:transition-all lg:duration-300">
-                ICSA CMS
+                {{ $institute_acroname }} CMS
             </span>
         </div>
 
@@ -208,13 +222,11 @@
 
                     <!-- Activity -->
                     <li>
-                        <div
-                            class="{{ request()->routeIs('activity.*') ? 'bg-purple-600 text-white pointer-events-none' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} flex w-full items-center justify-between rounded-lg p-2 transition-colors">
-                            <div class="flex items-center">
-                                <x-bx-history class="ml-1 size-5 flex-shrink-0" />
-                                <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Activity</span>
-                            </div>
-                        </div>
+                        <a href="{{ route('activity.user.index') }}"
+                            class="{{ request()->routeIs('activity.*') ? 'bg-purple-600 text-white pointer-events-none' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} flex w-full items-center rounded-lg p-2 transition-colors">
+                            <x-bx-history class="ml-1 size-5 flex-shrink-0" />
+                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Activity</span>
+                        </a>
                     </li>
                 @endif
             </ul>

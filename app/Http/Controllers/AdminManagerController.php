@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\AdminRole;
+use App\Models\System;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
+use Illuminate\Validation\Rule;
 
 class AdminManagerController extends Controller
 {
     public function index()
     {
         // $users = User::with('roles')->where(['institute_id' => Auth::user()['institute_id']])->get();
-
-
 
         if (Auth::user()->roles->every(fn($role) => $role['role_id'] == 1)) {
             $users = User::all();
@@ -29,8 +29,13 @@ class AdminManagerController extends Controller
                 })->get();
         }
 
+        $systems = System::all();
+        $roles = Role::all();
+
+        // dd($systems, $roles);
         // dd($users);
-        return view("admin_manager.index", compact('users'));
+        // dd($users[0]['roles']);
+        return view("admin_manager.index", compact('users', 'systems', 'roles'));
     }
 
     // public function sign_up(){
@@ -88,11 +93,45 @@ class AdminManagerController extends Controller
         ]);
 
         return redirect(route('admin_manager.index'))->with(
-            [
-                "success",
-                "Account created successfully."
-            ]
+            "success",
+            "Account created successfully."
         );
+    }
+
+    public function new_admin_role(Request $request)
+    {
+        // dd($request);
+        // $check_duplicate = AdminRole::where("", "");
+        $validate = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'role_id' => 'required|exists:admin_roles,id',
+            'system_id' => 'required|exists:systems,id',
+            // 'user_id' => Rule::unique('admin_roles')->where(function ($query) use ($request) {
+            //     return $query->where('role_id', $request->role_id)
+            //         ->where('system_id', $request->system_id);
+            // }),
+        ]);
+
+        $duplicate_check = AdminRole::where('user_id', $request['user_id'])
+            ->where('role_id', $request['role_id'])
+            ->where('system_id', $request['system_id'])
+            ->exists();
+
+        if ($duplicate_check) {
+            return back()->with('error', 'Role assigned to admin already exist.');
+        }
+
+        AdminRole::create($validate);
+
+        return redirect(route('admin_manager.index'))->with(
+            "success",
+            "New admin role added to " . $request['user_name'] . " successfully."
+        );;
+    }
+
+    public function update_admin_details(Request $request)
+    {
+        dd($request);
     }
 
     public function show($id) {}
