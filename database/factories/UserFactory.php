@@ -21,20 +21,22 @@ class UserFactory extends Factory
     {
         $salt = Str::random(16);
         return [
-            'session_id' => null,
-            'user_name' => $this->faker->unique()->userName,
-            'email' => fake()->unique()->userName() . '@dnsc.edu.ph',
-            'email_verified_at' => null,
-            'password' => bcrypt('password' . (string) $salt . 'supersecretpepper'),
-            'salt' => $salt,
-            'avatar' => $this->faker->imageUrl(),
+            "session_id" => null,
+            "user_name" => $this->faker->unique()->userName,
+            "email" => fake()->unique()->userName() . "@dnsc.edu.ph",
+            "email_verified_at" => null,
+            "password" => bcrypt(
+                "password" . (string) $salt . "supersecretpepper"
+            ),
+            "salt" => $salt,
+            "avatar" => $this->faker->imageUrl(),
             "provider" => fake()->randomElement([
                 "email",
                 "google",
                 "facebook",
             ]),
-            'institute_id' => Institute::inRandomOrder()->first()?->id,
-            'status' => $this->faker->randomElement(['active', 'deactivated']),
+            "institute_id" => Institute::inRandomOrder()->first()?->id,
+            "status" => $this->faker->randomElement(["active", "deactivated"]),
             "created_at" => fake()->dateTimeBetween("-1 year"),
             "updated_at" => null,
         ];

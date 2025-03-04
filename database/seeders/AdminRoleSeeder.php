@@ -14,55 +14,64 @@ class AdminRoleSeeder extends Seeder
      */
     public function run(): void
     {
-
         $user_emails = [
-            'dnsc.super.admin@dnsc.edu.ph',
-            'ic.super.admin@dnsc.edu.ph',
-            'iaas.super.admin@dnsc.edu.ph',
-            'ilegg.super.admin@dnsc.edu.ph',
-            'ited.super.admin@dnsc.edu.ph'
+            "dnsc.super.admin@dnsc.edu.ph",
+            "ic.super.admin@dnsc.edu.ph",
+            "iaas.super.admin@dnsc.edu.ph",
+            "ilegg.super.admin@dnsc.edu.ph",
+            "ited.super.admin@dnsc.edu.ph",
         ];
 
         $initial_admin_roles = [
             [
-                'user_id' => User::where('email', '=', $user_emails[0])->value('id'),
-                'role_id' => 1,
-                'system_id' => null,
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => null,
+                "user_id" => User::where("email", "=", $user_emails[0])->value(
+                    "id"
+                ),
+                "role_id" => 1,
+                "system_id" => null,
+                "deleted_at" => null,
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'user_id' => User::where('email', '=', $user_emails[1])->value('id'),
-                'role_id' => 2,
-                'system_id' => 3,
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => null,
+                "user_id" => User::where("email", "=", $user_emails[1])->value(
+                    "id"
+                ),
+                "role_id" => 2,
+                "system_id" => 3,
+                "deleted_at" => null,
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'user_id' => User::where('email', '=', $user_emails[2])->value('id'),
-                'role_id' => 2,
-                'system_id' => 3,
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => null,
+                "user_id" => User::where("email", "=", $user_emails[2])->value(
+                    "id"
+                ),
+                "role_id" => 2,
+                "system_id" => 3,
+                "deleted_at" => null,
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'user_id' => User::where('email', '=', $user_emails[3])->value('id'),
-                'role_id' => 2,
-                'system_id' => 3,
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => null,
+                "user_id" => User::where("email", "=", $user_emails[3])->value(
+                    "id"
+                ),
+                "role_id" => 2,
+                "system_id" => 3,
+                "deleted_at" => null,
+                "created_at" => now(),
+                "updated_at" => null,
             ],
             [
-                'user_id' => User::where('email', '=', $user_emails[4])->value('id'),
-                'role_id' => 2,
-                'system_id' => 3,
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => null,
+                "user_id" => User::where("email", "=", $user_emails[4])->value(
+                    "id"
+                ),
+                "role_id" => 2,
+                "system_id" => 3,
+                "deleted_at" => null,
+                "created_at" => now(),
+                "updated_at" => null,
             ],
         ];
 

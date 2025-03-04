@@ -15,31 +15,30 @@ class InstituteSeeder extends Seeder
     {
         $institutes = [
             [
-                'institute_name' => 'Institute of Computing',
-                'created_at' => now(),
-                'updated_at' => now(),
+                "institute_name" => "Institute of Computing",
+                "created_at" => now(),
+                "updated_at" => now(),
             ],
             [
-                'institute_name' => 'Institute of Aquatic and Applied Sciences',
-                'created_at' => now(),
-                'updated_at' => now(),
+                "institute_name" => "Institute of Aquatic and Applied Sciences",
+                "created_at" => now(),
+                "updated_at" => now(),
             ],
             [
-                'institute_name' => 'Institute of Leadership, Entrepreneurship and Good Governance',
-                'created_at' => now(),
-                'updated_at' => now(),
+                "institute_name" =>
+                    "Institute of Leadership, Entrepreneurship and Good Governance",
+                "created_at" => now(),
+                "updated_at" => now(),
             ],
             [
-                'institute_name' => 'Institute of Teacher Education',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
+                "institute_name" => "Institute of Teacher Education",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
         ];
 
         foreach ($institutes as $institute) {
-            Institute::create(
-                $institute
-            );
+            Institute::create($institute);
         }
     }
 }

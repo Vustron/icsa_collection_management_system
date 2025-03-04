@@ -14,5 +14,7 @@ Route::controller(AdminManagerController::class)
         Route::put("/{id}", "update")->name("update");
         Route::delete("/{id}", "destroy")->name("destroy");
         Route::post("/new_role", "new_admin_role")->name("new_admin_role");
-        Route::post("/update_admin_detail", "update_admin_details")->name("update_admin_details");
+        Route::post("/update_admin_detail", "update_admin_details")->name(
+            "update_admin_details"
+        );
     });

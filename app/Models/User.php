@@ -42,11 +42,11 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->hasMany(AdminRole::class, 'user_id');
+        return $this->hasMany(AdminRole::class, "user_id");
     }
 
     public function institute()
     {
-        return $this->belongsTo(Institute::class, 'institute_id');
+        return $this->belongsTo(Institute::class, "institute_id");
     }
 }

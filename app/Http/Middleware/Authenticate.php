@@ -16,11 +16,10 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next): Response
     {
-
         $user = Auth::user();
 
         if (!$user) {
-            return redirect()->route('signin');
+            return redirect()->route("signin");
         }
 
         return $next($request);

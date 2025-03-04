@@ -14,22 +14,21 @@ class AttendanceEventSeeder extends Seeder
      */
     public function run(): void
     {
-        $events = [
-            'Byte Fest',
-            'Kalibulong',
-        ];
+        $events = ["Byte Fest", "Kalibulong"];
 
         // Insert five specific events with randomized dates
         foreach ($events as $event) {
-            $startDate = Carbon::today()->subYears(rand(0, 1))->addDays(rand(0, 365));
+            $startDate = Carbon::today()
+                ->subYears(rand(0, 1))
+                ->addDays(rand(0, 365));
             $endDate = (clone $startDate)->addDays(rand(0, 2));
 
             AttendanceEvent::create([
-                'event_name' => $event,
-                'start_date' => $startDate->format('Y-m-d'),
-                'end_date' => $endDate->format('Y-m-d'),
-                'created_at' => now(),
-                'updated_at' => now(),
+                "event_name" => $event,
+                "start_date" => $startDate->format("Y-m-d"),
+                "end_date" => $endDate->format("Y-m-d"),
+                "created_at" => now(),
+                "updated_at" => now(),
             ]);
         }
     }

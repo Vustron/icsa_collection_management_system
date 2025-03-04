@@ -4,7 +4,6 @@ import { initializeDialogs } from "./utils/init-dialog";
 import { cn } from "./utils/cn";
 import "./bootstrap";
 
-
 document.addEventListener("DOMContentLoaded", () => {
     initializeSidebar();
     initializeDropdowns();

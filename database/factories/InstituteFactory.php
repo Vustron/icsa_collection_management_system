@@ -17,9 +17,9 @@ class InstituteFactory extends Factory
     public function definition(): array
     {
         return [
-            'institute_name' => $this->faker->company . ' Institute',
-            'created_at' => now(), 
-            'updated_at' => now(), 
+            "institute_name" => $this->faker->company . " Institute",
+            "created_at" => now(),
+            "updated_at" => now(),
         ];
     }
 }

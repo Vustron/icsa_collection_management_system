@@ -16,7 +16,6 @@ class AdminAuthMiddleware
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-
         // $matchingRole = $user->roles->firstWhere(function ($role) {
         //     return $role->role === 'super_admin' &&
         //         $role->system === 'Collection System' &&
@@ -31,8 +30,11 @@ class AdminAuthMiddleware
 
         // dd($user->roles->pluck('role_id'));
 
-        if (!$user || $user->roles->pluck('role_id')->intersect($roles)->isEmpty()) {
-            abort(403, 'Unauthorized');
+        if (
+            !$user ||
+            $user->roles->pluck("role_id")->intersect($roles)->isEmpty()
+        ) {
+            abort(403, "Unauthorized");
         }
 
         return $next($request);

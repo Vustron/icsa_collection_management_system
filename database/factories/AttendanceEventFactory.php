@@ -16,13 +16,13 @@ class AttendanceEventFactory extends Factory
      */
     public function definition(): array
     {
-        $startDate = $this->faker->dateTimeBetween('-1 year', '+1 year');
-        $endDate = (clone $startDate)->modify('+' . rand(1, 5) . ' days');
+        $startDate = $this->faker->dateTimeBetween("-1 year", "+1 year");
+        $endDate = (clone $startDate)->modify("+" . rand(1, 5) . " days");
 
         return [
-            'event_name' => $this->faker->sentence(3),
-            'start_date' => $startDate->format('Y-m-d'),
-            'end_date' => $endDate->format('Y-m-d'),
+            "event_name" => $this->faker->sentence(3),
+            "start_date" => $startDate->format("Y-m-d"),
+            "end_date" => $endDate->format("Y-m-d"),
         ];
     }
 }

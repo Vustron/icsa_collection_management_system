@@ -39,9 +39,10 @@ return new class extends Migration {
                 ->enum("role", [
                     "super_admin",
                     "institute_super_admin",
-                    "institute_officer_admin"
+                    "institute_officer_admin",
                 ])
-                ->default("institute_officer_admin")->unique();
+                ->default("institute_officer_admin")
+                ->unique();
             $table->text("description")->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -53,7 +54,7 @@ return new class extends Migration {
             $table->integer("session_id")->nullable();
             $table->string("user_name")->unique();
             $table->string("email")->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp("email_verified_at")->nullable();
             $table->string("password");
             $table->string("salt");
             $table->string("avatar")->nullable();
@@ -63,7 +64,9 @@ return new class extends Migration {
                 ->nullable()
                 ->constrained("institutes")
                 ->onDelete("cascade"); // NULL if super-admin
-            $table->enum('status', ['active', 'deactivated'])->default("active");
+            $table
+                ->enum("status", ["active", "deactivated"])
+                ->default("active");
             $table->rememberToken();
             $table->timestamps();
         });
@@ -91,7 +94,6 @@ return new class extends Migration {
             //     "unique_institute_super_admin"
             // ); // Only 1 institute_super_admin per institute
 
-
             // ambot ani oi di naku ma unique ang role_id = 1 AHAHAHHAH bahala naning dnsc suoer admin oi cheeeee
 
             // $table->unique(['role_id'], 'unique_super_admin'); // Only 1 Super Admin
@@ -116,7 +118,7 @@ return new class extends Migration {
             $table->string("set");
             $table->integer("year");
             $table
-                ->enum("status", ['active', 'inactive', 'graduated', 'leave'])
+                ->enum("status", ["active", "inactive", "graduated", "leave"])
                 ->default("active");
             $table->boolean("delete_flag")->default(false);
             $table->timestamps();
@@ -249,11 +251,11 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create("notifications", function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->text('message');
-            $table->enum('status', ['unread', 'read'])->default('unread');
+            $table->foreignId("user_id")->constrained()->onDelete("cascade");
+            $table->text("message");
+            $table->enum("status", ["unread", "read"])->default("unread");
             $table->timestamps();
         });
 
@@ -287,7 +289,8 @@ return new class extends Migration {
             $table->id();
             // para tanang fines ma isa ra og kuha if need (for detailed view)
             $table
-                ->foreignId("fee_id")->nullable()
+                ->foreignId("fee_id")
+                ->nullable()
                 ->constrained("fees")
                 ->onDelete("cascade");
             // need ni para ma kuha natu ang event name (for groupings each event) tas makita natu if naa silay absent that day

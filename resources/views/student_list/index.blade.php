@@ -102,7 +102,8 @@
                 <div class="w-96 rounded-lg bg-white p-6">
                     <div class="mb-4 flex items-center justify-between">
                         <h3 class="text-xl font-semibold">Add Record</h3>
-                        <button class=" text-2xl text-gray-500 hover:text-gray-700" onclick="closeDialog('student_list_add_student')">&times;</button>
+                        <button class="text-2xl text-gray-500 hover:text-gray-700"
+                            onclick="closeDialog('student_list_add_student')">&times;</button>
                     </div>
 
                     <form id="addCollectionForm">
@@ -142,8 +143,7 @@
                                 <option value="4">4</option>
                             </select>
 
-                            <label for="dialogset"
-                                class="block pr-2 pt-2 text-sm font-medium text-gray-700">Set</label>
+                            <label for="dialogset" class="block pr-2 pt-2 text-sm font-medium text-gray-700">Set</label>
                             <select id="dialogset" class="w-50 rounded-md border-2 px-3 py-2 text-sm">
                                 <option value="">Select Set</option>
                                 <option value="A">A</option>
@@ -191,7 +191,6 @@
         <div class="flex space-x-2" id="pagination">
         </div>
     </div>
-
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {

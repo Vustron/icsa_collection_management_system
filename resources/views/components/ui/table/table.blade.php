@@ -1,8 +1,8 @@
 @props([
     'headers' => [],
-    'tb_id' => '',
+    'tb_id' => ''
 ])
-<div class="py-2 overflow-x-auto">
+<div class="overflow-x-auto py-2">
 
     <table class="w-full overflow-x-scroll rounded-lg border border-gray-200 bg-white shadow-md">
 
@@ -10,9 +10,7 @@
             <tr class="bg-purple-600 text-white">
                 @foreach ($headers as $header)
                     <th
-                        class="px-4 py-2 text-sm font-medium border border-white 
-                        {{ $loop->first ? 'text-center' : 'text-left' }} 
-                        {{ $loop->last ? 'text-center' : 'text-left' }}">
+                        class="{{ $loop->first ? 'text-center' : 'text-left' }} {{ $loop->last ? 'text-center' : 'text-left' }} border border-white px-4 py-2 text-sm font-medium">
                         {{ $header }}
                     </th>
                 @endforeach

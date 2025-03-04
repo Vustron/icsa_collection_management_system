@@ -20,13 +20,15 @@ class AdminManagerController extends Controller
     {
         // $users = User::with('roles')->where(['institute_id' => Auth::user()['institute_id']])->get();
 
-        if (Auth::user()->roles->every(fn($role) => $role['role_id'] == 1)) {
+        if (Auth::user()->roles->every(fn($role) => $role["role_id"] == 1)) {
             $users = User::all();
         } else {
-            $users = User::with('roles', 'institute')->where('institute_id', Auth::user()->institute_id)
-                ->whereHas('roles', function ($query) {
-                    $query->where('role_id', 3);
-                })->get();
+            $users = User::with("roles", "institute")
+                ->where("institute_id", Auth::user()->institute_id)
+                ->whereHas("roles", function ($query) {
+                    $query->where("role_id", 3);
+                })
+                ->get();
         }
 
         $systems = System::all();
@@ -35,7 +37,10 @@ class AdminManagerController extends Controller
         // dd($systems, $roles);
         // dd($users);
         // dd($users[0]['roles']);
-        return view("admin_manager.index", compact('users', 'systems', 'roles'));
+        return view(
+            "admin_manager.index",
+            compact("users", "systems", "roles")
+        );
     }
 
     // public function sign_up(){
@@ -48,7 +53,12 @@ class AdminManagerController extends Controller
     {
         // DD($request);
         $validated = $request->validate([
-            "user_name" => ["required", "string", "max:255", "unique:users,user_name"],
+            "user_name" => [
+                "required",
+                "string",
+                "max:255",
+                "unique:users,user_name",
+            ],
             "email" => [
                 "required",
                 "string",
@@ -74,12 +84,10 @@ class AdminManagerController extends Controller
         $user = User::create([
             "user_name" => $validated["user_name"],
             "email" => $validated["email"],
-            "password" => Hash::make(
-                $saltedPepperPassword
-            ),
+            "password" => Hash::make($saltedPepperPassword),
             "salt" => $salt,
             "provider" => "email",
-            'institute_id' => Auth::user()['institute_id'],
+            "institute_id" => Auth::user()["institute_id"],
         ]);
 
         if (!$user) {
@@ -87,12 +95,12 @@ class AdminManagerController extends Controller
         }
 
         AdminRole::create([
-            'user_id' => $user->id,
-            'role_id' => is_null(Auth::user()['institute_id']) ? 1 : 3,
-            'system_id' => 3,
+            "user_id" => $user->id,
+            "role_id" => is_null(Auth::user()["institute_id"]) ? 1 : 3,
+            "system_id" => 3,
         ]);
 
-        return redirect(route('admin_manager.index'))->with(
+        return redirect(route("admin_manager.index"))->with(
             "success",
             "Account created successfully."
         );
@@ -103,30 +111,35 @@ class AdminManagerController extends Controller
         // dd($request);
         // $check_duplicate = AdminRole::where("", "");
         $validate = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'role_id' => 'required|exists:admin_roles,id',
-            'system_id' => 'required|exists:systems,id',
+            "user_id" => "required|exists:users,id",
+            "role_id" => "required|exists:admin_roles,id",
+            "system_id" => "required|exists:systems,id",
             // 'user_id' => Rule::unique('admin_roles')->where(function ($query) use ($request) {
             //     return $query->where('role_id', $request->role_id)
             //         ->where('system_id', $request->system_id);
             // }),
         ]);
 
-        $duplicate_check = AdminRole::where('user_id', $request['user_id'])
-            ->where('role_id', $request['role_id'])
-            ->where('system_id', $request['system_id'])
+        $duplicate_check = AdminRole::where("user_id", $request["user_id"])
+            ->where("role_id", $request["role_id"])
+            ->where("system_id", $request["system_id"])
             ->exists();
 
         if ($duplicate_check) {
-            return back()->with('error', 'Role assigned to admin already exist.');
+            return back()->with(
+                "error",
+                "Role assigned to admin already exist."
+            );
         }
 
         AdminRole::create($validate);
 
-        return redirect(route('admin_manager.index'))->with(
+        return redirect(route("admin_manager.index"))->with(
             "success",
-            "New admin role added to " . $request['user_name'] . " successfully."
-        );;
+            "New admin role added to " .
+                $request["user_name"] .
+                " successfully."
+        );
     }
 
     public function update_admin_details(Request $request)
@@ -143,6 +156,8 @@ class AdminManagerController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect()->back()->with('deleted', 'Account Deleted Successsfully');
+        return redirect()
+            ->back()
+            ->with("deleted", "Account Deleted Successsfully");
     }
 }

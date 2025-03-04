@@ -1,8 +1,8 @@
-<x-ui.modal.dialog id="admin_manager_add_admin" title="New Admin" class=" max-w-sm">
+<x-ui.modal.dialog id="admin_manager_add_admin" title="New Admin" class="max-w-sm">
 
     <form action="{{ route('admin_manager.store') }}" method="POST">
         @csrf
-        <div class="p-2 text-center text-lg font-semibold ">
+        <div class="p-2 text-center text-lg font-semibold">
             {{ auth()->user()->institute->institute_name ?? 'Super Admin' }}
         </div>
         <div class="space-y-2">
@@ -35,12 +35,12 @@
 
         <div class="flex items-center space-x-1">
             <x-ui.button.dynamic-button type="button" variant="outline" size="default"
-                class="submitBtn w-36 bg-gray-100 hover:bg-gray-300 focus:ring-purple-500 mt-2"
+                class="submitBtn mt-2 w-36 bg-gray-100 hover:bg-gray-300 focus:ring-purple-500"
                 onclick="closeDialog('admin_manager_add_admin')">
                 Cancel
             </x-ui.button.dynamic-button>
             <x-ui.button.dynamic-button type="submit" variant="default" size="default"
-                class="submitBtn w-full bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 mt-2">
+                class="submitBtn mt-2 w-full bg-purple-600 hover:bg-purple-700 focus:ring-purple-500">
                 Create new Admin
             </x-ui.button.dynamic-button>
         </div>

@@ -9,6 +9,6 @@ class AttendanceEvent extends Model
 {
     use HasFactory;
 
-    protected $table = 'attendance_events';
-    protected $fillable = ['event_name', 'start_date ', 'end_date'];
+    protected $table = "attendance_events";
+    protected $fillable = ["event_name", "start_date ", "end_date"];
 }

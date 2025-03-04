@@ -30,7 +30,7 @@
 <x-login_layout>
 
     @if ($errors->has('not_authorized'))
-        <div class="border border-red-600 text-red-600 py-2 rounded-md font-medium flex justify-center items-center">
+        <div class="flex items-center justify-center rounded-md border border-red-600 py-2 font-medium text-red-600">
             {{ $errors->first('not_authorized') }}
         </div>
     @endif
@@ -51,10 +51,10 @@
                 <div class="space-y-2">
                     {{-- Email Input --}}
                     <div class="space-y-2">
-                        <x-ui.form.label for="email" class="flex justify-between items-center">
+                        <x-ui.form.label for="email" class="flex items-center justify-between">
                             <span>Email</span>
                             @if ($errors->has('email'))
-                                <span class="text-red-500 text-xs"id="password-error">
+                                <span class="text-xs text-red-500"id="password-error">
                                     {{ $errors->first('email') }}
                                 </span>
                                 <script>
@@ -73,10 +73,10 @@
 
                     {{-- Password Input --}}
                     <div class="space-y-2">
-                        <x-ui.form.label for="password" class="flex justify-between item">
+                        <x-ui.form.label for="password" class="item flex justify-between">
                             <span> Password</span>
                             @if ($errors->has('password'))
-                                <span class="text-red-500 text-xs"id="password-error">
+                                <span class="text-xs text-red-500"id="password-error">
                                     {{ $errors->first('password') }}
                                 </span>
                                 <script>
