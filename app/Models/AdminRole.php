@@ -10,13 +10,9 @@ class AdminRole extends Model
     use HasFactory;
 
     protected $table = "admin_roles";
-    protected $fillable = [
-        "user_id",
-        "role_id",
-        "system_id",
-        "institute_id",
-        "deleted_at",
-    ];
+    protected $fillable = ["user_id", "role_id", "system_id", "deleted_at"];
+
+    protected $with = ["user", "roleName", "systemName"];
 
     public function user()
     {
@@ -25,5 +21,10 @@ class AdminRole extends Model
     public function roleName()
     {
         return $this->belongsTo(Role::class, "role_id");
+    }
+
+    public function systemName()
+    {
+        return $this->belongsTo(System::class, "system_id");
     }
 }

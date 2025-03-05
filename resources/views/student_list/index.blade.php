@@ -91,7 +91,7 @@
                 <input type="text" id="search" class="rounded-md border-2 border-gray-300 px-4 py-2 text-sm"
                     placeholder="Search...">
             </div>
-            <button onclick="showDialog('student_list_add_student')"
+            <button onclick="showDialogByID('student_list_add_student')"
                 class="rounded-md bg-purple-500 px-4 py-2 text-sm text-white hover:bg-purple-600">
                 + Add Collection
             </button>

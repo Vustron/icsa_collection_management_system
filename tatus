@@ -1,0 +1,441 @@
+[33mcommit 6a78f8f4c6f2102d30b8ac96c9f5c17fb31d4aa3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31mupstream/main[m[33m)[m
+Merge: 5c3caf2 4a6d11d
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Sun Feb 16 07:08:41 2025 +0800
+
+    Merge pull request #23 from a3jraparece/main
+    
+    feat: Authenticated with middlewares, separate ui's base on admin rol…
+
+[33mcommit 4a6d11d2ebbd97e09004d9f4ac237542079f2e8c[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Sun Feb 16 07:02:41 2025 +0800
+
+    feat: Authenticated with middlewares, separate ui's base on admin roles, completes the model and create Factory and Seeders Each.
+    
+    * Completes the Model and added some of their relationships.
+    * Middlewares for authentication: admin, guest, auth
+    * Migrations: institutes, programs, systems, roles, admin_roles, fees, payment submissions, payments, collection_management, attendance_events,attendance_records,attendance_fees.
+    * UI-components: dialogs, tables
+    * UI: Forgot Password steps
+    * Factories:
+            AdminRoleFactory.php
+            AttendanceEventFactory.php
+            AttendanceFeeFactory.php
+            AttendanceRecordFactory.php
+            CollectionCategoryFactory.php
+            CollectionManagementFactory.php
+            FeesFactory.php
+            InstituteFactory.php
+            PaymentFactory.php
+            PaymentSubmissionFactory.php
+            RoleFactory.php
+            SystemFactory.php
+    
+    *Seeders:
+            AdminRoleSeeder.php
+            AttendanceEventSeeder.php
+            AttendanceFeeSeeder.php
+            AttendanceRecordSeeder.php
+            CollectionCategorySeeder.php
+            CollectionManagementSeeder.php
+            FeesSeeder.php
+            InstituteSeeder.php
+            PaymentSeeder.php
+            PaymentSubmissionSeeder.php
+            ProgramSeeder.php
+            RoleSeeder.php
+            SessionSeeder.php
+            StudentSeeder.php
+            SystemSeeder.php
+            UserSeeder.php
+    
+    Ambot oi kalimot naku sa uban haha. tama nana.
+
+[33mcommit 5c3caf28c93fdcd6dea12f019b9c1fd5d3eb3343[m
+Merge: bbd30ae 1414a82
+Author: a3jraparece <167134474+a3jraparece@users.noreply.github.com>
+Date:   Wed Feb 12 13:49:41 2025 +0800
+
+    Merge pull request #22 from a3jraparece/main
+    
+    fixed migration errors and added system tables
+
+[33mcommit 1414a82e6287fe0cd08a6d2efa61dd032bb4aa37[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Wed Feb 12 13:43:58 2025 +0800
+
+    fixed migration errors and added system tables
+
+[33mcommit 18a8a4e207961d79f4f546e7750104b8ec490a16[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Wed Feb 12 06:00:01 2025 +0800
+
+    feat Improved page switching and modified the database migrations for scalabilty
+
+[33mcommit bbd30ae5b8e79fb42308e40fd4c0b76d0e453012[m
+Merge: a0c2cf0 cc28c3e
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Tue Feb 11 06:00:22 2025 +0800
+
+    Merge pull request #20 from a3jraparece/main
+    
+    10/02/2025 feat: Added ui, Controller and Route for Account Recovery, created layout for sign-in
+
+[33mcommit cc28c3ee3353b099a406fffb23a340652fc778d2[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Tue Feb 11 04:41:15 2025 +0800
+
+    10/02/2025 feat: Added ui, Controller and Route for Account Recovery, created layout for sign-in
+
+[33mcommit ec75f1ac95657b6918086aac9ffcacee7dce0bb4[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Tue Feb 11 04:37:56 2025 +0800
+
+    10/02/2025 feat: Added ui, Controller and Route for Account Recovery, created layout for sign-in
+
+[33mcommit a0c2cf05010976127464fe48a0f10d8d322a16ab[m
+Merge: a6fc4a5 8cb186f
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Mon Feb 10 05:47:22 2025 +0800
+
+    Merge pull request #19 from a3jraparece/main
+    
+    feat: Arranged the layout, Added Controllers and Route for MyAccount and Admin Manager, improved the a tags
+
+[33mcommit 8cb186fa3bc4a1f72f1ca4404229c04bcd59239b[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Mon Feb 10 03:43:08 2025 +0800
+
+    feat: Arranged the layout, Added Controllers and Route for MyAccount and Admin Manager, improved the a tags
+
+[33mcommit 7d031adf70ee7d573eebdc6fa005f17367f768f0[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Sun Feb 9 22:15:12 2025 +0800
+
+    Fixed the log in route, page and its responsiveness
+
+[33mcommit a6fc4a5c33e6d93ea08580d44614a04e8286eba0[m
+Merge: 2467c85 c9d5fab
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Sun Feb 9 07:45:40 2025 +0800
+
+    Merge pull request #18 from a3jraparece/main
+    
+    Feat: Updates the migration file
+
+[33mcommit c9d5fab920d908edf135063bb22a8aa84888f5af[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Sun Feb 9 04:48:37 2025 +0800
+
+    feat: update the migrations
+
+[33mcommit 384b32e898f21e20b1f4a7a24a215a6a77ceb8f6[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Sun Feb 9 00:29:39 2025 +0800
+
+    Fetched - 09/02/2025
+
+[33mcommit a16ae9a904988648c1c26b65ade1ffd8fa1719a6[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Thu Feb 6 21:26:05 2025 +0800
+
+    Redo the routing.
+
+[33mcommit 2467c85bcd0ed2eaa5adf1724c3097485007df11[m
+Merge: 804d209 018dd53
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Thu Jan 30 17:50:22 2025 +0800
+
+    Merge pull request #17 from Vustron/auth_sign_in
+    
+    Auth sign in
+
+[33mcommit 018dd53d91a8fffd720ae608df4a26e6dbce3608[m[33m ([m[1;31morigin/auth_sign_in[m[33m)[m
+Merge: c0f07e8 804d209
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 17:48:58 2025 +0800
+
+    Merge branch 'auth_sign_in' of https://github.com/Vustron/icsa_collection_management_system into auth_sign_in
+
+[33mcommit c0f07e835e65eda17bb261c9db52dc236c632b26[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 17:48:26 2025 +0800
+
+    feat: workflow fix^3
+
+[33mcommit 804d209b11188d9592160f1f56f7ce4422d17c91[m[33m ([m[1;31morigin/transaction/page[m[33m, [m[1;31morigin/studentlist/page-updates[m[33m, [m[1;31morigin/studentlist/page[m[33m)[m
+Merge: 387cda0 ea3bab9
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Thu Jan 30 17:42:22 2025 +0800
+
+    Merge pull request #16 from Vustron/auth_sign_in
+    
+    Auth sign in
+
+[33mcommit ea3bab91dabe1650e0367b18fef64abd339e555c[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 17:41:00 2025 +0800
+
+    feat: quickie fix on the ui layout
+
+[33mcommit 06606d1ca4f3f5eacf2ef351f37b07dbbfbda4df[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 17:40:32 2025 +0800
+
+    feat: quickie fix on the ui layout
+
+[33mcommit 387cda048833141596620290802bfcfac293ef7b[m
+Merge: 5affab8 d6b932b
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Thu Jan 30 16:50:52 2025 +0800
+
+    Merge pull request #15 from Vustron/auth_sign_in
+    
+    Auth sign in
+
+[33mcommit d6b932b691ea200d74368351eee76a5ba66db6b0[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 16:48:10 2025 +0800
+
+    feat: improved layout, added php and blade linting
+
+[33mcommit 18c484e78089332b23a4295cd81bfd9737814d7e[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 12:52:54 2025 +0800
+
+    feat: fix format
+
+[33mcommit 5affab8ca2ab32395b0ca8194003cbc25eec6618[m
+Merge: 05c6b2f f43b158
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Thu Jan 30 11:38:08 2025 +0800
+
+    Merge pull request #14 from Vustron/auth_sign_in
+    
+    feat: workflow fix^2
+
+[33mcommit f43b1583348636b4a461704f038a5d2dd33fd41f[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 11:36:56 2025 +0800
+
+    feat: workflow fix^2
+
+[33mcommit 05c6b2f98e101d9995d3ab3cc14f7b7b677d6967[m
+Merge: 7d3c40c 9376c98
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Thu Jan 30 11:31:12 2025 +0800
+
+    Merge pull request #13 from Vustron/auth_sign_in
+    
+    feat: workflow fix
+
+[33mcommit 9376c9845ecb40253f11cc8e14bf77dc19c282df[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 11:30:06 2025 +0800
+
+    feat: workflow fix
+
+[33mcommit 7d3c40c431ecd7748d208bf35c7c946ef4c8830f[m
+Merge: 7ed9f5e eb7d9da
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Thu Jan 30 11:22:23 2025 +0800
+
+    Merge pull request #12 from Vustron/auth_sign_in
+    
+    feat: added branch synchronization workflow
+
+[33mcommit eb7d9da0ea5d956649315e86d94f869631431ff6[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 11:20:40 2025 +0800
+
+    feat: added branch synchronization workflow
+
+[33mcommit 7ed9f5e875bebe4f20b6aa88b87c81263a58825d[m
+Merge: ac3aab0 afd78c5
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Thu Jan 30 11:16:50 2025 +0800
+
+    Merge pull request #11 from Vustron/auth_sign_in
+    
+    Auth sign in
+
+[33mcommit afd78c5ecd24202aa946a8dbdc2e356fa6dff0b1[m
+Merge: c2e3fc7 ac3aab0
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Thu Jan 30 11:15:17 2025 +0800
+
+    Merge pull request #10 from Vustron/main
+    
+    Merge latest stuff
+
+[33mcommit c2e3fc7c63940043e7519ba663e56a4fcfdd0b0c[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Thu Jan 30 11:13:40 2025 +0800
+
+    feat: added migration function, initial sign-in function
+
+[33mcommit ac3aab00f2bfcc4c1ee180fb70b2677a4496c75a[m
+Merge: 806f6ed 6592786
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Thu Jan 30 10:20:54 2025 +0800
+
+    Merge pull request #9 from Vustron/studentlist/page-updates
+    
+    student page with ui but incomplete function
+
+[33mcommit 65927867ce32b5c18d3cc304c5fe533e00fe8893[m
+Author: micahfloro <floro.micahangelaescoto@gmail.com>
+Date:   Thu Jan 30 04:11:47 2025 +0800
+
+    student page with ui but incomplete funtion
+
+[33mcommit 050dd0de3b79a2b3b3d6be2576590dde8b8f9bcd[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Tue Jan 28 10:05:19 2025 +0800
+
+    feat: updated README
+
+[33mcommit 806f6ed53c91bf16534c3eeebf8137f5ee09562a[m
+Merge: 0633aa5 a907804
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Tue Jan 28 06:05:09 2025 +0800
+
+    Merge pull request #8 from Vustron/myxann-patch-1
+    
+    icons for layout, put in public/storage
+
+[33mcommit a90780458ccdecb66f9422b06e01364357bb386f[m[33m ([m[1;31morigin/myxann-patch-1[m[33m)[m
+Author: micahfloro <floro.micahangelaescoto@gmail.com>
+Date:   Tue Jan 28 04:19:26 2025 +0800
+
+    little feature adjustment
+
+[33mcommit e9ec56cb87a57d0169560815966da985bd0d6482[m
+Author: micahfloro <floro.micahangelaescoto@gmail.com>
+Date:   Tue Jan 28 03:42:00 2025 +0800
+
+    transaction page ui & functionalities completed
+
+[33mcommit 6576a1786dcb3e199e41ec3044fb7091c4af6c93[m
+Author: micahfloro <floro.micahangelaescoto@gmail.com>
+Date:   Tue Jan 28 03:39:49 2025 +0800
+
+    transaction page ui & functionalities completed
+
+[33mcommit 640d7e997753ada95b1671f573c933d2d04f8402[m
+Author: micahfloro <floro.micahangelaescoto@gmail.com>
+Date:   Tue Jan 28 03:38:38 2025 +0800
+
+    .
+
+[33mcommit 718cf0ae15332b79e79d8c3160c4e39c14e53bf5[m
+Merge: 044b549 0633aa5
+Author: micahfloro <floro.micahangelaescoto@gmail.com>
+Date:   Tue Jan 28 03:35:21 2025 +0800
+
+    Merge branch 'main' of https://github.com/Vustron/icsa_collection_management_system into new-branch
+
+[33mcommit 044b549d7826033f1e59e6c3fb6c3bf0d1336e29[m
+Author: micahfloro <floro.micahangelaescoto@gmail.com>
+Date:   Tue Jan 28 03:33:48 2025 +0800
+
+    transaction page ui and functions completed
+
+[33mcommit 0633aa5b57c0baa2402b0ffe43c547e5452ef806[m
+Merge: e6a7895 0859ab2
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Mon Jan 27 18:13:42 2025 +0800
+
+    Merge pull request #6 from Vustron/auth_sign_in
+    
+    feat: added models: user,session,student,program
+
+[33mcommit 0859ab2c544d23ab7be399914cc0db9eddef0a43[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Mon Jan 27 18:12:13 2025 +0800
+
+    feat: added models: user,session,student,program
+
+[33mcommit e6a789531b71811f1aa5d00d527747e37a09f300[m
+Merge: f20ee32 f5e2d97
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Mon Jan 27 16:40:10 2025 +0800
+
+    Merge pull request #5 from Vustron/new-branch
+    
+    Changed svg to png in layout
+
+[33mcommit f5e2d9759f89504f222454c0b77b7dfb2bda2134[m[33m ([m[1;31morigin/new-branch[m[33m)[m
+Merge: e2f6140 f20ee32
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Mon Jan 27 16:39:59 2025 +0800
+
+    Merge branch 'main' into new-branch
+
+[33mcommit e2f6140f6a70cfe35b09fbdbac2beef2b3aa8b34[m
+Author: micahfloro <floro.micahangelaescoto@gmail.com>
+Date:   Sun Jan 26 15:49:45 2025 +0800
+
+    Changed svg to png
+
+[33mcommit f20ee32a59e466e04ee7e56d6ef6fee140923349[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Sun Jan 26 12:52:07 2025 +0800
+
+    feat: completed initial auth ui, added images and favicon
+
+[33mcommit cc477fb3d091fe125a56a40b9b1c9e14aaa2a05c[m
+Author: Vustron Vustronus <runa.michaeljoshua@dnsc.edu.ph>
+Date:   Sat Jan 25 23:36:38 2025 +0800
+
+    feat: added initial configurations, and inital auth ui
+
+[33mcommit f2b23e151dd7a60ef35beb7150298abd29c24056[m
+Merge: 993d665 1748dd1
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Sat Jan 25 21:24:15 2025 +0800
+
+    Merge pull request #4 from Vustron/layout-with-design
+    
+    Layout with Design done
+
+[33mcommit 1748dd15f33c1300aff5498e010e0f9253d44ab1[m[33m ([m[1;31morigin/layout-with-design[m[33m)[m
+Merge: 064d267 993d665
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Sat Jan 25 21:22:59 2025 +0800
+
+    Merge branch 'main' into layout-with-design
+
+[33mcommit 993d6651a0d9ce236f23c3b90a5ae8521710344b[m
+Merge: 7ad4680 9d4932c
+Author: Vustronus <vustronvustronus@gmail.com>
+Date:   Sat Jan 25 21:19:54 2025 +0800
+
+    Merge pull request #2 from Vustron/layout
+    
+    :<
+
+[33mcommit 064d2671c5dc30e7ecb2206ee21eca1d1134c56b[m
+Author: micahfloro <floro.micahangelaescoto@gmail.com>
+Date:   Sat Jan 25 20:49:32 2025 +0800
+
+    Layout with Design done
+
+[33mcommit 9d4932cab0597d367816dc707adc92bc69aa7ce9[m[33m ([m[1;31morigin/mini_main[m[33m, [m[1;31morigin/layout[m[33m)[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Sat Jan 25 18:15:06 2025 +0800
+
+    feat: Organize routes by feature (Still no Design in Layout)
+
+[33mcommit 4269c9dadb33fb67e96d2810c1208e0ab41e9bc0[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Sat Jan 25 04:00:35 2025 +0800
+
+    Added Layout But Still doesnt have the design
+
+[33mcommit 7ad46808dd07b0c587678c8a72e70d42b4b5ef15[m[33m ([m[1;31morigin/design/nav[m[33m)[m
+Author: Alex, Jr. A. Aparece <alexarnaizaparece@gmail.com>
+Date:   Thu Jan 23 23:44:17 2025 +0800
+
+    Nag add og Laravela

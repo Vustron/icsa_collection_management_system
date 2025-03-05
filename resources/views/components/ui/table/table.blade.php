@@ -1,7 +1,8 @@
 @props([
-    'headers' => []
+    'headers' => [],
+    'tb_id' => ''
 ])
-<div class="overflow-x-auto py-4">
+<div class="overflow-x-auto py-2">
 
     <table class="w-full overflow-x-scroll rounded-lg border border-gray-200 bg-white shadow-md">
 
@@ -16,7 +17,7 @@
             </tr>
         </thead>
 
-        <tbody class="divide-y divide-gray-200">
+        <tbody class="divide-y divide-gray-200" id="{{ $tb_id }}">
             {{ $slot }}
         </tbody>
     </table>
