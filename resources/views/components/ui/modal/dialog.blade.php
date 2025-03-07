@@ -1,9 +1,9 @@
 @props([
     'id' => '',
-    'title' => ''
+    'title' => '',
 ])
 
-<dialog id="{{ $id }}" {{ $attributes->merge(['class' => 'border border-gray-200 max-w-[80vw] relative']) }}>
+<dialog id="{{ $id }}" {{ $attributes->merge(['class' => 'border border-gray-200 max-w-[85vw]']) }}>
     <div class="flex items-center justify-between pb-2">
         <div class="text-lg text-violet-700">{{ $title }}</div>
         <div onclick="closeDialog('{{ $id }}')" class="cursor-pointer">

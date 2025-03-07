@@ -10,5 +10,10 @@ class CollectionCategory extends Model
     use HasFactory;
 
     protected $table = "collection_categories";
-    protected $fillable = ["category_name", "description"];
+    protected $fillable = ["category_name", "description", "institute_id"];
+
+    public function institute()
+    {
+        return $this->belongsTo(Institute::class, "institute_id");
+    }
 }

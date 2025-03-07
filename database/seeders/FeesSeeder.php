@@ -30,10 +30,11 @@ class FeesSeeder extends Seeder
                     "category_id" => 4,
                     "institute_id" => 1, //ilisan rani kay for now IC lang sa
                     "total_amount" => $totalFine,
+                    "balance" => $totalFine,
                     "status" => "pending",
                     "issued_by" => null, // Could be an admin ID
-                    "issued_date" => now(),
-                    "due_date" => now()->addDays(30),
+                    // "issued_date" => now(),
+                    // "due_date" => now()->addDays(30),
                     "remarks" => "Accumulated attendance fines",
                 ]);
 

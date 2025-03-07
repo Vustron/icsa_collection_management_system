@@ -26,7 +26,7 @@ class AdminManagerController extends Controller
             $users = User::with("roles", "institute")
                 ->where("institute_id", Auth::user()->institute_id)
                 ->whereHas("roles", function ($query) {
-                    $query->where("role_id", 3);
+                    $query->orWhereNot("role_id", 1)->orWhereNot("role_id", 2);
                 })
                 ->get();
         }
@@ -36,7 +36,7 @@ class AdminManagerController extends Controller
 
         // dd($systems, $roles);
         // dd($users);
-        // dd($users[0]['roles']);
+        // dd($users[0]['roles']);F
         return view(
             "admin_manager.index",
             compact("users", "systems", "roles")
@@ -144,7 +144,19 @@ class AdminManagerController extends Controller
 
     public function update_admin_details(Request $request)
     {
-        dd($request);
+        // $validated = $request->validate([
+        //     'user_name' => 'required|string|max:255',
+        //     'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+        //     'password' => 'nullable|string|min:8|confirmed', // Allow blank password
+        // ]);
+
+        // if (!$request->filled('password')) {
+        //     unset($validated['password']); 
+        // } else {
+        //     $validated['password'] = Hash::make($request->password); 
+        // }
+
+        // $user->update($validated);
     }
 
     public function show($id) {}

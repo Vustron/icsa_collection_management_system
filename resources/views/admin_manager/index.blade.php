@@ -9,6 +9,15 @@
     @vite(['resources/js/view/admin_manager/index.js'])
 @endsection
 
+@section('dialogs')
+    @include('\admin_manager\dialogs\create_admin')
+    @include('\admin_manager\dialogs\delete_admin')
+    @include('\admin_manager\dialogs\view_admin')
+    @include('\admin_manager\dialogs\edit_admin')
+    @include('\admin_manager\dialogs\add_admin_role')
+@endsection
+
+
 <x-layout>
     <div id="messages">
         @if (session('deleted'))
@@ -120,11 +129,5 @@
             <button class="rounded-md border px-2 py-1 hover:bg-gray-200">Next</button>
         </div>
     </div>
-
-    @include('\admin_manager\dialogs\create_admin')
-    @include('\admin_manager\dialogs\delete_admin')
-    @include('\admin_manager\dialogs\view_admin')
-    @include('\admin_manager\dialogs\edit_admin')
-    @include('\admin_manager\dialogs\add_admin_role')
 
 </x-layout>

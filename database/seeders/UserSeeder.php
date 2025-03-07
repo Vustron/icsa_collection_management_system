@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
             User::create($admin);
         }
 
-        // $users = User::factory(5)->create();
+        $users = User::factory(20)->create();
 
         // foreach ($users as $user) {
         //     AdminRole::create(
