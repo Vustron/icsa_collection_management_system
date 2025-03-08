@@ -58,8 +58,10 @@
                                     @endif
                                 </span>
                                 <button id="profileDropdownButton"
-                                    class="rounded-full p-1 hover:bg-gray-100 focus:outline-none">
-                                    <x-bx-user-circle class="h-8 w-8 text-gray-600" />
+                                    class="rounded-full bg-gray-100 p-1 hover:bg-gray-200 focus:outline-none">
+                                    {{-- <x-bx-user-circle class="h-8 w-8 text-gray-600" /> --}}
+                                    <img src="{{ Auth::user()['profile_photo'] ? asset('images/profiles/' . Auth::user()['profile_photo']) : asset('images/defaults/profile.jpg') }}"
+                                        alt="" class="h-8 w-8 rounded-full text-gray-600">
                                 </button>
                             </div>
                             <!-- Dropdown Menu -->
@@ -110,21 +112,22 @@
 
             <?php
             $institutes = [
-                1 => ['acroname' => 'IC', 'logo' => 'icsa_logo.png'],
-                2 => ['acroname' => 'IAAS', 'logo' => 'iaas_logo.png'],
-                3 => ['acroname' => 'ILEGG', 'logo' => 'ilegg_logo.png'],
-                4 => ['acroname' => 'ITED', 'logo' => 'ited_logo.png']
+                1 => ['acroname' => 'IC', 'logo' => 'ic.png'],
+                2 => ['acroname' => 'IAAS', 'logo' => 'iaas.png'],
+                3 => ['acroname' => 'ILEGG', 'logo' => 'ilegg.png'],
+                4 => ['acroname' => 'ITED', 'logo' => 'ited.png']
             ];
             
             $institute_id = Auth::user()['institute_id'];
             
             $institute_acroname = $institutes[$institute_id]['acroname'] ?? 'DNSC';
-            $institute_logo = $institutes[$institute_id]['logo'] ?? 'ic_logo.png';
+            $institute_logo = $institutes[$institute_id]['logo'] ?? 'dnsc.png';
             ?>
 
             <!-- Logo -->
             <div class="mb-1 flex items-center px-4 py-3 shadow-sm">
-                <img src="{{ asset('images/' . $institute_logo) }}" alt="ICSA Logo" class="h-8 w-8 flex-shrink-0">
+                <img src="{{ asset('images/institutes_logo/' . $institute_logo) }}" alt="ICSA Logo"
+                    class="h-8 w-8 flex-shrink-0">
                 <span class="menu-text ml-3 transform text-xl font-semibold lg:transition-all lg:duration-300">
                     {{ $institute_acroname }} CMS
                 </span>

@@ -25,6 +25,11 @@ class Program extends Model
         return $this->hasMany(Student::class);
     }
 
+    public function institute()
+    {
+        return $this->belongsTo(Institute::class, "institute_id");
+    }
+
     const CREATED_AT = "date_created";
     const UPDATED_AT = "date_updated";
 }

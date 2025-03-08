@@ -29,7 +29,7 @@ class UserFactory extends Factory
                 "password" . (string) $salt . "supersecretpepper"
             ),
             "salt" => $salt,
-            "avatar" => $this->faker->imageUrl(),
+            "profile_photo" => null, //$this->faker->imageUrl()
             "provider" => fake()->randomElement([
                 "email",
                 "google",

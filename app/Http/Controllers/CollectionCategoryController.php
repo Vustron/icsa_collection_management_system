@@ -14,17 +14,25 @@ class CollectionCategoryController extends Controller
         if (Auth::user()->roles->every(fn($role) => $role["role_id"] == 1)) {
             $collection_categories = CollectionCategory::all();
         } else {
-            $collection_categories = CollectionCategory::with('institute')->where('institute_id', Auth::user()['institute_id'])->get();
+            $collection_categories = CollectionCategory::with("institute")
+                ->where("institute_id", Auth::user()["institute_id"])
+                ->get();
         }
         // dd($collection_categories);
-        return view("collection_categories.index", compact('collection_categories'));
+        return view(
+            "collection_categories.index",
+            compact("collection_categories")
+        );
     }
 
     public function create() {}
 
     public function store(Request $request)
     {
-        $duplicate_check = CollectionCategory::where("category_name", $request["category_name"])
+        $duplicate_check = CollectionCategory::where(
+            "category_name",
+            $request["category_name"]
+        )
             ->where("institute_id", $request["institute_id"])
             ->exists();
 
@@ -35,12 +43,17 @@ class CollectionCategoryController extends Controller
             );
         }
 
-        $validated = $request->validate(
-            ['category_name' => 'required|string|max:255', 'description' => 'nullable|string|max:500', 'institute_id' => 'exists:institutes,id']
-        );
+        $validated = $request->validate([
+            "category_name" => "required|string|max:255",
+            "description" => "nullable|string|max:500",
+            "institute_id" => "exists:institutes,id",
+        ]);
         CollectionCategory::create($validated);
 
-        return redirect(route('collection_categories.index'))->with('success', $request['category_name'] . ' Category was added Successfully');
+        return redirect(route("collection_categories.index"))->with(
+            "success",
+            $request["category_name"] . " Category was added Successfully"
+        );
     }
 
     public function show($id) {}
@@ -51,8 +64,12 @@ class CollectionCategoryController extends Controller
     {
         // dd($request, $id);
 
-        $duplicate_check = CollectionCategory::where("category_name", $request["category_name"])
-            ->where("institute_id", $request["institute_id"])->whereNot('id', $id)
+        $duplicate_check = CollectionCategory::where(
+            "category_name",
+            $request["category_name"]
+        )
+            ->where("institute_id", $request["institute_id"])
+            ->whereNot("id", $id)
             ->exists();
 
         if ($duplicate_check) {
@@ -64,18 +81,16 @@ class CollectionCategoryController extends Controller
 
         // dd('sucess');
 
-        $validated = $request->validate(
-            ['category_name' => 'required', 'description' => 'required']
-        );
+        $validated = $request->validate([
+            "category_name" => "required",
+            "description" => "required",
+        ]);
 
         $category = CollectionCategory::find($id);
 
         $category->update($validated);
 
-        return back()->with(
-            "success",
-            "Successfully Updated Category"
-        );
+        return back()->with("success", "Successfully Updated Category");
     }
 
     public function destroy($id)

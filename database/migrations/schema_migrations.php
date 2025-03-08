@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create("institutes", function (Blueprint $table) {
             $table->id();
             $table->string("institute_name", 100)->unique();
+            $table->string("logo")->nullable();
             $table->timestamps();
         });
 
@@ -57,7 +58,7 @@ return new class extends Migration {
             $table->timestamp("email_verified_at")->nullable();
             $table->string("password");
             $table->string("salt");
-            $table->string("avatar")->nullable();
+            $table->string("profile_photo")->nullable();
             $table->string("provider")->default("email");
             $table
                 ->foreignId("institute_id")
@@ -175,7 +176,7 @@ return new class extends Migration {
                 ->constrained("institutes")
                 ->onDelete("cascade");
             $table->decimal("total_amount", 5, 2);
-            $table->decimal('balance', 5, 2);
+            $table->decimal("balance", 5, 2);
             $table
                 ->enum("status", ["pending", "paid", "waived"])
                 ->default("pending");

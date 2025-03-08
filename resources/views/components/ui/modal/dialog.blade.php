@@ -1,6 +1,6 @@
 @props([
     'id' => '',
-    'title' => '',
+    'title' => ''
 ])
 
 <dialog id="{{ $id }}" {{ $attributes->merge(['class' => 'border border-gray-200 max-w-[85vw]']) }}>

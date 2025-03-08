@@ -1,5 +1,5 @@
-<x-ui.modal.dialog id="collection_categories_add_collection" title="Add New Category" class="max-w-sm">
-    <form action="{{ route('collection_categories.store') }}" method="POST">
+<x-ui.modal.dialog id="add_student" title="Add New Student" class="max-w-sm">
+    <form action="{{ route('student_list.store') }}" method="POST">
         @csrf
 
         <input type="hidden" name="institute_id" value="{{ auth()->user()['institute_id'] }}">
@@ -25,7 +25,7 @@
         <div class="flex items-center space-x-1">
             <x-ui.button.dynamic-button type="button" variant="outline" size="default"
                 class="submitBtn mt-2 w-36 bg-gray-100 hover:bg-gray-300 focus:ring-purple-500"
-                onclick="closeDialog('collection_categories_add_collection')">
+                onclick="closeDialog('add_student')">
                 Cancel
             </x-ui.button.dynamic-button>
             <x-ui.button.dynamic-button type="submit" variant="default" size="default"

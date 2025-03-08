@@ -8,6 +8,10 @@
 @section('js_links')
 @endsection
 
+@section('dialogs')
+
+@endsection
+
 <x-layout>
     Dashboard
 </x-layout>

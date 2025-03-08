@@ -27,7 +27,7 @@ class InstituteSeeder extends Seeder
             ],
             [
                 "institute_name" =>
-                "Institute of Leadership, Entrepreneurship and Good Governance",
+                    "Institute of Leadership, Entrepreneurship and Good Governance",
                 "created_at" => now(),
                 "updated_at" => now(),
             ],
@@ -69,13 +69,11 @@ class InstituteSeeder extends Seeder
             ],
         ];
 
-
-
         foreach ($institutes as $institute) {
-            $insti =   Institute::create($institute);
+            $insti = Institute::create($institute);
             foreach ($collection_categories as $collection_category) {
                 // $collection_category_data = $collection_category;
-                $collection_category['institute_id'] = $insti['id'];
+                $collection_category["institute_id"] = $insti["id"];
                 CollectionCategory::create($collection_category);
             }
         }

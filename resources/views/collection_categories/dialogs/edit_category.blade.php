@@ -1,5 +1,5 @@
 <x-ui.modal.dialog id="edit_collection_category_modal" title="Edit Collection Category">
-    <form action="{{ route('collection_categories.update', '__ID__') }}" method="POST" class=" max-w-sm"
+    <form action="{{ route('collection_categories.update', '__ID__') }}" method="POST" class="max-w-sm"
         id="collection_category_edit_form">
         @csrf
         @method('put')
@@ -14,11 +14,11 @@
             </div>
         </div>
 
-        <div class="space-y-2 mt-1">
+        <div class="mt-1 space-y-2">
             <div class="space-y-2">
                 <x-ui.form.label for="edit_description">Description</x-ui.form.label>
                 <textarea name="description" id="edit_description" placeholder="Enter category description..."
-                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-[1.5px] focus:ring-violet-400 focus:border-violet-400 resize-none"
+                    class="w-full resize-none rounded-lg border border-gray-300 p-3 focus:border-violet-400 focus:outline-none focus:ring-[1.5px] focus:ring-violet-400"
                     rows="4"></textarea>
             </div>
         </div>

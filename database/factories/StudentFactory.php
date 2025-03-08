@@ -20,7 +20,7 @@ class StudentFactory extends Factory
     {
         return [
             "school_id" => fake()->unique()->numberBetween(1, 500),
-            // 'program_id' => Program::inRandomOrder()->first()->id,
+            // 'program_id' => Program::inRandomOrder()->first()->id, //i baylo rani if deli naka mo handle pang IC lang
             "program_id" => $this->faker->randomElement([1, 2]),
             "rfid" => $this->faker->optional()->uuid, // Nullable RFID
             "first_name" => $this->faker->firstName,
