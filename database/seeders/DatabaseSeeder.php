@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SystemSeeder::class,
             AdminRoleSeeder::class,
-            CollectionCategorySeeder::class,
+            // CollectionCategorySeeder::class,
             StudentSeeder::class,
             AttendanceEventSeeder::class,
             AttendanceRecordSeeder::class,

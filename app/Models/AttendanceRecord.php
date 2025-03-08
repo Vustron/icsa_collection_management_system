@@ -13,7 +13,7 @@ class AttendanceRecord extends Model
     protected $table = "attendance_records";
     protected $fillable = [
         "student_id ",
-        "attendance_event_id  ",
+        "attendance_event_id",
         "date",
         "morning_check_in",
         "morning_check_out",

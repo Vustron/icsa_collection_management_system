@@ -14,6 +14,7 @@
                 <h1 id="ea_institute_name" class="text-center text-lg"></h1>
                 <form action="{{ route('admin_manager.update_admin_details') }}" method="POST">
                     @csrf
+                    @method('put')
                     <div class="space-y-2">
                         <div class="space-y-2">
                             <x-ui.form.label for="ea_user_name" class="flex items-center justify-between">
@@ -55,7 +56,7 @@
                             </x-ui.form.label>
                         </div>
                         <x-ui.button.dynamic-button type="submit" variant="default" size="default"
-                            class="submitBtn mt-3 w-full bg-green-600 hover:bg-green-700 focus:ring-green-500">
+                            class="submitBtn mt-3 w-full bg-red-600 hover:bg-red-700 focus:ring-red-500">
                             Update Details
                         </x-ui.button.dynamic-button>
                     </div>

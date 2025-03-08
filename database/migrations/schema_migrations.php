@@ -148,9 +148,15 @@ return new class extends Migration {
 
         Schema::create("collection_categories", function (Blueprint $table) {
             $table->id();
-            $table->string("category_name", 50)->unique();
+            $table->string("category_name", 50); //->unique()
             $table->text("description")->nullable();
+            $table
+                ->foreignId("institute_id")
+                ->constrained("institutes")
+                ->onDelete("cascade");
             $table->timestamps();
+
+            // $table->unique(["category_name", "institute_id"]); //this nalang ang constraint
         });
 
         Schema::create("fees", function (Blueprint $table) {
@@ -169,13 +175,14 @@ return new class extends Migration {
                 ->constrained("institutes")
                 ->onDelete("cascade");
             $table->decimal("total_amount", 5, 2);
+            $table->decimal('balance', 5, 2);
             $table
                 ->enum("status", ["pending", "paid", "waived"])
                 ->default("pending");
             $table->foreignId("issued_by")->nullable()->constrained("users");
-            $table->timestamp("issued_date")->useCurrent();
-            $table->timestamp("due_date")->nullable();
-            $table->timestamp("payment_date")->nullable();
+            // $table->timestamp("issued_date")->useCurrent();
+            // $table->timestamp("due_date")->nullable();
+            // $table->timestamp("payment_date")->nullable();
             $table->text("remarks")->nullable();
             $table->timestamps();
         });
@@ -192,6 +199,7 @@ return new class extends Migration {
                 ->constrained("fees")
                 ->onDelete("cascade");
             $table->string("screenshot_path", 255);
+            $table->decimal("amount_paid", 5, 2);
             $table->timestamp("submitted_at")->useCurrent();
             $table
                 ->enum("status", ["pending", "approved", "rejected"])
@@ -229,27 +237,29 @@ return new class extends Migration {
         /* basi mangutana mo nga pwede ramana e track sa payment_submissions and payments. I dont know pero:
             - payment_submissions. naa raman gud dri is yung mga online submission lang po.
             - payments. wala poi pending^2 here
+
+            [remove naalng naku :<]
         */
 
-        Schema::create("collection_management", function (Blueprint $table) {
-            $table->id();
-            $table
-                ->foreignId("fees_id")
-                ->constrained("fees")
-                ->onDelete("cascade");
-            $table
-                ->enum("collection_status", [
-                    "pending",
-                    "in progress",
-                    "resolved",
-                ])
-                ->default("pending");
-            $table->foreignId("assigned_to")->nullable()->constrained("users");
-            $table->timestamp("collection_date")->useCurrent();
-            $table->timestamp("last_contact_date")->nullable();
-            $table->text("remarks")->nullable();
-            $table->timestamps();
-        });
+        // Schema::create("collection_management", function (Blueprint $table) {
+        //     $table->id();
+        //     $table
+        //         ->foreignId("fees_id")
+        //         ->constrained("fees")
+        //         ->onDelete("cascade");
+        //     $table
+        //         ->enum("collection_status", [
+        //             "pending",
+        //             "in progress",
+        //             "resolved",
+        //         ])
+        //         ->default("pending");
+        //     $table->foreignId("assigned_to")->nullable()->constrained("users");
+        //     $table->timestamp("collection_date")->useCurrent();
+        //     $table->timestamp("last_contact_date")->nullable();
+        //     $table->text("remarks")->nullable();
+        //     $table->timestamps();
+        // });
 
         Schema::create("notifications", function (Blueprint $table) {
             $table->id();

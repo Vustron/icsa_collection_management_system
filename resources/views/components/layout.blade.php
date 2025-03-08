@@ -18,6 +18,8 @@
 
     <body class="bg-[rgb(234, 235, 239)] min-h-screen">
 
+        @yield('dialogs')
+
         <header class="fixed top-0 z-50 w-full bg-white shadow-lg">
             <div class="flex h-14 items-center px-4">
                 <!-- Left: Mobile Menu & Title -->
@@ -98,35 +100,35 @@
 
         <div id="mobileMenuOverlay" class="fixed inset-0 z-40 hidden bg-black bg-opacity-50 lg:hidden"></div>
 
-    {{-- Sidebar --}}
-    <aside id="sidebar"
-        class="fixed left-0 top-0 z-50 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white shadow-lg transition-transform duration-300 lg:translate-x-0">
-        <button id="sidebarToggle"
-            class="absolute -right-5 top-3 hidden rounded-full border border-gray-200 bg-white p-1 shadow-lg hover:bg-gray-100 lg:block">
-            <x-bx-chevron-left id="chevronIcon" class="h-6 w-6 text-gray-600 transition-transform duration-300" />
-        </button>
+        {{-- Sidebar --}}
+        <aside id="sidebar"
+            class="fixed left-0 top-0 z-50 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white shadow-lg transition-transform duration-300 lg:translate-x-0">
+            <button id="sidebarToggle"
+                class="absolute -right-5 top-3 hidden rounded-full border border-gray-200 bg-white p-1 shadow-lg hover:bg-gray-100 lg:block">
+                <x-bx-chevron-left id="chevronIcon" class="h-6 w-6 text-gray-600 transition-transform duration-300" />
+            </button>
 
-        <?php
-        $institutes = [
-            1 => ['acroname' => 'IC', 'logo' => 'icsa_logo.png'],
-            2 => ['acroname' => 'IAAS', 'logo' => 'iaas_logo.png'],
-            3 => ['acroname' => 'ILEGG', 'logo' => 'ilegg_logo.png'],
-            4 => ['acroname' => 'ITED', 'logo' => 'ited_logo.png'],
-        ];
-        
-        $institute_id = Auth::user()['institute_id'];
-        
-        $institute_acroname = $institutes[$institute_id]['acroname'] ?? 'DNSC';
-        $institute_logo = $institutes[$institute_id]['logo'] ?? 'ic_logo.png';
-        ?>
+            <?php
+            $institutes = [
+                1 => ['acroname' => 'IC', 'logo' => 'icsa_logo.png'],
+                2 => ['acroname' => 'IAAS', 'logo' => 'iaas_logo.png'],
+                3 => ['acroname' => 'ILEGG', 'logo' => 'ilegg_logo.png'],
+                4 => ['acroname' => 'ITED', 'logo' => 'ited_logo.png']
+            ];
+            
+            $institute_id = Auth::user()['institute_id'];
+            
+            $institute_acroname = $institutes[$institute_id]['acroname'] ?? 'DNSC';
+            $institute_logo = $institutes[$institute_id]['logo'] ?? 'ic_logo.png';
+            ?>
 
-        <!-- Logo -->
-        <div class="mb-1 flex items-center px-4 py-3 shadow-sm">
-            <img src="{{ asset('images/' . $institute_logo) }}" alt="ICSA Logo" class="h-8 w-8 flex-shrink-0">
-            <span class="menu-text ml-3 transform text-xl font-semibold lg:transition-all lg:duration-300">
-                {{ $institute_acroname }} CMS
-            </span>
-        </div>
+            <!-- Logo -->
+            <div class="mb-1 flex items-center px-4 py-3 shadow-sm">
+                <img src="{{ asset('images/' . $institute_logo) }}" alt="ICSA Logo" class="h-8 w-8 flex-shrink-0">
+                <span class="menu-text ml-3 transform text-xl font-semibold lg:transition-all lg:duration-300">
+                    {{ $institute_acroname }} CMS
+                </span>
+            </div>
 
             <!-- Navigation -->
             <nav class="h-[calc(100vh-6rem)] overflow-y-auto px-2">
@@ -190,55 +192,56 @@
                         </a>
                     </li>
 
-                <!-- Collection Categories -->
-                @if (Auth::user()->roles->pluck('role_id')->intersect([1, 2])->isNotEmpty())
-                    <div class="space-y-1">
-                        <div class="category-name pl-3 pt-1 text-gray-700 lg:transition-all lg:duration-100">
-                            System Maintenance
+                    <!-- Collection Categories -->
+                    @if (Auth::user()->roles->pluck('role_id')->intersect([1, 2])->isNotEmpty())
+                        <div class="space-y-1">
+                            <div class="category-name pl-3 pt-1 text-gray-700 lg:transition-all lg:duration-100">
+                                System Maintenance
+                            </div>
+                            <li>
+                                <a href="{{ route('collection_categories.index') }}"
+                                    class="{{ request()->routeIs('collection_categories.*') ? 'bg-purple-600 text-white pointer-events-none' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
+                                    <x-bx-category class="ml-1 size-5 flex-shrink-0" />
+                                    <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Collection
+                                        Categories</span>
+                                </a>
+                            </li>
+                            <!-- Reports -->
+                            <li>
+                                <a href="{{ route('reports.index') }}"
+                                    class="{{ request()->routeIs('reports.*') ? 'bg-purple-600 text-white pointer-events-none' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
+                                    <x-bx-file class="ml-1 size-5 flex-shrink-0" />
+                                    <span
+                                        class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Reports</span>
+                                </a>
+                            </li>
                         </div>
+
+                        <div class="li_categories space-y-1">
+                            <div class="category-name pl-3 pt-1 text-gray-700 lg:transition-all lg:duration-100">
+                                System Logs
+                            </div>
+                        </div>
+
+                        <!-- Activity -->
                         <li>
-                            <a href="{{ route('collection_categories.index') }}"
-                                class="{{ request()->routeIs('collection_categories.*') ? 'bg-purple-600 text-white pointer-events-none' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
-                                <x-bx-category class="ml-1 size-5 flex-shrink-0" />
-                                <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Collection
-                                    Categories</span>
+                            <a href="{{ route('activity.user.index') }}"
+                                class="{{ request()->routeIs('activity.*') ? 'bg-purple-600 text-white pointer-events-none' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} flex w-full items-center rounded-lg p-2 transition-colors">
+                                <x-bx-history class="ml-1 size-5 flex-shrink-0" />
+                                <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Activity</span>
                             </a>
                         </li>
-                        <!-- Reports -->
-                        <li>
-                            <a href="{{ route('reports.index') }}"
-                                class="{{ request()->routeIs('reports.*') ? 'bg-purple-600 text-white pointer-events-none' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
-                                <x-bx-file class="ml-1 size-5 flex-shrink-0" />
-                                <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Reports</span>
-                            </a>
-                        </li>
-                    </div>
+                    @endif
+                </ul>
+            </nav>
+        </aside>
 
-                    <div class="li_categories space-y-1">
-                        <div class="category-name pl-3 pt-1 text-gray-700 lg:transition-all lg:duration-100">
-                            System Logs
-                        </div>
-                    </div>
-
-                    <!-- Activity -->
-                    <li>
-                        <a href="{{ route('activity.user.index') }}"
-                            class="{{ request()->routeIs('activity.*') ? 'bg-purple-600 text-white pointer-events-none' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} flex w-full items-center rounded-lg p-2 transition-colors">
-                            <x-bx-history class="ml-1 size-5 flex-shrink-0" />
-                            <span class="menu-text ml-3 text-sm lg:transition-all lg:duration-100">Activity</span>
-                        </a>
-                    </li>
-                @endif
-            </ul>
-        </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main id="mainContent" class="main mt-[56px] p-2 transition-all duration-100 lg:ml-64">
-        <div class="w-full rounded-lg border-t-[3px] border-t-violet-600 bg-white p-3 shadow">
-            {{ $slot }}
-            <!-- Footer -->
-            {{-- <footer class="p-4 text-center">
+        <!-- Main Content -->
+        <main id="mainContent" class="main mt-[56px] p-2 transition-all duration-100 lg:ml-64">
+            <div class="w-full rounded-lg border-t-[3px] border-t-violet-600 bg-white p-3 shadow">
+                {{ $slot }}
+                <!-- Footer -->
+                {{-- <footer class="p-4 text-center">
             <span class="text-sm text-gray-500">© 2024 ICCMS. All rights reserved.</span>
         </footer> --}}
             </div>

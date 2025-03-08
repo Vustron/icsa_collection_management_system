@@ -14,6 +14,7 @@ class PaymentSubmission extends Model
         "student_id",
         "fees_id ",
         "screenshot_path",
+        "amount_paid",
         "submitted_at",
         "status ",
         "reviewed_by",
