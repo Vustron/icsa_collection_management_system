@@ -13,11 +13,11 @@
             </div>
         </div>
 
-        <div class="space-y-2 mt-1">
+        <div class="mt-1 space-y-2">
             <div class="space-y-2">
                 <x-ui.form.label for="description">Description</x-ui.form.label>
                 <textarea name="description" id="description" placeholder="Enter category description..."
-                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-violet-400 resize-none"
+                    class="w-full resize-none rounded-lg border border-gray-300 p-3 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-400"
                     rows="4" value="{{ old('description') }}"></textarea>
             </div>
         </div>

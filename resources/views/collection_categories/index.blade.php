@@ -79,17 +79,17 @@
             <tr class="last:border-violet-700 even:bg-gray-100 hover:bg-violet-100">
                 <td class="border border-gray-300 px-4 py-1 text-center">{{ $collection_category['id'] }}</td>
                 <td class="border border-gray-300 px-4 py-2">{{ $collection_category['category_name'] }}</td>
-                <td class="border border-gray-300 px-4 py-2 max-w-[250px] truncate">
+                <td class="max-w-[250px] truncate border border-gray-300 px-4 py-2">
                     {{ $collection_category['description'] }}
                 </td>
-                <td class="border border-gray-300 px-4 py-2 max-w-[150px]">
+                <td class="max-w-[150px] border border-gray-300 px-4 py-2">
                     {{ $collection_category['institute']['institute_name'] }}
                 </td>
                 {{-- <td class="border border-gray-300 px-4 py-2">
                     {{ $collection_category['created_at']->format('l, F j, Y') }}
                 </td> --}}
-                <td class="border border-gray-300 px-4 py-2 w-[130px]">
-                    <div class="flex justify-center items-center gap-2">
+                <td class="w-[130px] border border-gray-300 px-4 py-2">
+                    <div class="flex items-center justify-center gap-2">
                         <x-bi-eye-fill
                             class="view-collection_category size-5 cursor-pointer text-green-500 hover:text-green-700"
                             data-collection_category="{{ json_encode($collection_category) }}" />

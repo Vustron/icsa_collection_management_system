@@ -1,5 +1,5 @@
 <x-ui.modal.dialog id="delete_collection_category_modal" title="Confirm Delete Collection Category">
-    <form action="{{ route('collection_categories.destroy', '__ID__') }}" method="POST" class=" max-w-sm"
+    <form action="{{ route('collection_categories.destroy', '__ID__') }}" method="POST" class="max-w-sm"
         id="collection_category_delete_form">
         @csrf
         @method('delete')

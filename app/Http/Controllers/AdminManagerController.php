@@ -151,9 +151,9 @@ class AdminManagerController extends Controller
         // ]);
 
         // if (!$request->filled('password')) {
-        //     unset($validated['password']); 
+        //     unset($validated['password']);
         // } else {
-        //     $validated['password'] = Hash::make($request->password); 
+        //     $validated['password'] = Hash::make($request->password);
         // }
 
         // $user->update($validated);

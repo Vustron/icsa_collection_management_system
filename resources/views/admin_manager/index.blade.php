@@ -17,7 +17,6 @@
     @include('\admin_manager\dialogs\add_admin_role')
 @endsection
 
-
 <x-layout>
     <div id="messages">
         @if (session('deleted'))

@@ -175,7 +175,7 @@ return new class extends Migration {
                 ->constrained("institutes")
                 ->onDelete("cascade");
             $table->decimal("total_amount", 5, 2);
-            $table->decimal('balance', 5, 2);
+            $table->decimal("balance", 5, 2);
             $table
                 ->enum("status", ["pending", "paid", "waived"])
                 ->default("pending");
