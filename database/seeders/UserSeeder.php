@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             [
                 "user_name" => "DNSC Super Admin",
                 "email" => "dnsc.super.admin@dnsc.edu.ph",
-                "password" => Hash::make(
+                "password" => bcrypt(
                     "dnscsuperadmin" . (string) $salt . "supersecretpepper"
                 ),
                 "salt" => $salt,
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             [
                 "user_name" => "IC Super Admin",
                 "email" => "ic.super.admin@dnsc.edu.ph",
-                "password" => Hash::make(
+                "password" => bcrypt(
                     "icsuperadmin" . (string) $salt . "supersecretpepper"
                 ),
                 "salt" => $salt,
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             [
                 "user_name" => "IAAS Super Admin",
                 "email" => "iaas.super.admin@dnsc.edu.ph",
-                "password" => Hash::make(
+                "password" => bcrypt(
                     "iaassuperadmin" . (string) $salt . "supersecretpepper"
                 ),
                 "salt" => $salt,
@@ -57,7 +57,7 @@ class UserSeeder extends Seeder
             [
                 "user_name" => "ILEGG Super Admin",
                 "email" => "ilegg.super.admin@dnsc.edu.ph",
-                "password" => Hash::make(
+                "password" => bcrypt(
                     "ileggsuperadmin" . (string) $salt . "supersecretpepper"
                 ),
                 "salt" => $salt,
@@ -83,16 +83,5 @@ class UserSeeder extends Seeder
         }
 
         $users = User::factory(20)->create();
-
-        // foreach ($users as $user) {
-        //     AdminRole::create(
-        //         [
-        //             'user_id' => $user['id'],
-        //             'role_id' => 3,
-        //             'system_id' => 1,
-        //             'deleted_at' => null,
-        //         ]
-        //     );
-        // }
     }
 }

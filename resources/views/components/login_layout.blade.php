@@ -36,8 +36,9 @@
                 <div class="w-full max-w-[350px] space-y-8">
                     {{ $slot }}
                 </div>
-                <span class="pt-3 text-center text-sm text-white lg:text-gray-500">© Ambot Unsay I butang deri
-                    2025</span>
+                <span class="pt-4 text-sm text-gray-500">
+                    © {{ date('Y') }} {{ config('app.short_name', 'ICSA CMS') }}. All rights reserved.
+                </span>
             </div>
         </div>
         @yield('raw_js_scripts')
