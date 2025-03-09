@@ -54,7 +54,7 @@
         <div class="flex items-center gap-2">
             <label for="show-entries" class="text-base font-medium text-gray-700">Show</label>
             <select id="show-entries"
-                class="text-medium rounded-md border-2 border-gray-300 focus:border-purple-500 focus:ring-purple-500">
+                class="rounded-md border-2 border-gray-300 text-sm focus:border-purple-500 focus:ring-purple-500">
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>

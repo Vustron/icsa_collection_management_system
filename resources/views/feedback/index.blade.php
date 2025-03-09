@@ -8,6 +8,10 @@
 @section('js_links')
 @endsection
 
+@section('dialogs')
+
+@endsection
+
 <x-layout>
     <div class="flex h-full w-full items-center justify-center">
         a

@@ -10,7 +10,7 @@
         </div>
 
         <div class="border-t pt-3 text-sm text-gray-500">
-            <span>Created on: March 7, 2025</span>
+            <span id="created_at"></span>
         </div>
     </div>
 </x-ui.modal.dialog>

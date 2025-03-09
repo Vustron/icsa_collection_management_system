@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentListController extends Controller
 {
     public function index()
     {
-        return view("student_list.index");
+        $students = Student::whereHas("program.institute", function ($query) {
+            $query->where("id", 1);
+        })->get();
+
+        // dd($students);
+
+        return view("student_list.index", compact("students"));
     }
 
     public function create() {}

@@ -28,6 +28,7 @@ class UserSeeder extends Seeder
                     "dnscsuperadmin" . (string) $salt . "supersecretpepper"
                 ),
                 "salt" => $salt,
+                "profile_photo" => "dnsc.png",
                 "provider" => "email",
                 "institute_id" => null,
             ],
@@ -38,6 +39,7 @@ class UserSeeder extends Seeder
                     "icsuperadmin" . (string) $salt . "supersecretpepper"
                 ),
                 "salt" => $salt,
+                "profile_photo" => "ic.png",
                 "provider" => "email",
                 "institute_id" => 1,
             ],
@@ -48,6 +50,7 @@ class UserSeeder extends Seeder
                     "iaassuperadmin" . (string) $salt . "supersecretpepper"
                 ),
                 "salt" => $salt,
+                "profile_photo" => "iaas.png",
                 "provider" => "email",
                 "institute_id" => 2,
             ],
@@ -58,6 +61,7 @@ class UserSeeder extends Seeder
                     "ileggsuperadmin" . (string) $salt . "supersecretpepper"
                 ),
                 "salt" => $salt,
+                "profile_photo" => "ilegg.png",
                 "provider" => "email",
                 "institute_id" => 3,
             ],
@@ -68,6 +72,7 @@ class UserSeeder extends Seeder
                     "itedsuperadmin" . (string) $salt . "supersecretpepper"
                 ),
                 "salt" => $salt,
+                "profile_photo" => "ited.png",
                 "provider" => "email",
                 "institute_id" => 4,
             ],
