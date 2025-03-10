@@ -171,10 +171,10 @@ return new class extends Migration {
                 ->nullable()
                 ->constrained("collection_categories")
                 ->onDelete("set null");
-            $table
-                ->foreignId("institute_id")
-                ->constrained("institutes")
-                ->onDelete("cascade");
+            // $table
+            //     ->foreignId("institute_id")
+            //     ->constrained("institutes")
+            //     ->onDelete("cascade");
             $table->decimal("total_amount", 5, 2);
             $table->decimal("balance", 5, 2);
             $table
@@ -201,7 +201,7 @@ return new class extends Migration {
                 ->onDelete("cascade");
             $table->string("screenshot_path", 255);
             $table->decimal("amount_paid", 5, 2);
-            $table->timestamp("submitted_at")->useCurrent();
+            // $table->timestamp("submitted_at")->useCurrent();
             $table
                 ->enum("status", ["pending", "approved", "rejected"])
                 ->default("pending");
@@ -222,14 +222,11 @@ return new class extends Migration {
                 ->foreignId("fees_id")
                 ->constrained("fees")
                 ->onDelete("cascade");
-            $table
-                ->foreignId("institute_id")
-                ->constrained()
-                ->onDelete("cascade");
             $table->decimal("amount_paid", 5, 2);
-            $table->timestamp("payment_date")->useCurrent();
+            // $table->timestamp("payment_date")->useCurrent();
             $table->enum("payment_method", ["gcash", "cash"])->default("cash");
             $table->foreignId("received_by")->nullable()->constrained("users");
+            $table->foreignId('payment_submission_id')->nullable()->constrained('payment_submissions')->onDelete('cascade'); //if gcash gikan null lang if actual paymenyt
             // $table->string('receipt_no', 50)->nullable();
             $table->timestamps();
         });

@@ -28,11 +28,11 @@ class FeesSeeder extends Seeder
                 $fee = Fees::create([
                     "student_id" => $student->id,
                     "category_id" => 4,
-                    "institute_id" => 1, //ilisan rani kay for now IC lang sa
+                    // "institute_id" => 1, //ilisan rani kay for now IC lang sa (akong gi wala kay pwede raman diay mag check sa student unsa siya nga insti)
                     "total_amount" => $totalFine,
                     "balance" => $totalFine,
                     "status" => "pending",
-                    "issued_by" => null, // Could be an admin ID
+                    "issued_by" => 2, // Could be an admin ID e null lang after testing
                     // "issued_date" => now(),
                     // "due_date" => now()->addDays(30),
                     "remarks" => "Accumulated attendance fines",
@@ -45,5 +45,7 @@ class FeesSeeder extends Seeder
                 })->update(["fee_id" => $fee->id]);
             }
         }
+
+        Fees::factory(100)->create();
     }
 }

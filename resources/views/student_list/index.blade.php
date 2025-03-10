@@ -5,10 +5,13 @@
 @endsection
 
 @section('js_links')
+    @vite(['resources/js/view/student_list/index.js'])
 @endsection
 
 @section('dialogs')
     @include('\student_list\dialogs\add_student')
+    @include('\student_list\dialogs\edit_student')
+    @include('\student_list\dialogs\delete_student')
 @endsection
 
 <x-layout>
@@ -76,7 +79,7 @@
                 <td class="border border-gray-300 px-4 py-1 text-center">{{ $student['id'] }}</td>
                 <td class="border border-gray-300 px-4 py-1">{{ $student['school_id'] }}</td>
                 <td class="border border-gray-300 px-4 py-1 capitalize">
-                    {{ $student['first_name'] . ' ' . (isset($student['middle_name']) ? substr($student['middle_name'], 1, 1) . '. ' : ' ') . $student['last_name'] }}
+                    {{ $student['first_name'] . ' ' . (isset($student['middle_name']) ? substr($student['middle_name'], 0, 1) . '. ' : '') . $student['last_name'] }}
                 </td>
                 <td class="border border-gray-300 px-4 py-1">{{ $student['email'] }}</td>
                 <td class="border border-gray-300 px-4 py-1">{{ $student['program']['name'] }}</td>
@@ -90,12 +93,16 @@
 
                 <td class="border border-gray-300 px-4 py-2">
                     <div class="flex items-center justify-center gap-2">
-                        <x-bi-eye-fill class="view-user size-5 cursor-pointer text-green-500 hover:text-green-700"
-                            data-user="{{ json_encode($student) }}" />
-                        <x-bx-pencil class="edit-user size-5 cursor-pointer text-orange-500 hover:text-orange-700"
-                            data-user="{{ json_encode($student) }}" />
-                        <x-bi-trash class="delete-user size-5 cursor-pointer text-red-500 hover:text-red-700"
-                            data-user="{{ json_encode($student) }}" />
+                        <a href="{{ route('student_list.student.show', $student['id']) }}" title="View Student">
+                            <x-bi-eye-fill
+                                class="view-student size-5 cursor-pointer text-green-500 hover:text-green-700" />
+                        </a>
+                        {{-- <a href="{{ route('student_list.edit', $student['id']) }}" title="Edit Student"> --}}
+                        <x-bx-pencil class="edit-student size-5 cursor-pointer text-orange-500 hover:text-orange-700"
+                            data-student="{{ json_encode($student) }}" />
+                        {{-- </a> --}}
+                        <x-bi-trash class="delete-student size-5 cursor-pointer text-red-500 hover:text-red-700"
+                            data-student="{{ json_encode($student) }}" />
                     </div>
                 </td>
             </tr>

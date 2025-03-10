@@ -11,6 +11,8 @@ class AttendanceRecord extends Model
     use HasFactory;
 
     protected $table = "attendance_records";
+
+    public $with = ['event'];
     protected $fillable = [
         "student_id ",
         "attendance_event_id",
@@ -20,4 +22,9 @@ class AttendanceRecord extends Model
         "afternoon_check_in",
         "afternoon_check_out",
     ];
+
+    public function event()
+    {
+        return $this->belongsTo(AttendanceEvent::class, 'attendance_event_id');
+    }
 }

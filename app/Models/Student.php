@@ -36,6 +36,8 @@ class Student extends Model
         "updated_at" => "datetime",
     ];
 
+    public $with = ['program'];
+
     public function program()
     {
         return $this->belongsTo(Program::class);

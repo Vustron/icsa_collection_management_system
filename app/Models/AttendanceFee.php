@@ -13,11 +13,13 @@ class AttendanceFee extends Model
     protected $table = "attendance_fees";
     protected $fillable = ["fee_id ", "attendance_record_id  ", "amount"];
 
+    public $with = ["attendanceRecord"];
+
     public function attendanceRecord()
     {
         return $this->belongsTo(
             AttendanceRecord::class,
-            foreignKey: "attendance_record_id"
+            "attendance_record_id"
         );
     }
 }
