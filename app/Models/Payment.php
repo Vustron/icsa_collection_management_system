@@ -10,12 +10,25 @@ class Payment extends Model
     use HasFactory;
 
     protected $table = "payments";
+
+    public $with = ["fee", "receivedBy"];
+
     protected $fillable = [
         "fees_id",
-        "institute_id ",
+        // "institute_id ",
         "amount_paid",
-        "payment_date",
         "payment_method ",
         "received_by",
+        "payment_submission_id",
     ];
+
+    public function fee()
+    {
+        return  $this->belongsTo(Fees::class, 'fees_id');
+    }
+
+    public function receivedBy()
+    {
+        return $this->belongsTo(User::class, 'received_by');
+    }
 }
