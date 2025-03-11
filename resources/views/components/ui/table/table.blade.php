@@ -3,7 +3,7 @@
     'tb_id' => ''
 ])
 <div class="overflow-x-auto py-2">
-    <table class="w-full overflow-x-scroll rounded-lg border border-gray-200 bg-white shadow-md">
+    <table class="w-full overflow-x-scroll whitespace-nowrap rounded-lg border border-gray-200 bg-white shadow-md">
         <thead>
             <tr class="bg-purple-600 text-white">
                 @foreach ($headers as $header)

@@ -36,7 +36,7 @@ class MyAccountController extends Controller
             "profile_photo" => "nullable",
             "user_name" => "required|string|max:255" . $id,
             "email" =>
-            "required|email|max:255|unique:users,email," .
+                "required|email|max:255|unique:users,email," .
                 Auth::user()["id"],
             "status" => "required|string",
             "password" => "nullable|string|min:8|confirmed",

@@ -4,7 +4,7 @@
     'id' => '',
     'placeholder' => '',
     'required' => false,
-    'disabled' => false,
+    'disabled' => false
 ])
 
 <input type="{{ $type }}" name="{{ $name }}" id="{{ $id }}" placeholder="{{ $placeholder }}"

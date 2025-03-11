@@ -3,13 +3,12 @@
     'name' => '',
     'id' => '',
     'required' => false,
-    'disabled' => false,
+    'disabled' => false
 ])
 
-
-<div class="w-full space-y-[10px] mt-2">
+<div class="mt-2 w-full space-y-[10px]">
     <label for="{{ $id }}"
-        class="mb-1 block text-sm font-medium text-gray-700 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+        class="mb-1 block text-sm font-medium leading-none text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
         {{ $label }}
     </label>
     <div class="relative w-full">

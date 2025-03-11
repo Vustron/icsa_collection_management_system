@@ -13,26 +13,26 @@
 @endsection
 
 <x-layout>
-    <div class="flex justify-center items-center flex-col">
+    <div class="flex flex-col items-center justify-center">
         <x-ui.error_handler.basic />
-        <div class="flex space-x-2 justify-between items-center flex-wrap-reverse gap-2 w-full pb-2">
-            <div class=" text-gray-800 text-lg pl-2 font-medium">
+        <div class="flex w-full flex-wrap-reverse items-center justify-between gap-2 space-x-2 pb-2">
+            <div class="pl-2 text-lg font-medium text-gray-800">
                 {{ $student['first_name'] . ' ' . ($student['middle_name'] != null ? $student['middle_name'] . ' ' : '') . $student['last_name'] }}
                 <span class="text-violet-800"> | {{ $fee['category']['category_name'] }}</span>
             </div>
-            <div class="flex space-x-2 justify-end">
+            <div class="flex justify-end space-x-2">
                 <a href="javascript:history.back()"
-                    class="flex text-sm items-center gap-2 px-2 py-1 border rounded-lg shadow-md text-gray-700 hover:bg-gray-200 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor"
+                    class="flex items-center gap-2 rounded-lg border px-2 py-1 text-sm text-gray-700 shadow-md transition hover:bg-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <path d="M15 18l-6-6 6-6"></path>
                     </svg>
                     Back
                 </a>
 
-                <div class="edit-student cursor-pointer flex text-sm items-center gap-2 px-2 py-1 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition"
+                <div class="edit-student flex cursor-pointer items-center gap-2 rounded-lg bg-orange-500 px-2 py-1 text-sm text-white shadow-md transition hover:bg-orange-600"
                     data-student="{{ json_encode($student) }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" stroke="currentColor"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <path d="M12 20h9"></path>
                         <path d="M16.5 3.5a2.121 2.121 0 113 3L7 19H3v-4L16.5 3.5z"></path>
@@ -40,9 +40,9 @@
                     Edit
                 </div>
 
-                <div class=" delete-student flex text-sm items-center gap-2 px-2 py-1 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition cursor-pointer"
+                <div class="delete-student flex cursor-pointer items-center gap-2 rounded-lg bg-red-600 px-2 py-1 text-sm text-white shadow-md transition hover:bg-red-700"
                     data-student="{{ json_encode($student) }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <polyline points="3 6 5 6 21 6"></polyline>
                         <path d="M19 6l-1 14H6L5 6"></path>
@@ -54,8 +54,8 @@
                 </div>
 
                 <button
-                    class="bg-purple-700 hover:bg-purple-800 text-white px-2 py-1 rounded shadow-md flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    class="flex items-center gap-2 rounded bg-purple-700 px-2 py-1 text-white shadow-md hover:bg-purple-800">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M19 7H5V3h14v4zM6 8h12a2 2 0 0 1 2 2v6h-4v4H6v-4H2v-6a2 2 0 0 1 2-2zm2 9v2h8v-2H8zm8-6h2v4h-2v-4zm-4 0h2v4h-2v-4zm-4 0h2v4H8v-4z" />
                     </svg>
@@ -66,27 +66,27 @@
 
         <hr>
 
-        <div class="w-full bg-gray-50 flex items-center justify-center p-5">
-            <div class="max-w-md mx-auto p-6 bg-gray-50 shadow-md rounded-lg border border-gray-300">
+        <div class="flex w-full items-center justify-center bg-gray-50 p-5">
+            <div class="mx-auto max-w-md rounded-lg border border-gray-300 bg-gray-50 p-6 shadow-md">
                 <!-- Header -->
-                <div class="text-center mb-4">
+                <div class="mb-4 text-center">
                     <h2 class="text-2xl font-bold text-gray-800">Student Fee Statement</h2>
                     <p class="text-sm text-gray-500">Fee ID: #{{ $fee->id }}</p>
                 </div>
 
                 <!-- Dashed Line -->
-                <div class="border-t-2 border-dashed border-gray-300 my-4"></div>
+                <div class="my-4 border-t-2 border-dashed border-gray-300"></div>
 
                 <!-- Fee Details -->
-                <div class="text-gray-700 space-y-3">
+                <div class="space-y-3 text-gray-700">
                     <div class="flex justify-between">
                         <span class="font-semibold">Total Fee:</span>
-                        <span class="text-green-700 font-bold">₱{{ number_format($fee->total_amount, 2) }}</span>
+                        <span class="font-bold text-green-700">₱{{ number_format($fee->total_amount, 2) }}</span>
                     </div>
 
                     <div class="flex justify-between">
                         <span class="font-semibold">Balance Due:</span>
-                        <span class="text-red-500 font-bold">₱{{ number_format($fee->balance, 2) }}</span>
+                        <span class="font-bold text-red-500">₱{{ number_format($fee->balance, 2) }}</span>
                     </div>
 
                     <div class="flex justify-between">
@@ -104,28 +104,28 @@
                         <span class="italic text-gray-500">{{ $fee->remarks ?? 'No remarks' }}</span>
                     </div>
 
-                    <div class="flex justify-between items-center">
+                    <div class="flex items-center justify-between">
                         <span class="font-semibold">Status:</span>
                         <span>
                             @if ($fee->status == 'pending')
                                 <span
-                                    class="px-3 py-1 bg-yellow-200 text-yellow-900 text-xs font-semibold rounded-full shadow-sm">Pending</span>
+                                    class="rounded-full bg-yellow-200 px-3 py-1 text-xs font-semibold text-yellow-900 shadow-sm">Pending</span>
                             @elseif($fee->status == 'paid')
                                 <span
-                                    class="px-3 py-1 bg-green-200 text-green-900 text-xs font-semibold rounded-full shadow-sm">Paid</span>
+                                    class="rounded-full bg-green-200 px-3 py-1 text-xs font-semibold text-green-900 shadow-sm">Paid</span>
                             @elseif($fee->status == 'waived')
                                 <span
-                                    class="px-3 py-1 bg-blue-200 text-blue-900 text-xs font-semibold rounded-full shadow-sm">Waived</span>
+                                    class="rounded-full bg-blue-200 px-3 py-1 text-xs font-semibold text-blue-900 shadow-sm">Waived</span>
                             @endif
                         </span>
                     </div>
                 </div>
 
                 <!-- Dashed Line -->
-                <div class="border-t-2 border-dashed border-gray-300 my-4"></div>
+                <div class="my-4 border-t-2 border-dashed border-gray-300"></div>
 
                 <!-- Footer -->
-                <div class="text-center text-gray-600 text-sm">
+                <div class="text-center text-sm text-gray-600">
                     <p>Date Issued: {{ $fee->created_at->format('D, d M Y') }}</p>
                     <p class="mt-2 italic">This is a statement of fees that must be paid.</p>
                 </div>

@@ -11,7 +11,7 @@ class Fees extends Model
 
     protected $table = "fees";
 
-    public $with = ['category', 'issuer'];
+    public $with = ["category", "issuer"];
     protected $fillable = [
         "fees_id",
         "collection_status ",
@@ -23,11 +23,11 @@ class Fees extends Model
 
     public function category()
     {
-        return $this->belongsTo(CollectionCategory::class, 'category_id');
+        return $this->belongsTo(CollectionCategory::class, "category_id");
     }
 
     public function issuer()
     {
-        return $this->belongsTo(User::class, 'issued_by');
+        return $this->belongsTo(User::class, "issued_by");
     }
 }

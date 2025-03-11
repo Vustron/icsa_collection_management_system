@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".delete-student").forEach((button) => {
         button.addEventListener("click", function () {
-            let student = JSON.parse(
-                this.getAttribute("data-student"),
-            );
+            let student = JSON.parse(this.getAttribute("data-student"));
 
             document.getElementById("student_delete_form").action = document
                 .getElementById("student_delete_form")
@@ -12,7 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // console.log(student);
 
             document.getElementById("student_to_delete").textContent =
-                student["first_name"] + " " + (student["middle_name"] != null ? student["middle_name"] + " " : "") + student["last_name"];
+                student["first_name"] +
+                " " +
+                (student["middle_name"] != null
+                    ? student["middle_name"] + " "
+                    : "") +
+                student["last_name"];
 
             showDialogByID("delete_student_modal");
         });
@@ -33,9 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll(".edit-student").forEach((button) => {
         button.addEventListener("click", function () {
-            let student = JSON.parse(
-                this.getAttribute("data-student"),
-            );
+            let student = JSON.parse(this.getAttribute("data-student"));
             console.log(student);
 
             document.getElementById("student_edit_form").action = document
@@ -48,20 +49,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 student["last_name"];
             document.getElementById("edit_middle_ename").value =
                 student["middle_name"];
-            document.getElementById("edit_email").value =
-                student["email"];
+            document.getElementById("edit_email").value = student["email"];
             document.getElementById("edit_school_id").value =
                 student["school_id"];
-            document.getElementById("edit_rfid").value =
-                student["rfid"];
+            document.getElementById("edit_rfid").value = student["rfid"];
             document.getElementById("edit_program_id").value =
                 student["program_id"];
-            document.getElementById("edit_year").value =
-                student["year"];
-            document.getElementById("edit_set").value =
-                student["set"];
-            document.getElementById("edit_status").value =
-                student["status"];
+            document.getElementById("edit_year").value = student["year"];
+            document.getElementById("edit_set").value = student["set"];
+            document.getElementById("edit_status").value = student["status"];
 
             showDialogByID("edit_student");
         });
