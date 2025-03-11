@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     role["role_name"]["role"],
                     role["system_name"]["name"],
                     new Date(role["created_at"]).toLocaleDateString(),
-                    
                 ];
 
                 cellData.forEach((data) => {

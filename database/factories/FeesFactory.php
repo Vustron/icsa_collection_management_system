@@ -27,11 +27,17 @@ class FeesFactory extends Factory
         //     ->optional(0.7)
         //     ->dateTimeBetween($issuedDate, $dueDate); // 70% chance of being paid
 
-        $totat_amount =  $this->faker->randomFloat(2, 50, 999); // Between 50 and 999
+        $totat_amount = $this->faker->randomFloat(2, 50, 999); // Between 50 and 999
 
         return [
             "student_id" => Student::inRandomOrder()->first()->id,
-            "category_id" =>  CollectionCategory::whereNot('category_name', "Attendance Fees")->where('institute_id', 1)->inRandomOrder()->first()->id,
+            "category_id" => CollectionCategory::whereNot(
+                "category_name",
+                "Attendance Fees"
+            )
+                ->where("institute_id", 1)
+                ->inRandomOrder()
+                ->first()->id,
             // "institute_id" =>
             //     Institute::inRandomOrder()->first()->id ?? Institute::factory(),
             "total_amount" => $totat_amount,

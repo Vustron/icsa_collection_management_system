@@ -12,7 +12,7 @@ class AttendanceRecord extends Model
 
     protected $table = "attendance_records";
 
-    public $with = ['event'];
+    public $with = ["event"];
     protected $fillable = [
         "student_id ",
         "attendance_event_id",
@@ -25,6 +25,6 @@ class AttendanceRecord extends Model
 
     public function event()
     {
-        return $this->belongsTo(AttendanceEvent::class, 'attendance_event_id');
+        return $this->belongsTo(AttendanceEvent::class, "attendance_event_id");
     }
 }

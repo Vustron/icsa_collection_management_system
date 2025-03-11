@@ -36,7 +36,7 @@ class Student extends Model
         "updated_at" => "datetime",
     ];
 
-    public $with = ['program'];
+    public $with = ["program"];
 
     public function program()
     {

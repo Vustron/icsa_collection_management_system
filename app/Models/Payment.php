@@ -24,11 +24,11 @@ class Payment extends Model
 
     public function fee()
     {
-        return  $this->belongsTo(Fees::class, 'fees_id');
+        return $this->belongsTo(Fees::class, "fees_id");
     }
 
     public function receivedBy()
     {
-        return $this->belongsTo(User::class, 'received_by');
+        return $this->belongsTo(User::class, "received_by");
     }
 }

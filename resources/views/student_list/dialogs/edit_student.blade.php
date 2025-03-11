@@ -2,7 +2,7 @@
     <form action="{{ route('student_list.update', '__ID__') }}" method="POST" class="space-y-2" id="student_edit_form">
         @csrf
         @method('put')
-        <div class="md:grid md:grid-cols-2 gap-2">
+        <div class="gap-2 md:grid md:grid-cols-2">
             <div class="space-y-2">
                 <x-ui.form.label for="edit_first_name">First Name</x-ui.form.label>
                 <x-ui.form.input type="text" name="first_name" id="edit_first_name" placeholder="First Name" required

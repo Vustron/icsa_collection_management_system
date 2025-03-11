@@ -16,6 +16,11 @@ Route::controller(StudentListController::class)
         Route::delete("/{id}", "destroy")->name("destroy");
 
         Route::get("/{id}/fees/{fee_id}", "show_fee")->name("show_fee");
-        Route::get("/{id}/payment/{payment_id}", "show_payment")->name("show_payment");
-        Route::get("/{id}/payment_submission/{payment_id}", "show_payment_submission")->name("show_payment_submission");
+        Route::get("/{id}/payment/{payment_id}", "show_payment")->name(
+            "show_payment"
+        );
+        Route::get(
+            "/{id}/payment_submission/{payment_id}",
+            "show_payment_submission"
+        )->name("show_payment_submission");
     });

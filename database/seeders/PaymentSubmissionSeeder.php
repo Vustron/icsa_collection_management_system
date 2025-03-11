@@ -7,6 +7,8 @@ use App\Models\PaymentSubmission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use Illuminate\Support\Str;
+
 class PaymentSubmissionSeeder extends Seeder
 {
     /**
@@ -14,8 +16,9 @@ class PaymentSubmissionSeeder extends Seeder
      */
     public function run(): void
     {
-
-        $fees = Fees::where('status', 'pending')->where('balance', '>', 0)->get();
+        $fees = Fees::where("status", "pending")
+            ->where("balance", ">", 0)
+            ->get();
 
         foreach ($fees as $fee) {
             // $amountToPay = fake()->randomFloat(2, 1, $fee->balance);
@@ -28,10 +31,16 @@ class PaymentSubmissionSeeder extends Seeder
             }
 
             PaymentSubmission::create([
-                "student_id" => $fee['student_id'],
-                "fees_id" => $fee['id'],
-                "screenshot_path" => "images/payments_submission/fake_gcash_receipt.jpg",
+                "student_id" => $fee["student_id"],
+                "fees_id" => $fee["id"],
+                "screenshot_path" =>
+                    "images/payments_submission/fake_gcash_receipt.jpg",
                 "amount_paid" => $amountToPay,
+                "reference_number" =>
+                    "GC-" .
+                    now()->format("Ymd") .
+                    "-" .
+                    strtoupper(Str::random(6)),
                 "status" => "pending",
                 "reviewed_by" => null,
                 "reviewed_at" => null,

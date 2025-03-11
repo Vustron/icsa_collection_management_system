@@ -17,13 +17,15 @@ class PaymentSubmission extends Model
         "fees_id ",
         "screenshot_path",
         "amount_paid",
+        "reference_number",
         "status ",
         "reviewed_by",
         "reviewed_at",
         "remarks",
     ];
 
-    public function fee(){
-        return $this->belongsTo(Fees::class, 'fees_id');
+    public function fee()
+    {
+        return $this->belongsTo(Fees::class, "fees_id");
     }
 }

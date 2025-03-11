@@ -15,5 +15,7 @@ Route::controller(PaymentManagementController::class)
         Route::put("/{id}", "update")->name("update");
         Route::delete("/{id}", "destroy")->name("destroy");
 
-        Route::get("/{id}/view/{fee_id}", "view_student_fee")->name("view_student.view_fee");
+        Route::get("/{id}/view/{fee_id}", "view_student_fee")->name(
+            "view_student.view_fee"
+        );
     });
