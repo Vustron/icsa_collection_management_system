@@ -45,6 +45,7 @@ class CollectionCategoryController extends Controller
 
         $validated = $request->validate([
             "category_name" => "required|string|max:255",
+            "collection_fee" => "numeric",
             "description" => "nullable|string|max:500",
             "institute_id" => "exists:institutes,id",
         ]);
@@ -83,6 +84,7 @@ class CollectionCategoryController extends Controller
 
         $validated = $request->validate([
             "category_name" => "required",
+            // "collection_fee" => "required",
             "description" => "required",
         ]);
 
