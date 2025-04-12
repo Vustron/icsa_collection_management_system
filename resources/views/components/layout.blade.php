@@ -176,7 +176,7 @@
                                 Management</span>
                         </a>
                     </li>
-                    
+
                     <!-- Transaction -->
                     <li>
                         <a href="{{ route('transaction.index') }}"

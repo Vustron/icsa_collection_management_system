@@ -26,7 +26,7 @@ class CollectionCategorySeeder extends Seeder
                 "category_name" => "Locker Payment",
                 "collection_fee" => 200,
                 "description" => null,
-                
+
                 "institute_id" => 1,
                 "created_at" => now(),
                 "updated_at" => null,
@@ -35,7 +35,7 @@ class CollectionCategorySeeder extends Seeder
                 "category_name" => "PSITS",
                 "collection_fee" => 200,
                 "description" => null,
-                
+
                 "institute_id" => 1,
                 "created_at" => now(),
                 "updated_at" => null,
@@ -44,7 +44,7 @@ class CollectionCategorySeeder extends Seeder
                 "category_name" => "Attendance Fees",
                 "collection_fee" => 200,
                 "description" => null,
-                
+
                 "institute_id" => 1,
                 "created_at" => now(),
                 "updated_at" => null,

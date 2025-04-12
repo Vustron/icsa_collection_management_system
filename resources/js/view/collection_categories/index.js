@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("edit_category_name").value =
                 collectionCategory["category_name"];
-                document.getElementById("edit_collection_fee").value =
+            document.getElementById("edit_collection_fee").value =
                 collectionCategory["collection_fee"];
             document.getElementById("edit_description").value =
                 collectionCategory["description"];

@@ -88,11 +88,11 @@
                 {{-- <td class="border border-gray-300 px-4 py-2">
                     {{ $collection_category['created_at']->format('l, F j, Y') }}
                 </td> --}}
-                {{--* collection amount --}}
+                {{-- * collection amount --}}
                 <td class="max-w-[150px] border border-gray-300 px-4 py-2">
                     {{ $collection_category['collection_fee'] }}
                 </td>
-                {{--* actions --}}
+                {{-- * actions --}}
                 <td class="w-[130px] border border-gray-300 px-4 py-2">
                     <div class="flex items-center justify-center gap-2">
                         <x-bi-eye-fill

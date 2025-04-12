@@ -4,7 +4,7 @@
 
         <input type="hidden" name="institute_id" value="{{ auth()->user()['institute_id'] }}">
 
-        <div class="space-y-2 mb-4">
+        <div class="mb-4 space-y-2">
             <div class="space-y-2">
                 <x-ui.form.label for="category_name">Category Name</x-ui.form.label>
                 <x-ui.form.input type="text" name="category_name" id="category_name" placeholder="Category Name"
@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="space-y-2 mb-4">
+        <div class="mb-4 space-y-2">
             <div class="space-y-2">
                 <x-ui.form.label for="category_name">Amount</x-ui.form.label>
                 <x-ui.form.input type="number" name="collection_fee" id="category_name" placeholder="Collection Fee"
@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="mt-1 space-y-2 mb-4">
+        <div class="mb-4 mt-1 space-y-2">
             <div class="space-y-2">
                 <x-ui.form.label for="description">Description</x-ui.form.label>
                 <textarea name="description" id="description" placeholder="Enter category description..."
