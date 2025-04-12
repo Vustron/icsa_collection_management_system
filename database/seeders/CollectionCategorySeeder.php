@@ -15,7 +15,8 @@ class CollectionCategorySeeder extends Seeder
     {
         $collection_categories = [
             [
-                "category_name" => "Kalibulong",
+                "category_name" => "Kali",
+                "collection_fee" => 200,
                 "description" => null,
                 "institute_id" => 1, //nag add raku ani kay sa collection mangud naay edit og delete, tas centralized baya any institute maka kita atong categ. maong bahalag same ra silag name and purpose gi separate japun naku sila
                 "created_at" => now(),
@@ -23,21 +24,27 @@ class CollectionCategorySeeder extends Seeder
             ],
             [
                 "category_name" => "Locker Payment",
+                "collection_fee" => 200,
                 "description" => null,
+
                 "institute_id" => 1,
                 "created_at" => now(),
                 "updated_at" => null,
             ],
             [
                 "category_name" => "PSITS",
+                "collection_fee" => 200,
                 "description" => null,
+
                 "institute_id" => 1,
                 "created_at" => now(),
                 "updated_at" => null,
             ],
             [
                 "category_name" => "Attendance Fees",
+                "collection_fee" => 200,
                 "description" => null,
+
                 "institute_id" => 1,
                 "created_at" => now(),
                 "updated_at" => null,

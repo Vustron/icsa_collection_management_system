@@ -38,44 +38,48 @@ class InstituteSeeder extends Seeder
             ],
         ];
 
-        $collection_categories = [
-            [
-                "category_name" => "Kalibulong",
-                "description" => null,
-                "institute_id" => 1, //nag add raku ani kay sa collection mangud naay edit og delete, tas centralized baya any institute maka kita atong categ. maong bahalag same ra silag name and purpose gi separate japun naku sila
-                "created_at" => now(),
-                "updated_at" => null,
-            ],
-            [
-                "category_name" => "Locker Payment",
-                "description" => null,
-                "institute_id" => 1,
-                "created_at" => now(),
-                "updated_at" => null,
-            ],
-            [
-                "category_name" => "PSITS",
-                "description" => null,
-                "institute_id" => 1,
-                "created_at" => now(),
-                "updated_at" => null,
-            ],
-            [
-                "category_name" => "Attendance Fees",
-                "description" => null,
-                "institute_id" => 1,
-                "created_at" => now(),
-                "updated_at" => null,
-            ],
-        ];
+        // $collection_categories = [
+        //     [
+        //         "category_name" => "Kalibulong",
+        //         "collection_fee" => 200,
+        //         "description" => null,
+        //         "institute_id" => 1, //nag add raku ani kay sa collection mangud naay edit og delete, tas centralized baya any institute maka kita atong categ. maong bahalag same ra silag name and purpose gi separate japun naku sila
+        //         "created_at" => now(),
+        //         "updated_at" => null,
+        //     ],
+        //     [
+        //         "category_name" => "Locker Payment",
+        //         "collection_fee" => 200,
+        //         "description" => null,
+        //         "institute_id" => 1,
+        //         "created_at" => now(),
+        //         "updated_at" => null,
+        //     ],
+        //     [
+        //         "category_name" => "PSITS",
+        //         "collection_fee" => 200,
+        //         "description" => null,
+        //         "institute_id" => 1,
+        //         "created_at" => now(),
+        //         "updated_at" => null,
+        //     ],
+        //     [
+        //         "category_name" => "Attendance Fees",
+        //         "collection_fee" => 200,
+        //         "description" => null,
+        //         "institute_id" => 1,
+        //         "created_at" => now(),
+        //         "updated_at" => null,
+        //     ],
+        // ];
 
         foreach ($institutes as $institute) {
             $insti = Institute::create($institute);
-            foreach ($collection_categories as $collection_category) {
-                // $collection_category_data = $collection_category;
-                $collection_category["institute_id"] = $insti["id"];
-                CollectionCategory::create($collection_category);
-            }
+            // foreach ($collection_categories as $collection_category) {
+            //     // $collection_category_data = $collection_category;
+            //     $collection_category["institute_id"] = $insti["id"];
+            //     CollectionCategory::create($collection_category);
+            // }
         }
     }
 }

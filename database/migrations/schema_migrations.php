@@ -150,6 +150,7 @@ return new class extends Migration {
         Schema::create("collection_categories", function (Blueprint $table) {
             $table->id();
             $table->string("category_name", 50); //->unique()
+            $table->decimal("collection_fee", 8, 2)->default(0);
             $table->text("description")->nullable();
             $table
                 ->foreignId("institute_id")

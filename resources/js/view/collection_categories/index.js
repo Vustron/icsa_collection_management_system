@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.getAttribute("data-collection_category"),
             );
 
-            console.log(collectionCategory);
+            // console.log(collectionCategory);
 
             document.getElementById("collection_category_edit_form").action =
                 document
@@ -60,6 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("edit_category_name").value =
                 collectionCategory["category_name"];
+            document.getElementById("edit_collection_fee").value =
+                collectionCategory["collection_fee"];
             document.getElementById("edit_description").value =
                 collectionCategory["description"];
 

@@ -74,7 +74,7 @@
             </button>
         </div>
     </div>
-    <x-ui.table :headers="['#', 'Category Name', 'Description', 'Institute', 'Actions']">
+    <x-ui.table :headers="['#', 'Category Name', 'Description', 'Institute', 'Amount', 'Actions']">
         @foreach ($collection_categories as $collection_category)
             <tr class="last:border-violet-700 even:bg-gray-100 hover:bg-violet-100">
                 <td class="border border-gray-300 px-4 py-1 text-center">{{ $collection_category['id'] }}</td>
@@ -88,6 +88,11 @@
                 {{-- <td class="border border-gray-300 px-4 py-2">
                     {{ $collection_category['created_at']->format('l, F j, Y') }}
                 </td> --}}
+                {{-- * collection amount --}}
+                <td class="max-w-[150px] border border-gray-300 px-4 py-2">
+                    {{ $collection_category['collection_fee'] }}
+                </td>
+                {{-- * actions --}}
                 <td class="w-[130px] border border-gray-300 px-4 py-2">
                     <div class="flex items-center justify-center gap-2">
                         <x-bi-eye-fill

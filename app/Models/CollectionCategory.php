@@ -10,7 +10,12 @@ class CollectionCategory extends Model
     use HasFactory;
 
     protected $table = "collection_categories";
-    protected $fillable = ["category_name", "description", "institute_id"];
+    protected $fillable = [
+        "category_name",
+        "collection_fee",
+        "description",
+        "institute_id",
+    ];
 
     public function institute()
     {

@@ -176,8 +176,8 @@
                                 Management</span>
                         </a>
                     </li>
-                    <!-- Transaction -->
 
+                    <!-- Transaction -->
                     <li>
                         <a href="{{ route('transaction.index') }}"
                             class="{{ request()->routeIs('transaction.*') ? 'bg-purple-600 text-white pointer-events-none' : 'text-gray-700 hover:bg-purple-600 hover:text-white' }} group flex items-center rounded-lg p-2 transition-colors">
